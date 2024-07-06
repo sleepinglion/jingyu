@@ -5,7 +5,7 @@ set :application, "jingyu"
 set :repo_url, "git@github.com:sleepinglion/jingyu.git"
 
 # Default branch is :master
-set :branch, 'jingyu'
+set :branch, 'main'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/deploy/jingyu"
