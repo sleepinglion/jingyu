@@ -1,5 +1,4 @@
-class BlogsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index,:show]
+class BlogsController < BoardController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   def initialize(*params)

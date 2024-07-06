@@ -1,5 +1,4 @@
 class GuestBooksController < AnonBoardController
-  impressionist :actions => [:show]
   before_action :set_guest_book, only: [:show, :edit, :update, :destroy]
 
   def initialize(*params)

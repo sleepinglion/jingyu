@@ -1,4 +1,4 @@
-class AnonBoardController < ApplicationController
+class AnonBoardController < BoardController
   before_action :check_edit_password, :only => [:edit]
   before_action :check_destroy_password, :only => [:destroy]
   before_action :check_confirm, :only => [:destroy]

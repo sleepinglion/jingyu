@@ -1,5 +1,4 @@
 class CommentController < ApplicationController
- 
   def initialize(*params)
     super(*params)
     @style="board"

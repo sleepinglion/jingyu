@@ -1,5 +1,4 @@
 class NoticesController < BoardController
-  impressionist :actions=>[:show]
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
 
   def initialize(*params)
