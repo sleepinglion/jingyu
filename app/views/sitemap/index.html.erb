@@ -1,0 +1,23 @@
+<section id="section_sitemap" class="sub_main">
+	<div class="section_top">	
+		<h2 class="none">사이트맵</h2>
+	</div>
+	<article>
+		<h3>메인메뉴</h3>
+		<ul>
+			<li><%= link_to('피해 신고',reports_path) %></li>
+			<li><%= link_to('경쟁사 칭찬',compliments_path) %></li>
+			<li><%= link_to('망하게할 방법 제안',proposes_path) %></li>
+			<li><%= link_to('KB FAQ',faqs_path) %></li>
+		</ul>
+	</article>
+	<article>
+		<h3>하단 메뉴</h3>
+		<ul>
+			<li><%= link_to('사이트 소개',:controller=>'intro') %></li>
+			<li><%= link_to('개선사항 제안',new_improve_path) %></a></li>
+			<li>email:<%= mail_to('admin@anti-kb.kr') %></li>
+			<li><%= link_to('사이트맵',:controller=>'sitemap') %></li>
+		</ul>
+	</article>
+</section>

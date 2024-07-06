@@ -1,0 +1,73 @@
+<div class="row">
+	<h3 class="col-xs-12 col-sm-6"><%= @controller_name %> <%= actionNameChange controller.action_name %></h3>
+	<div class="col-xs-12 col-sm-6">
+
+	</div>
+</div>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+		<colgroup>
+			<col style="width:80px;" />
+			<col />
+			<col style="width:100px;" />
+			<col style="width:100px" />
+      <col style="width:130px" />
+			<% if can?(:update, GalleryCategory) || can?(:delete, GalleryCategory) %>
+			<col <%= raw manage_width(GalleryCategory) %> />
+			<% end %>
+		</colgroup>
+		<thead>
+			<tr>
+				<th><%= t(:label_number) %></th>
+				<th><%=t(:title,scope:[:activerecord,:attributes,:gallery_category]) %></th>
+				<th><%=t(:galleries_count,scope:[:activerecord,:attributes,:gallery_category]) %></th>
+				<th><%=t(:enable,scope:[:activerecord,:attributes,:gallery_category]) %></th>
+				<th><%= t(:label_created_at) %></th>
+				<% if can?(:update, GalleryCategory) || can?(:delete, GalleryCategory) %>
+				<th><%= t(:label_manage) %></th>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody>
+			<% unless @admin_gallery_categories.empty? %>
+			<% @admin_gallery_categories.each do |gallery_category| %>
+			<tr>
+				<td><%= link_to gallery_category.id,admin_gallery_category_path(gallery_category) %></td>
+				<td><%= link_to gallery_category.title,admin_gallery_category_path(gallery_category) %></td>
+				<td><%= link_to gallery_category.galleries_count,admin_gallery_category_path(gallery_category) %></td>
+				<td><%= raw flagToString(gallery_category.enable) %></td>
+				<td><%= gallery_category.created_at.to_date %></td>
+				<% if can?(:update, gallery_category) || can?(:delete, gallery_category) %>
+				<td>
+					<% if can? :update, gallery_category %>
+				<%= link_to edit_admin_gallery_category_path(gallery_category),:class=>"btn btn-default" do %> <i class="glyphicon glyphicon-pencil"></i> <%= t(:link_edit) %>
+				<% end %>
+				<% end %>
+				<% if can? :delete, gallery_category %>
+				<%= link_to admin_gallery_category_path(gallery_category), :method => :delete, :data => { :confirm => t(:delete_confirm) },:class=>"btn btn-danger" do %> <i class="glyphicon glyphicon-trash"></i> <%= t(:link_delete) %>
+				<% end %>
+				<% end %>
+				</td>
+				<% end %>
+			</tr>
+			<% end %>
+			<% else %>
+			<tr>
+				<td colspan="6"><%= t(:no_data)%></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div class="row">
+	<div class="col-xs-6 col-sm-3 col-md-2">
+		<% if can? :create, GalleryCategory %>
+		<%= link_to new_admin_gallery_category_path,:class=>"btn btn-primary" do %>
+		<i class="glyphicon glyphicon-plus"></i> <%= t(:link_new) %>
+		<% end %>
+		<% end %>
+	</div>
+	<nav class="col-xs-12 col-sm-9 col-md-10">
+		<%= paginate @admin_gallery_categories %>
+	</nav>
+</div>

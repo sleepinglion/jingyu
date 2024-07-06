@@ -1,0 +1,48 @@
+<section id="sl_blog_index">
+	<table class="slboard_list">
+		<colgroup>
+			<col width="100px" />
+			<col />
+			<col width="70px" />
+			<col width="130px" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th><p class="sl_name"><%=t(:label_name) %></p></th>
+				<th><p class="sl_title"><%=t(:label_title) %></p></th>
+				<th class="sl_right"><p class="sl_count"><%=t(:label_count) %></p></th>
+				<th class="sl_right"><p class="sl_registered_date"><%=t(:label_created_at) %></p></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="none">
+				<td><p class="sl_name"></p></td>
+				<td><p><a class="sl_show_link" href="show.php"></a></p></td>
+				<td class="sl_right"><p class="sl_count"></p></td>
+				<td class="sl_right"><p class="sl_registered_date"></p></td>
+			</tr>
+			<% unless @blogs.empty? %>
+			<% @blogs.each do |notice| %>
+			<tr>
+				<td><p class="sl_name"><%= notice.user.name %></p></td>
+				<td><p><%= link_to notice.title, notice  %></p></td>
+				<td class="sl_right"><p class="sl_count"></p></td>
+				<td class="sl_right"><p class="sl_registered_date"><%=notice.created_at.to_date %></p></td>
+			</tr>
+			<% end %>			
+			<% else %>
+			<tr>
+				<td colspan="4"><p<%=t(:no_data) %></p></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<div id="sl_bottom_menu">
+	<% if user_signed_in? %>
+	<% if current_user.admin? %>			
+		<%= link_to t(:link_new), new_blog_path %>
+	<% end %>
+	<% end %>
+	<%= paginate @blogs %>
+	</div>
+</section>

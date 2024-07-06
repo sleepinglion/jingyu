@@ -1,0 +1,81 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put,:multipart => true }) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="box">
+    <div class="box_header">
+      <h2>필수 입력</h2>
+      <div class="box_icon">
+        <a href="#" class="btn_minimize"><i class="glyphicon glyphicon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="box_content">
+      <div class="form-group">
+        <%= f.label :email %><br  />
+        <%= f.email_field :email,:class=>'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, :class=>'form-control',:required=>'required' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password,:class=>'form-control', :autocomplete => "off" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %><br  />
+        <%= f.password_field :password_confirmation,:class=>'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password,:class=>'form-control' %>
+      </div>   
+    </div>
+  </div>
+  <div class="box">
+    <div class="box_header">
+      <h2>선택입력</h2>
+      <div class="box_icon">
+        <a href="#" class="btn_minimize"><i class="glyphicon glyphicon-chevron-down"></i></a>
+        <a href="#" class="btn_close"><i class="glyphicon glyphicon-remove"></i></a>
+      </div>
+    </div>
+    <div class="box_content" style="display:none">
+      <div class="form-group">
+        <%= f.label :alternate_name %><br />
+        <%= f.text_field :alternate_name, :class=>'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :photo %>
+        <% if resource.photo? %>
+        <%= image_tag(resource.photo.small_thumb) %>
+        <% end %>
+        <br />
+        <%= f.file_field :photo %>
+        <%= f.hidden_field :photo_cache %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description %><br />
+        <%= f.text_field :description, :class=>'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :gender %><br />
+        <%= f.text_field :gender, :class=>'form-control' %>
+      </div>      
+      <div class="form-group">
+        <%= f.label :job_title %><br />
+        <%= f.text_field :job_title, :class=>'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :url %><br />
+        <%= f.text_field :url, :class=>'form-control' %>
+      </div>                     
+    </div>
+  </div>
+  <div class="form-group action">
+    <%= f.submit :class=>"btn btn-primary" %>
+  </div>
+<% end %>
+<article>
+	<h3>회원탈퇴</h3>
+	<p>sleepinglion.pe.kr이 마음에 안드나요? <%= link_to '회원탈퇴', registration_path(resource_name), :confirm => t(:delete_user_cascade_confirm), :method => :delete, :class=>'red' %>.</p>
+</article>
+<%= link_to t(:link_back), :back %>

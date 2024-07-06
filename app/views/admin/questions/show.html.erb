@@ -1,0 +1,30 @@
+<div class="sl_show">
+	<p>
+		<b><%=t(:title,scope:[:activerecord,:attributes,:question]) %></b>
+		<%= @admin_question.title %>
+	</p>
+	<p>
+  	<b><%=t(:content,scope:[:activerecord,:attributes,:question_content]) %></b>
+		<%= simple_format(@admin_question.question_content.content) %>
+	</p>
+	<p>
+  	<b><%=t(:label_count) %></b>
+  	<%=@admin_question.count+@admin_question.impressionist_count(:filter=>:ip_address) %>
+  </p>
+	<p>
+		<b><%=t(:enable,scope:[:activerecord,:attributes,:question]) %></b>
+		<%=raw flagToString(@admin_question.enable) %>
+	</p>
+	<p>
+  	<b><%=t(:label_created_at) %></b>
+  	<%= @admin_question.created_at %>
+  </p>
+  <p>
+  	<b><%=t(:label_updated_at) %></b>
+  	<%= @admin_question.created_at %>
+  </p>
+</div>
+<% if can? :update, @admin_question %>
+<%= link_to t(:link_edit), edit_admin_question_path(@admin_question) %> |
+<% end %>
+<%= link_to t(:link_list), admin_questions_path %>

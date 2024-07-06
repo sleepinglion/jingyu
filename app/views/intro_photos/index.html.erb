@@ -1,0 +1,63 @@
+<section id="sl_gallery_index">
+	<% if @menu_setting.use_category %>
+	<ol class="nav nav-tabs">
+		<% unless @gallery_categories.empty? %>
+		<% @gallery_categories.each do |gallery_category| %>
+		<li <% if(@gallery_category_id==gallery_category.id) %>class="active"<% end %>><%= link_to gallery_category.title.truncate(20),galleries_path(:gallery_category_id=>gallery_category.id) %></li>
+		<% end %>
+  	<% else %>	
+		<li><%=t(:no_data)%></li>
+		<% end %>
+	</ol>
+	<% end %>
+	<div id="sl_gallery">
+		<% if(@gallery) %>
+		<div id="sl_gallery_left">
+			<%=link_to @gallery.photo.url,{:title=>@gallery.title,:class=>'simple_image'} do %>
+				<%= image_tag @gallery.photo.large_thumb,:class=>'img-responsive' %>
+				<span id="gallery<%=@gallery.id %>_img<%=@gallery.id %>_span" class="image_caption"><%=@gallery.title %></span>
+			<% end %>
+		</div>
+		<div id="sl_gallery_right">
+			<div><%=simple_format @gallery.content %></div>
+			<% if user_signed_in? %>
+			<% if current_user.admin? %>
+			<div id="sl_gallery_menu">				
+				<%= link_to t(:link_edit), edit_gallery_path(@gallery) %> &nbsp; | &nbsp; 
+				<%= link_to t(:link_delete), @gallery, method: :delete, data: { confirm: t(:delete_confirm)} %>
+			</div>				
+			<% end %>
+			<% end %>
+		</div>
+		<% end %>
+		<div id="sl_gallery_slide">
+		<a class="prev browse left"></a>
+			<div class="scrollable">
+				<% unless @galleries.empty? %>
+				<div class="items">
+					<% @galleries.each_slice(6) do |gallery| %>
+					<ul class="item">
+						<% gallery.each_with_index do |gallery,index| %>
+						<li><%=link_to image_tag(gallery.photo.small_thumb),galleries_path(:gallery_category_id=>gallery.gallery_category_id,:id=>gallery,:alt=>gallery.title),:title=>gallery.title %></li>
+						<% end %>
+					</ul>
+				<% end %>
+				</div>
+			<% else %>
+			<ul>
+				<li><%=t(:no_data)%></li>
+			</ul>
+			<% end %>
+			</div>
+			<a class="next browse right"></a>			
+		</div>
+	</div>
+	<div id="sl_bottom_menu">
+	<% if user_signed_in? %>
+	<% if current_user.admin? %>		
+		<%= link_to t(:link_new),new_gallery_path(:gallery_category_id=>@categoryId) %>
+	<% end %>
+	<% end %>
+	<%= paginate @galleries %>	
+	</div>
+</section>

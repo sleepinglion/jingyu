@@ -1,0 +1,26 @@
+<div class="sl_show">
+	<p>
+		<b><%=t(:title,scope:[:activerecord,:attributes,:gallery_category]) %></b>
+		<%= @gallery_category.title %>
+	</p>
+	<p>
+  	<b><%=t(:galleries_count,scope:[:activerecord,:attributes,:gallery_category]) %></b>
+  	<%= @gallery_category.galleries_count %>
+  </p>
+	<p>
+		<b><%=t(:enable,scope:[:activerecord,:attributes,:gallery_category]) %></b>
+		<%=raw flagToString(@gallery_category.enable) %>
+	</p>
+	<p>
+  	<b><%=t(:label_created_at) %></b>
+  	<%= @gallery_category.created_at %>
+  </p>
+  <p>
+  	<b><%=t(:label_updated_at) %></b>
+  	<%= @gallery_category.created_at %>
+  </p>
+</div>
+<% if can? :update, @gallery_category %>
+<%= link_to t(:link_edit), edit_admin_gallery_category_path(@gallery_category) %> |
+<% end %>
+<%= link_to t(:link_list), admin_gallery_categories_path %>

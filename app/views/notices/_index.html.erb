@@ -1,0 +1,16 @@
+<article id="sl_main_notice" class="col-12">
+	<h3><%=t('activerecord.models.notice') %></h3>
+	<ul>
+		<% unless @notices.empty? %>
+		<% @notices.each do |notice| %>
+		<li>
+			<%= link_to notice.title, notice  %>
+			<span class="d-none d-lg-block text-muted" style="float:right;"><%=time_ago_in_words notice.created_at.to_date %></span>
+		</li>
+		<% end %>
+		<% else %>
+		<li><%=t(:no_data) %></li>
+		<% end %>
+	</ul>
+	<%=link_to t(:link_more),notices_path,:class=>'more' %>
+</article>

@@ -1,0 +1,96 @@
+<ol class="nav nav-tabs">
+	<% unless gallery_categories.empty? %>
+	<% gallery_categories.each do |gallery_category| %>
+	<li class="nav-item">
+		<% if gallery_category.id!=nil && (gallery_category_id==gallery_category.id)
+			m_class="nav-link active"
+			else
+			m_class="nav-link"
+			end				
+		%>
+		<%= link_to galleries_path(:gallery_category_id=>gallery_category.id),:class=>m_class do %>
+		<%= gallery_category.title %><span class="hidden-xs">(<%= gallery_category.galleries_count %>)</span>
+		<% end %>
+	</li>
+	<% end %>
+	<% else %>
+	<li>
+		<%= t(:no_data)%>
+	</li>
+	<% end %>
+</ol>
+<div id="sl_gallery" class="row" <% if gallery %>itemscope itemtype="http://schema.org/ImageObject"<% end %> >
+	<% if gallery %>
+	<div id="sl_gallery_left" class="col-12 col-lg-5">
+		<span class="none" itemprop="genre"><%= gallery.gallery_category_id %></span>
+		<%=link_to gallery.photo.to_s,{:title=>gallery.title,:class=>'simple_image'} do %>
+		<figure>
+			<%= image_tag sl_get_thumb(gallery.photo.to_s,'large'),:class=>'img-responsive',:itemprop=>"contentURL" %>
+			<figcaption id="gallery<%= gallery.id %>_img<%= gallery.id %>_span" class="image_caption" itemprop="name">
+				<%= gallery.title %>
+			</figcaption>
+		</figure>
+		<% end %>
+	</div>
+	<div id="sl_gallery_right" class="col-12 col-lg-7">
+		<div itemprop="description">
+			<%= simple_format gallery.content %>
+		</div>
+		<div class="add_info">
+      <span itemprop="dateCreated" datetime="<%= gallery.created_at %>"><%= get_dt_format(gallery.created_at.to_date) %></span><span class="none" itemprop="dateModified" datetime="<%= gallery.updated_at %>"><%= gallery.updated_at.to_date %></span>
+		</div>
+	</div>
+	<% end %>
+	<div id="sl_main_gallery" class="carousel slide" data-ride="carousel" data-bs-slide="true">
+		<% unless @galleries.empty? %>
+		<% if galleries.count > 5 %>
+			<div class="carousel-indicators">
+			<% @galleries.each_slice(5).each_with_index do |gallery,index| %>
+					<button type="button" data-bs-target="#sl_main_gallery" data-bs-slide-to="<%= index %>" aria-current="true" aria-label="Slide <%= index %>" <% if index.zero? %>class="active"<% end %>></button>
+			<% end %>
+		</div>
+		<% end %>
+		<% end %>
+
+		<% unless @galleries.empty? %>
+		<div class="col-12 carousel-inner" role="listbox" style="clear:both">
+			<% @galleries.each_slice(5).each_with_index do |gallery,index| %>
+			<div class="carousel-item<% if index.zero? %> active<% end %>">
+				<% gallery.each_with_index do |gallery,index2| %>
+				<% if(index2>=5) then g_class=' nm' else g_class='' end %>
+				<%= link_to image_tag(asset_path('ajax-loader.gif'),:alt=>gallery.title,:'data-original'=>sl_get_thumb(gallery.photo.to_s,'medium'),:'data-date'=>get_dt_format(gallery.created_at.to_date),:class=>'lazyload'),gallery_path(gallery),:class=>"#{g_class}",width:100,height:100 %>
+				<noscript>
+					<%= link_to image_tag(sl_get_thumb(gallery.photo.to_s,'medium'),:alt=>gallery.title),gallery_path(gallery),:title=>gallery.title %><% if gallery.id==gallery.id %><span class="none" itemprop="thumbnailUrl"><%= sl_get_thumb(gallery.photo.to_s,'small') %></span><% end %>
+				</noscript>
+				<% end %>
+			</div>
+			<% end %>
+		</div>
+		<% else %>
+		<div class="col-12">
+			<p>
+				<%= t(:no_data) %>
+			</p>
+		</div>
+		<% end %>
+
+		<!-- Controls -->
+		<% if galleries.count > 5 %>
+			<button class="carousel-control-prev" type="button" data-bs-target="#sl_main_gallery" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#sl_main_gallery" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		<% end %>
+	</div>
+
+	<div class="col-12">
+		<% if can? :create, Gallery %>
+		<%= link_to t(:link_new),new_gallery_path(:gallery_category_id=>gallery_category_id),:rel=>"nofollow",:class=>"btn btn-default" %>
+		<% end %>
+		<%= paginate galleries %>
+	</div>
+</div>

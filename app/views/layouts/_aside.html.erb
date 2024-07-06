@@ -1,0 +1,7 @@
+<aside class="d-none <% unless session[:no_aside] %> d-xl-block col-xl-3<% end %>">
+  <%= render 'blog_categories/aside' %>
+  <% unless @tags.empty? %>
+    <%= render 'blogs/tag_cloud' %>
+  <% end %>
+  <div class="clearfix">&nbsp;</div>
+</aside>

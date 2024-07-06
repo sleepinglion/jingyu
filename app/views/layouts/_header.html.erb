@@ -1,0 +1,23 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <h1 class="col-12 col-lg-6"><%= link_to t(:home_title),root_path %></h1>
+      <% if user_signed_in? %>
+        <ul id="top_menu">
+          <li><%= link_to current_user.nickname,edit_user_registration_path %><%= t(:welcome)%></li>
+          <li><%= link_to t(:logout),destroy_user_session_path %></li>
+        </ul>
+      <% end %>
+      <nav class="col-12 col-lg-6">
+        <ul class="nav nav-pills">
+          <li <% if params[:controller]=='intro' %>class="active"<% end %>><%=link_to intro_index_path do %><%= t('activerecord.models.intro') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
+          <li <% if params[:controller]=='galleries' %>class="active"<% end %>><%=link_to galleries_path do %><%= t('activerecord.models.gallery') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
+          <li <% if params[:controller]=='blogs' %>class="active"<% end %>><%=link_to blogs_path  do %><%= t('activerecord.models.blog') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
+          <li <% if params[:controller]=='questions' %>class="active"<% end %>><%=link_to questions_path do %><%= t('activerecord.models.question') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
+          <li <% if params[:controller]=='faqs' %>class="active"<% end %>><%=link_to faqs_path do %><%= t('activerecord.models.faq') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
+          <li <% if params[:controller]=='guest_books' %>class="active"<% end %>><%=link_to guest_books_path do %><%= t('activerecord.models.guest_book') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,29 @@
+<li class="media">
+	<%=link_to '#',:class=>"pull-left" do %>
+		<% if guest_book_comment.user %>
+			<%= image_tag guest_book_comment.user.photo.small_thumb,:alt=>guest_book_comment.user.name %>
+		<% else %>
+			<%= image_tag 'anon.png',:alt=>guest_book_comment.name %>
+		<% end %>
+	<% end %>
+	<div class="media-body">
+		<h4 class="media-heading"><%=userName(guest_book_comment,10) %><span class="sl_created_at"><%=guest_book_comment.created_at.to_date %></span></h4>
+		<div><%=simple_format(guest_book_comment.content) %>			
+		<% if guest_book_comment.user %>
+			<% if current_user %>
+				<% if guest_book_comment.user_id==current_user.id %>
+					<%=link_to t(:link_edit), edit_guest_book_guest_book_comment_path(@guest_book,guest_book_comment) %> &nbsp; | &nbsp;	
+					<%= link_to t(:link_delete), guest_book_guest_book_comment_path(@guest_book,guest_book_comment), method: :delete, data: { confirm: t(:delete_confirm)} %>
+				<% end %>
+			<% end %>
+		<% else %>
+			<%=link_to t(:link_edit), edit_guest_book_guest_book_comment_path(@guest_book,guest_book_comment) %> &nbsp; | &nbsp;
+			<% if checkPriv(guest_book_comment) %>
+			<%= link_to t(:link_delete), guest_book_guest_book_comment_path(@guest_book,guest_book_comment), method: :delete, data: { confirm: t(:delete_confirm)} %>			
+			<% else %>
+			<%= link_to t(:link_delete), guest_book_guest_book_comment_path(@guest_book,guest_book_comment), method: :delete %>
+			<% end %>
+		<% end %>					
+		</div>
+	</div>
+</li>

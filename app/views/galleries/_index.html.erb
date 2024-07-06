@@ -1,0 +1,48 @@
+<article id="sl_main_gallery" class="col-12 carousel slide" data-ride="carousel" data-bs-slide="true" itemscope itemtype="http://schema.org/ImageObject">
+  <h3><%= t('activerecord.models.gallery') %></h3>
+  <% unless @galleries.empty? %>
+    <% if @galleries.count > 5 %>
+      <div class="carousel-indicators">
+        <% @galleries.each_slice(5).each_with_index do |gallery, index| %>
+          <button type="button" data-bs-target="#sl_main_gallery" data-bs-slide-to="<%= index %>" aria-current="true" aria-label="Slide <%= index %>" <% if index.zero? %>class="active"<% end %>></button>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <% unless @galleries.empty? %>
+    <div class="carousel-inner" role="listbox">
+      <% @galleries.each_slice(5).each_with_index do |gallery, index| %>
+        <div class="carousel-item
+          <% if index.zero? %> active
+          <% end %>">
+          <% gallery.each_with_index do |gallery, index2| %>
+              <%= link_to image_tag(asset_path('ajax-loader.gif'), :alt => gallery.title, :'data-original' => sl_get_thumb(gallery.photo.to_s, 'medium')), gallery_path(gallery) %>
+              <noscript>
+                <%= link_to image_tag(sl_get_thumb(gallery.photo.to_s, 'medium'), :alt => gallery.title), gallery_path(gallery) %>
+              </noscript>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+  <% else %>
+    <div>
+      <p>
+        <%= t(:no_data) %>
+      </p>
+    </div>
+  <% end %>
+
+  <!-- Controls -->
+  <% if @galleries.count > 5 %>
+    <button class="carousel-control-prev" type="button" data-bs-target="#sl_main_gallery" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#sl_main_gallery" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+<% end %>
+
+  <%= link_to t(:link_more), galleries_path, :class => 'more' %>
+</article>

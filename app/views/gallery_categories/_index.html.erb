@@ -1,0 +1,16 @@
+<article id="sl_main_faq" class="sl_main_list">
+	<h3><%=t('activerecord.models.faq') %></h3>
+	<ul>
+		<% unless @faqs.empty? %>
+		<% @faqs.each do |faq| %>
+		<li>
+			<%= link_to faq.title.truncate(16), faqs_path(:id=>faq)  %>
+			<span class="sl_registered_date"><%=faq.created_at.to_date %></span>
+		</li>
+		<% end %>	
+		<% else %>
+		<li><%=t(:no_data) %></li>
+		<% end %>
+	</ul>
+	<%=link_to t(:link_more),faqs_path,:class=>'more' %>
+</article>

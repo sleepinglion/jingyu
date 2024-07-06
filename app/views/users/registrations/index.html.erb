@@ -1,0 +1,26 @@
+<section id="users_main" class="sub_main">
+	<% if notice %>
+		<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+	<% end %>	
+	<div id="index_main">
+	<% unless @users.empty? %>		
+	<% @users.each do |user| %>
+	<div class="content_list">
+		<div>
+			<% if user.photo? %>
+				<%=image_tag user.photo.small_thumb, :alt=>user.name %>
+			<% end %>
+		</div>
+		<div class="content_list_head"><span class="content_list_name"><%=user.name %></span> &nbsp;&nbsp; <span class="content_list_date"></span></div>
+		<div class="content_list_content"><%=user.description %></div>
+	</div>
+	<% end %>
+	<% else %>		
+	<div><%=t(:no_data)%></div>
+	<% end %>	
+	</div>
+	<div id="sl_bottom_menu">
+		<%= link_to "서명하기",new_user_registration_path %>
+		<div class="flickr_pagination"><%= paginate @users %></div>
+	</div>		
+</section>

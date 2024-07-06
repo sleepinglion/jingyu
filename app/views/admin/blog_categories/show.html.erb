@@ -1,0 +1,26 @@
+<div class="sl_show">
+	<p>
+		<b><%=t(:title,scope:[:activerecord,:attributes,:blog_category]) %></b>
+		<%= @blog_category.title %>
+	</p>
+	<p>
+  	<b><%=t(:blogs_count,scope:[:activerecord,:attributes,:blog_category]) %></b>
+  	<%= @blog_category.blogs_count %>
+  </p>
+	<p>
+		<b><%=t(:enable,scope:[:activerecord,:attributes,:blog_category]) %></b>
+		<%=raw flagToString(@blog_category.enable) %>
+	</p>
+	<p>
+  	<b><%=t(:label_created_at) %></b>
+  	<%= @blog_category.created_at %>
+  </p>
+  <p>
+  	<b><%=t(:label_updated_at) %></b>
+  	<%= @blog_category.created_at %>
+  </p>
+</div>
+<% if can? :update, BlogCategory %>
+<%= link_to t(:link_edit), edit_admin_blog_category_path(@blog_category) %> |
+<% end %>
+<%= link_to t(:link_list), admin_blog_categories_path %>

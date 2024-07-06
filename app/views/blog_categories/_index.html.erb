@@ -1,0 +1,15 @@
+<article id="sl_blog_categories" class="sl_main_list">
+	<h3><%=t('activerecord.models.blog') %></h3>
+	<ul>
+		<% unless @blog_categories.empty? %>
+		<% @blog_categories.each do |blog_category| %>
+		<li>
+			<%= link_to blog_category.title.truncate(16)+'('+blog_category.blogs_count.to_s+')', blogs_path(:blog_category_id=>blog_category.id)  %>
+		</li>
+		<% end %>	
+		<% else %>
+		<li><%=t(:no_data) %></li>
+		<% end %>
+	</ul>
+	<%=link_to t(:link_more),faqs_path,:class=>'more' %>
+</article>

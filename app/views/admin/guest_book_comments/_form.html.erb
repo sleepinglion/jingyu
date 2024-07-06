@@ -1,0 +1,26 @@
+<%= form_for([:admin,@admin_guest_book, @admin_guest_book_comment]) do |f| %>
+	<% if user_signed_in? %>
+	<div class="form-group">
+		<% if current_user.photo? %>
+		<%= image_tag current_user.photo.small_thumb,:alt=>current_user.name %>
+		<% end %>
+		<%=current_user.name %>
+	</div>
+ 	<% else %>
+	<div class="form-group">
+		<%= f.label :name %><br />
+		<%= f.text_field :name,{:class=>'sl_input', :class=>'form-control',:required=>'required'} %>
+	</div>
+	<div class="form-group">
+ 		<%= f.label :password %><br />
+ 		<%= f.password_field :password,{:class=>'sl_input', :class=>'form-control',:required=>'required'} %>
+ 	</div> 	
+ 	<% end %>
+ 	<div class="form-group">
+ 		<%= f.label :content %><br />
+ 		<%= f.text_area :content,{:class=>'sl_input', :class=>'form-control', :required=>'required'} %>
+ 	</div>
+ 	<div class="form-group actions">
+	<%= f.submit :class=>"btn btn-primary" %>
+ 	</div>
+<% end %>

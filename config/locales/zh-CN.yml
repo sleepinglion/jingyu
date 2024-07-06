@@ -1,0 +1,291 @@
+zh-CN:
+  application_name : '웹프로그래머 잠자는사자의 집'
+  meta_description : '깨끗한웹을 꿈꾸는 웹프로그래머 잠자는사자의 집입니다.'
+  meta_description_intro : '웹프로그래머 잠자는사자를 여러분께 소개합니다.'
+  meta_description_about : '웹프로그래머 잠자는 사자의 집소개'
+  meta_description_blog : '웹프로그래머 잠자는사자의 블로그'
+  meta_description_gallery : '웹프로그래머 잠자는사자의 사진첩'
+  meta_description_question : '웹프로그래머 잠자는사자에게 질문 , 요청'
+  meta_description_portfolio : '웹프로그래머 잠자는사자의 포트폴리오'
+  meta_description_guest_book : '웹프로그래머 잠자는사자의 방명록'
+  meta_keywords : '정종호,웹프로그래머,웹표준,퍼블리셔,웹개발,리눅스,html,html5,javascript,php,ruby,rails,레일즈,퍼블리싱,publishing,잠자는사자,SL,SleepingLion,Sleeping-Lion'
+  meta_image : 'http://images.sleepinglion.pe.kr/sl.jpg'
+  meta_url : 'http://www.sleepinglion.pe.kr'
+  title_separator : '-'
+
+  korean : '한국어'
+  english : '영어'
+  french : '프랑스어'
+  chineses : '중국어'
+  japanese : '일본어'
+  change_language : '언어바꾸기'
+
+  home : '홈'
+  home_title : '잠자는사자의 집'
+  welcome : '님 환영합니다.'
+  search : '검색'
+  ad : '광고'
+  login : '로그인'
+  logout : '로그아웃'
+  confirm : '확인'
+  sign : '서명하기'
+  image : '이미지'
+  status : '상태'
+  status_use : '사용중'
+  status_stop : '중지'
+  flag_true : '사용'
+  flag_false : '중지'
+  no_data : '글이 없습니다.'
+  all_category : '전체'
+
+  home_main_title : '웹프로그래머 잠자는-사자입니다.'
+  home_main_description : '잠자는사자의 사자굴에 오신것을 환영합니다.'
+
+  success_title : '축하합니다!!'
+  message_success_create : '이(가) 성공적으로  등록되었습니다.'
+  message_success_update : '이(가) 성공적으로  수정되었습니다.'
+
+  label_name : '작성자'
+  label_email : '이메일'
+  label_password : '비밀번호'
+  label_name : '작성자'
+  label_title : '제목'
+  label_count : '조회수'
+  label_comment : '댓글수'
+  label_compliment_category : '칭찬은행'
+  label_report_category : '피해유형'
+  label_created_at : '등록일시'
+  label_updated_at : '수정일시'
+
+  action_index : '목록'
+  action_show : '상세'
+  action_edit : '수정'
+  action_new : '생성'
+  link_delete_admin : '계정삭제 '
+  link_list : '목록으로'
+  link_new : '새로작성'
+  link_show : '상세보기'
+  link_edit : '수정'
+  link_delete : '삭제'
+  link_more : '더보기'
+  link_back : '뒤로'
+  link_home : '홈으로'
+
+  delete_confirm : '정말로삭제합니까?'
+  delete_cascade_confirm : "중대 경고!!\n이 항목을 삭제할 경우 이 항목뿐아니라 이 항목의 정보를 포함하는 모든 데이터가 삭제됩니다.\n그래도 진행하시겠습니까?"
+  delete_user_cascade_confirm : "정말로 탈퇴하겠습니까? \n 탈퇴할 경우 본인이 작성한 모든 내용 또한 연관삭제됩니다."
+
+  ckeditor:
+    page_title: "CKEditor Files Manager"
+    confirm_delete: "파일을 지웁니까?"
+    buttons:
+      cancel: "취소"
+      upload: "업로드"
+      delete: "삭제"
+
+  views :
+    pagination :
+      truncate : '&nbsp;...&nbsp;'
+      previous : '上一页'
+      last : '最后一页'
+      next : '下一页'
+      first : '第一页'
+
+  date:
+    abbr_day_names:
+    - 日
+    - 一
+    - 二
+    - 三
+    - 四
+    - 五
+    - 六
+    abbr_month_names:
+    -
+    - 1月
+    - 2月
+    - 3月
+    - 4月
+    - 5月
+    - 6月
+    - 7月
+    - 8月
+    - 9月
+    - 10月
+    - 11月
+    - 12月
+    day_names:
+    - 星期日
+    - 星期一
+    - 星期二
+    - 星期三
+    - 星期四
+    - 星期五
+    - 星期六
+    formats:
+      default: ! '%Y-%m-%d'
+      long: ! '%Y年%b%d日'
+      short: ! '%b%d日'
+    month_names:
+    -
+    - 一月
+    - 二月
+    - 三月
+    - 四月
+    - 五月
+    - 六月
+    - 七月
+    - 八月
+    - 九月
+    - 十月
+    - 十一月
+    - 十二月
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 大约一小时
+        other: 大约 %{count} 小时
+      about_x_months:
+        one: 大约一个月
+        other: 大约 %{count} 个月
+      about_x_years:
+        one: 大约一年
+        other: 大约 %{count} 年
+      almost_x_years:
+        one: 接近一年
+        other: 接近 %{count} 年
+      half_a_minute: 半分钟
+      less_than_x_minutes:
+        one: 不到一分钟
+        other: 不到 %{count} 分钟
+      less_than_x_seconds:
+        one: 不到一秒
+        other: 不到 %{count} 秒
+      over_x_years:
+        one: 一年多
+        other: ! '%{count} 年多'
+      x_days:
+        one: 一天
+        other: ! '%{count} 天'
+      x_minutes:
+        one: 一分钟
+        other: ! '%{count} 分钟'
+      x_months:
+        one: 一个月
+        other: ! '%{count} 个月'
+      x_seconds:
+        one: 一秒
+        other: ! '%{count} 秒'
+    prompts:
+      day: 日
+      hour: 时
+      minute: 分
+      month: 月
+      second: 秒
+      year: 年
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: 必须是可被接受的
+      blank: 不能为空字符
+      confirmation: 与确认值不匹配
+      empty: 不能留空
+      equal_to: 必须等于 %{count}
+      even: 必须为双数
+      exclusion: 是保留关键字
+      greater_than: 必须大于 %{count}
+      greater_than_or_equal_to: 必须大于或等于 %{count}
+      inclusion: 不包含于列表中
+      invalid: 是无效的
+      less_than: 必须小于 %{count}
+      less_than_or_equal_to: 必须小于或等于 %{count}
+      not_a_number: 不是数字
+      not_an_integer: 必须是整数
+      odd: 必须为单数
+      record_invalid: ! '验证失败: %{errors}'
+      taken: 已经被使用
+      too_long: 过长（最长为 %{count} 个字符）
+      too_short: 过短（最短为 %{count} 个字符）
+      wrong_length: 长度非法（必须为 %{count} 个字符）
+    template:
+      body: 如下字段出现错误：
+      header:
+        one: 有 1 个错误发生导致「%{model}」无法被保存。
+        other: 有 %{count} 个错误发生导致「%{model}」无法被保存。
+  helpers:
+    select:
+      prompt: 请选择
+    submit:
+      create: 新增%{model}
+      submit: 储存%{model}
+      update: 更新%{model}
+  number:
+    currency:
+      format:
+        delimiter: ! ','
+        format: ! '%u %n'
+        precision: 2
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: CN¥
+    format:
+      delimiter: ! ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: 十亿
+          million: 百万
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: false
+        strip_insignificant_zeros: false
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ', 和 '
+      two_words_connector: ! ' 和 '
+      words_connector: ! ', '
+  time:
+    am: 上午
+    formats:
+      default: ! '%Y年%b%d日 %A %H:%M:%S %Z'
+      long: ! '%Y年%b%d日 %H:%M'
+      short: ! '%b%d日 %H:%M'
+    pm: 下午
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors

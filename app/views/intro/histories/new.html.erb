@@ -1,0 +1,8 @@
+<section id="section_history_new" class="sub_main">
+	<div class="section_top">
+		<h1><%=@board_name %></h1>
+		<p class="path"><%=link_to '홈으로',root_path,:title=>'홈으로' %>  &gt; <strong><%=@board_name %></strong></p>
+	</div>
+	<%= render 'form' %>
+	<%= link_to '목록으로', histories_path %>
+</section>

@@ -1,0 +1,6 @@
+<% breadcrumb :question, @question %>
+<div id="sl_question_edit">
+	<%= render 'form' %>
+	<%= link_to t(:link_show), @question %> |	
+	<%= link_to t(:link_list), questions_path %>
+</div>

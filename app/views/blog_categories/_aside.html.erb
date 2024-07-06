@@ -1,0 +1,22 @@
+<article id="sl_blog_categories" class="box sl_aside">
+  <div class="box_header">
+    <h2><%=t('activerecord.models.blog') %></h2>
+    <div class="box_icon">
+      <a href="#" class="btn_minimize"><i class="material-icons">expand_less</i></a>
+      <a href="#" class="btn_close"><i class="material-icons">close</i></a>
+    </div>
+  </div>
+	<div class="box_content">
+		<ul>
+			<li <% unless params[:blog_category_id] %>class="active"<% end %>><%=link_to t(:all_category),blogs_path %></li>
+    	<% unless @aside_blog_categories.empty? %>
+    	<% @aside_blog_categories.each do |blog_category| %>
+			<li>
+      	<%= link_to blogs_path(:blog_category_id=>blog_category.id) do %><%=blog_category.title.truncate(16) %>(<%=blog_category.blogs_count.to_s %>)<% end %>
+     	</li>
+    	<% end %>
+    	<% end %>
+		</ul>
+		<%=link_to t(:link_more),blogs_path,:class=>'more' %>
+	</div>
+</article>

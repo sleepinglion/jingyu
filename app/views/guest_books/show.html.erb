@@ -1,0 +1,33 @@
+<% breadcrumb :guest_book, @guest_book %>
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<section id="guest_book_show" itemscope itemprop="article" itemtype="http://schema.org/Article">
+	<div class="slboard_content">
+		<div class="sl_content_header box_header">
+			<h2 itemprop="name"><%= @guest_book.title %></h2>
+			<p><%=t(:label_name)%> : <span  itemprop="author"><%=userName(@guest_book,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span itemprop="dateCreated"><%= @guest_book.created_at %></span><span class="none" itemprop="dateModified"><%= @guest_book.updated_at %></span></p>	
+		</div>
+		<div class="sl_content_main">
+			<div class="sl_content_text" itemprop="text"><%=simple_format sanitize(@guest_book.content.to_s.gsub(/\n/, '<br />'), :tags => %w(br img a)) %></div>
+		</div>
+	</div>
+	<div id="sl_content_bottom_menu">
+		<%= link_to t(:link_list), guest_books_path %> 
+		<% if @guest_book.user %>
+			<% if current_user %>
+				<% if @guest_book.user_id==current_user.id %>
+					 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_guest_book_path(@guest_book) %> &nbsp; | &nbsp;	
+					<%= link_to t(:link_delete), @guest_book, method: :delete, data: { confirm: t(:delete_confirm)} %>
+				<% end %>
+			<% end %>
+		<% else %>
+			 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_guest_book_path(@guest_book) %> &nbsp; | &nbsp;
+			<% if checkPriv(@guest_book) %>
+			<%= link_to t(:link_delete), @guest_book, method: :delete, data: { confirm: t(:delete_confirm)} %>			
+			<% else %>
+			<%= link_to t(:link_delete), @guest_book, method: :delete %>
+			<% end %>			
+		<% end %>
+	</div>
+</section>

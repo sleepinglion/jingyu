@@ -1,0 +1,19 @@
+<%= form_for [:admin, @admin_user],:html => {:multipart => true} do |f| %>
+	<% if @admin_user.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@admin_user.errors.count, "error") %> prohibited this notice from being saved:</h2>
+		<ul>
+			<% @admin_user.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name,{'class'=>'sl_input','required'=>'required'} %>
+	</div>
+	<div class="actions">
+	  <%= f.submit :class=>'btn btn-primary' %>
+	</div>
+<% end %>

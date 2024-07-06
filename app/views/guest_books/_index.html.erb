@@ -1,0 +1,16 @@
+<article id="sl_main_guest_book" class="main_list col-xs-12">
+	<h3><%=t('activerecord.models.guest_book') %></h3>
+	<ul>
+		<% unless @guest_books.empty? %>
+		<% @guest_books.each do |guest_book| %>
+		<li>
+			<span class="sl_name"><%=userName(guest_book,7) %></span>
+			<%=link_to guest_book.title.truncate(16),guest_book  %>
+		</li>
+		<% end %>	
+		<% else %>
+		<li><%=t(:no_data) %></li>
+		<% end %>
+	</ul>
+	<%=link_to t(:link_more),guest_books_path,:class=>'more' %>
+</article>

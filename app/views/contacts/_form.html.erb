@@ -1,0 +1,39 @@
+<%= form_for(@contact) do |f| %>
+	<% if @contact.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+		<ul>
+			<% @contact.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<% unless user_signed_in? %>
+	<div class="form-group">
+		<%= f.label :name, :class=>'col-sm-2 control-label' %>
+		<div class="col-sm-10">
+			<%= f.text_field :name, :class=>'form-control', :required=>'required' %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :password, :class=>'col-sm-2 control-label' %>
+		<div class="col-sm-10">
+			<%= f.password_field :password, :class=>'form-control', :required=>'required' %>
+		</div>
+	</div>
+	<% end %>
+	<div class="form-group">
+		<%= f.label :title %><br />
+		<%= f.text_field :title, :class=>'form-control', :required=>"required" %>
+	</div>
+	<%= f.fields_for :contact_content do |c| %>
+	<div class="form-group">
+		<%= c.label :content %>
+  	<%= c.text_area :content, :class=>'form-control',  :id => "sl_content" %>
+	</div>
+	<% end %>			
+	<div class="form-group actions">
+		<%= f.submit %>
+	</div>
+<% end %>

@@ -1,0 +1,34 @@
+<% breadcrumb :question, @question %>
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<div id="question_show" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+	<div class="slboard_content">
+		<div class="sl_content_header box_header">
+			<h2 itemprop="name"><%= @question.title %></h2>
+			<p><%=t(:label_name)%> : <span  itemprop="author"><%=userName(@question,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span itemprop="answerCount"></span><span itemprop="dateCreated"><%= @question.created_at %></span><span class="none" itemprop="dateModified"><%= @question.updated_at %></span></p>
+		</div>
+		<div class="sl_content_main">
+			<div class="sl_content_text" itemprop="text"><%= simple_format(@question.content.to_s) %></div>
+		</div>
+	</div>
+
+	<div id="sl_content_bottom_menu">
+		<%= link_to t(:link_list), questions_path %>
+		<% if @question.user %>
+			<% if current_user %>
+				<% if @question.user_id==current_user.id %>
+					 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_question_path(@question) %> &nbsp; | &nbsp;
+					<%= link_to t(:link_delete), @question, method: :delete, data: { confirm: t(:delete_confirm)} %>
+				<% end %>
+			<% end %>
+		<% else %>
+			 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_question_path(@question) %> &nbsp; | &nbsp;
+			<% if checkPriv(@question) %>
+			<%= link_to t(:link_delete), @question, method: :delete, data: { confirm: t(:delete_confirm)} %>
+			<% else %>
+			<%= link_to t(:link_delete), @question, method: :delete %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

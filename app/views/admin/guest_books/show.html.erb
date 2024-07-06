@@ -1,0 +1,30 @@
+<div class="sl_show">
+	<p>
+		<b><%=t(:title,scope:[:activerecord,:attributes,:guest_book]) %></b>
+		<%= @admin_guest_book.title %>
+	</p>
+	<p>
+  	<b><%=t(:label_count) %></b>
+  	<%=@admin_guest_book.count+@admin_guest_book.impressionist_count(:filter=>:ip_address) %>
+  </p>
+	<p>
+  	<b><%=t(:content,scope:[:activerecord,:attributes,:guest_book_content]) %></b>
+		<%= simple_format(@admin_guest_book.guest_book_content.content) %>
+	</p>
+	<p>
+		<b><%=t(:enable,scope:[:activerecord,:attributes,:guest_book]) %></b>
+		<%=raw flagToString(@admin_guest_book.enable) %>
+	</p>
+	<p>
+  	<b><%=t(:label_created_at) %></b>
+  	<%= @admin_guest_book.created_at %>
+  </p>
+  <p>
+  	<b><%=t(:label_updated_at) %></b>
+  	<%= @admin_guest_book.created_at %>
+  </p>
+</div>
+<% if can? :update, @admin_guest_book %>
+<%= link_to t(:link_edit), edit_admin_guest_book_path(@admin_guest_book) %> |
+<% end %>
+<%= link_to t(:link_list), admin_guest_books_path %>

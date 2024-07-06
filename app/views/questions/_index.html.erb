@@ -1,0 +1,17 @@
+<article id="sl_main_question" class="col-12">
+	<h3><%=t('activerecord.models.question') %></h3>
+	<ul>
+		<% unless @questions.empty? %>
+		<% @questions.each do |question| %>
+		<li>
+			<span class="sl_name"><%=userName(question,7) %></span>
+			<%= link_to question.title, question  %>
+			<span class="d-none d-lg-block text-muted" style="float:right;"><%=time_ago_in_words question.created_at.to_date %></span>
+		</li>
+		<% end %>
+		<% else %>
+		<li><%=t(:no_data) %></li>
+		<% end %>
+	</ul>
+	<%=link_to t(:link_more),questions_path,:class=>'more' %>
+</article>

@@ -1,0 +1,15 @@
+<article id="sl_main_blog" class="sl_main_list">
+  <h3><%=t('activerecord.models.blog') %></h3>
+  <% unless @blog_photos.empty? %>
+  <ul>
+    <% @blog_photos.each_with_index do |blog,index| %>
+    <li <% if index==5 %>class="nm"<% end %>><%=link_to image_tag(blog.photo.small_thumb,:alt=>blog.title),blog_path(blog,:title=>blog.title %></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <ul>
+    <li><%=t(:no_data) %></li>
+  </ul>
+  <% end %>
+  <%=link_to t(:link_more),blogs_path,:class=>'more' %>		
+</article>	

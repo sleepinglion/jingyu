@@ -1,0 +1,20 @@
+<span itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <% if user.alternate_name? %>
+  <span class="none" itemprop="name"><%= user.nickname %></span>
+  <span itemprop="alternateName"><%= user.alternate_name %></span>
+  <% else %>
+  <span itemprop="name"><%= user.nickname %></span>
+  <% end %>
+  <% if user.gender? %>
+  <span class="none" itemprop="gender"><%=user.gender %></span>
+  <% end %>
+  <% if user.birth_date? %>
+  <span class="none" itemprop="birthDate" datetime="<%=user.birthdate %>"><%=user.birthdate %></span>
+  <% end %>
+  <% if user.job? %>
+  <span class="none" itemprop="jobTitle"><%=user.job %></span>
+  <% end %>
+  <% if user.url? %>
+  <span class="none" itemprop="url"><%=user.url %></span>
+  <% end %>
+</span>

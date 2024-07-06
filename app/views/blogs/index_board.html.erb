@@ -1,0 +1,61 @@
+<div id="sl_blog_index">
+	<% if @menu_setting.use_category %>	
+	<ol class="nav nav-tabs">
+		<% unless @blog_categories.empty? %>
+		<% @blog_categories.each do |blog_category| %>
+		<li <% if(@categoryId==blog_category.id) %>class="active"<% end %>><%= link_to blog_category.title.truncate(20),blogs_path(:blog_category_id=>blog_category.id) %></li>
+		<% end %>
+  	<% else %>	
+		<li><%=t(:no_data)%></li>
+		<% end %>
+	</ol>
+	<% end %>
+	<div class="table-responsive">
+	<table class="table slboard_list">
+		<colgroup>
+			<col width="100px" />
+			<col />
+			<col width="70px" />
+			<col width="130px" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th><p class="sl_name"><%=t(:label_name) %></p></th>
+				<th><p class="sl_title"><%=t(:label_title) %></p></th>
+				<th class="sl_right"><p class="sl_count"><%=t(:label_count) %></p></th>
+				<th class="sl_right"><p class="sl_registered_date"><%=t(:label_created_at) %></p></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="none">
+				<td><p class="sl_name"></p></td>
+				<td><p><a class="sl_show_link" href="show.php"></a></p></td>
+				<td class="sl_right"><p class="sl_count"></p></td>
+				<td class="sl_right"><p class="sl_registered_date"></p></td>
+			</tr>
+			<% unless @blogs.empty? %>
+			<% @blogs.each do |blog| %>
+			<tr>
+				<td><p class="sl_name"><%= blog.user.name %></p></td>
+				<td><p><%= link_to blog.title, blog  %></p></td>
+				<td class="sl_right"><p class="sl_count"></p></td>
+				<td class="sl_right"><p class="sl_registered_date"><%=blog.created_at.to_date %></p></td>
+			</tr>
+			<% end %>
+			<% else %>
+			<tr>
+				<td colspan="4"><p><%=t(:no_data) %></p></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	</div>
+	<div id="sl_bottom_menu">
+	<% if user_signed_in? %>
+	<% if current_user.admin? %>			
+		<%= link_to t(:link_new), new_blog_path %>
+	<% end %>
+	<% end %>
+	<%= paginate @blogs %>
+	</div>
+</div>

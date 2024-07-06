@@ -1,0 +1,60 @@
+<% breadcrumb :blogs %>
+<section id="sl_blog_index">
+	<ol class="nav nav-pills sl_categories hidden-lg">
+    <li class="nav-item">
+    <% if(params[:blog_category_id])
+    d_class='nav-link'
+  else 
+    d_class='nav-link active' end %>
+    <%= link_to t(:all_category),blogs_path,{:class=>d_class} %>
+    </li>
+  	<% unless @blog_categories.empty? %>
+  	<% @blog_categories.each do |blog_category| %>
+    <li class="nav-item">
+    <% 
+      if(@blog_category_id==blog_category.id) 
+        m_class='nav-link active'
+      else m_class='nav-link'
+      end %>
+  	<%= link_to blogs_path(:blog_category_id=>blog_category.id),{:class=>m_class} do %>
+  	<%=blog_category.title.truncate(20) %><span class="hidden-xs">(<%=blog_category.blogs_count %>)</span>
+  	<% end %>
+  	</li>
+  	<% end %>
+		<% end %>
+  </ol>
+  <section id="sl_blog" <% unless @blogs.empty? %>itemscope itemprop="blogPosts" itemtype="http://schema.org/Blog"<% end %>>
+  <% unless @blogs.empty? %>
+  <% @blogs.each do |blog| %>
+  <article class="media rounded" itemscope itemprop="blogPost" itemtype="http://schema.org/Blog">
+    <%=link_to blog_path(blog),:class=>"pull-left" do %>
+    <% unless blog.blog_pictures_count.zero? %>
+      <%=image_tag sl_get_thumb(blog.photo.to_s,'small'), :class=>"media-object",:itemprop=>"thumbnailUrl",:alt=>"..." %>
+    <% end %>
+    <% end %>
+    <div class="media-body">
+      <h3 class="media-heading" itemprop="name"><%=link_to blog.title,blog_path(blog,{:blog_category_id=>@blog_category_id}) %></h3>
+      <p itemprop="description"><%=link_to blog.description,blog_path(blog,{:blog_category_id=>@blog_category_id}) %></p>
+			<p class="tags">
+        <% blog.tags.each do |tag| %>
+				<% if tag.name? %>
+        <%=link_to "##{tag}",tag_path(:tag => tag.name) %>
+        <% end %>
+				<% end %>
+      </p>
+    </div>
+  </article>
+  <% end %>
+	<% else %>
+  <div>
+  	<p><%=t(:no_data) %></p>
+  </div>
+  <% end %>
+  <div id="sl_bottom_menu">
+  <% if can? :create, Blog %>
+  <%= link_to t(:link_new), new_blog_path,:rel=>"nofollow",:class=>"btn btn-default" %>
+  <% end %>
+  <%= paginate @blogs %>
+  </div>
+	</section>
+</section>

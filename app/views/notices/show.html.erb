@@ -1,0 +1,24 @@
+<% breadcrumb :notice,@notice %>
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<article id="sl_notice_show" itemscope itemprop="article" itemtype="http://schema.org/Article">
+  <div class="slboard_content">
+    <div class="sl_content_header">
+      <h3 itemprop="name"><%= @notice.title %></h3>
+      <p><%=t(:label_name)%> : <span  itemprop="author"><%=userName(@notice,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span itemprop="dateCreated"><%= @notice.created_at %></span><span class="none" itemprop="dateModified"><%= @notice.updated_at %></span></p>
+    </div>
+    <div class="sl_content_main">
+      <div class="sl_content_text" itemprop="text"><%=simple_format @notice.notice_content.content %></div>
+    </div>
+  </div>
+  <div id="sl_content_bottom_menu">
+    <%= link_to t(:link_list),notices_path %>
+    <% if can? :update, Notice %>
+    &nbsp; | &nbsp; <%= link_to t(:link_edit), edit_notice_path(@notice),:rel=>"nofollow" %>
+    <% end %>
+    <% if can? :delete, Notice %>
+    &nbsp; | &nbsp; <%= link_to t(:link_delete), @notice, method: :delete, data: { confirm: t(:delete_confirm) },:rel=>"nofollow" %>
+    <% end %>
+  </div>
+</article>
