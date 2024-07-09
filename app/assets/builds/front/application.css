@@ -14053,9 +14053,6 @@ a.left:active {
   }
 }
 @media (min-width: 1200px) {
-  .container {
-    max-width: none;
-  }
   html, body {
     font-size: 16px;
   }
@@ -14132,14 +14129,6 @@ a.left:active {
   }
   .top-menu {
     height: 46px;
-  }
-  .container {
-    width: 1150px;
-  }
-}
-@media (min-width: 1400px) {
-  .container {
-    width: 1350px;
   }
 }
 @media (min-width: 1200px) and (max-width: 1500px) {

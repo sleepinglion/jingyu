@@ -383,7 +383,6 @@ a.left:active {background-position: -60px 0}
 }
 
 @media (min-width: 1200px) {
-    .container {max-width: none }
     html,body {font-size:16px}
 	header {height:6em}
   aside .box {margin-top:0}
@@ -413,11 +412,9 @@ a.left:active {background-position: -60px 0}
     #main {padding-top:7em;padding-bottom:3em}
     #sub_main {margin-top:1em;margin-bottom:2em}
     .top-menu { height: 46px;}
-    .container {width:1150px;}
   }
 
   @media (min-width: 1400px) {
-    .container {width:1350px;}
   }
 
   @media (min-width: 1200px) and (max-width: 1500px) {
