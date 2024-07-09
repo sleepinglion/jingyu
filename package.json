@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "jingyu",
   "private": true,
   "dependencies": {
     "@hotwired/turbo-rails": "^8.0.4",

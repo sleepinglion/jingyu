@@ -114,29 +114,6 @@ var ready=function(){
     });
 };
 
-
-function getContent(){
-    var parent=$(this).parent();
-    $.getJSON($(this).attr('href')+'.json',function(value){
-        if(parent.next().get(0)) {
-            if(parent.next().get(0).tagName!='DD') {
-                parent.after('<dd>');
-            }
-        } else {
-            parent.after('<dd>');
-        }
-        $("#faqList dt").removeClass('active').find('i').text('add');
-        $("#faqList dd").hide();
-        parent.addClass('on').find('i').text('remove');
-        parent.next().effect('highlight').html('<p>'+nl2br(value.body)+'</p>').slideDown();
-        if (history && history.pushState) {
-            history.pushState('','faq_'+value.id,'/faqs/'+value.id);
-        }
-    });
-
-    return false;
-}
-
 function nl2br (str, is_xhtml) {
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>';
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
