@@ -4,8 +4,8 @@
 		<%= @admin_blog.title %>
 	</p>
 	<p>
-  	<b><%=t(:content,scope:[:activerecord,:attributes,:blog_content]) %></b>
-		<%= simple_format(@admin_blog.blog_content.content) %>
+  	<b><%=t(:content,scope:[:activerecord,:attributes,:blog]) %></b>
+		<%= simple_format(@admin_blog.content) %>
 	</p>
 	<p>
   	<b><%=t(:label_count) %></b>

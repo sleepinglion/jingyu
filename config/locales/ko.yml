@@ -419,7 +419,6 @@ ko:
         count : '조회수'
         blog_comments_count : '댓글수'
         enable : '사용여부'
-      blog_content :
         content : '내용'
       blog_comment :
         name : '이름'

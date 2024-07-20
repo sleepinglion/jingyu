@@ -43,7 +43,6 @@ class Admin::BlogsController < Admin::AdminController
   # GET /blogs/new
   def new
     @admin_blog = Blog.new
-    @admin_blog.build_blog_content
   end
 
   # GET /blogs/1/edit
@@ -98,6 +97,6 @@ class Admin::BlogsController < Admin::AdminController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_blog_params
-    params.require(:blog).permit(:blog_category_id, :user_id, :title, :description,:count, :photo, :photo_cache, blog_content_attributes: [:id,:content]).merge(user_id: current_admin.id)
+    params.require(:blog).permit(:blog_category_id, :user_id, :title, :description,:count, :photo, :photo_cache, :content).merge(user_id: current_admin.id)
   end
 end

@@ -19,7 +19,7 @@ xml.rss :version => "2.0" do
         xml.link 'https://www.jingyu.pe.kr/blog/' + article.id.to_s
         xml.guid article.id
 
-        text = article.blog_content.content
+        text = article.content
 		# if you like, do something with your content text here e.g. insert image tags.
 		# Optional. I'm doing this on my website.
         if article.photo?
