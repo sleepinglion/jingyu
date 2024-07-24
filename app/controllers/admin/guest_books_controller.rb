@@ -23,10 +23,7 @@ class Admin::GuestBooksController < Admin::AdminController
 
   # GET /guest_books/1
   # GET /guest_books/1.json
-  def show
-    @admin_guest_book_comments=@admin_guest_book.guest_book_comment.order('id desc').page(params[:page]).per(15)
-    @admin_guest_book_comment=GuestBookComment.new
-
+  def show=
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @admin_guest_book }
@@ -37,7 +34,6 @@ class Admin::GuestBooksController < Admin::AdminController
   # GET /guest_books/new.json
   def new
     @admin_guest_book = GuestBook.new
-    @admin_guest_book.build_guest_book_content
 
     respond_to do |format|
       format.html # new.html.erb
@@ -98,6 +94,6 @@ class Admin::GuestBooksController < Admin::AdminController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_guest_book_params
-    params.require(:guest_book).permit(:id,:name,:password,:count,:title,guest_book_content_attributes: [:id,:content],guest_book_comment_attributes: [:id,:content]).merge(user_id: current_admin.id)
+    params.require(:guest_book).permit(:id,:name,:password,:count,:title,:content).merge(user_id: current_admin.id)
   end
 end

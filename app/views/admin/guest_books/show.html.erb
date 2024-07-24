@@ -8,8 +8,8 @@
   	<%=@admin_guest_book.count+@admin_guest_book.impressionist_count(:filter=>:ip_address) %>
   </p>
 	<p>
-  	<b><%=t(:content,scope:[:activerecord,:attributes,:guest_book_content]) %></b>
-		<%= simple_format(@admin_guest_book.guest_book_content.content) %>
+  	<b><%=t(:content,scope:[:activerecord,:attributes,:guest_book]) %></b>
+		<%= simple_format(@admin_guest_book.content.to_s) %>
 	</p>
 	<p>
 		<b><%=t(:enable,scope:[:activerecord,:attributes,:guest_book]) %></b>

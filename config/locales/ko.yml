@@ -441,7 +441,6 @@ ko:
         title : '제목'
         count : '시작 조회수'
         enable : '사용여부'
-      guest_book_content :
         content : '내용'
       guest_book_comment :
         name : '이름'

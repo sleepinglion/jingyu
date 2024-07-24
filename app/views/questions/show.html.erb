@@ -13,22 +13,9 @@
 		</div>
 	</div>
 
-	<div id="sl_content_bottom_menu">
-		<%= link_to t(:link_list), questions_path %>
-		<% if @question.user %>
-			<% if current_user %>
-				<% if @question.user_id==current_user.id %>
-					 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_question_path(@question) %> &nbsp; | &nbsp;
-					<%= link_to t(:link_delete), @question, method: :delete, data: { confirm: t(:delete_confirm)} %>
-				<% end %>
-			<% end %>
-		<% else %>
-			 &nbsp; | &nbsp; <%=link_to t(:link_edit), edit_question_path(@question) %> &nbsp; | &nbsp;
-			<% if checkPriv(@question) %>
-			<%= link_to t(:link_delete), @question, method: :delete, data: { confirm: t(:delete_confirm)} %>
-			<% else %>
-			<%= link_to t(:link_delete), @question, method: :delete %>
-			<% end %>
-		<% end %>
+	<div class="row">
+		<div class="btn-group btn-group-lg col-12" role="group" style="margin-top:3rem">
+			<%=link_to t(:link_list),questions_path,{class: 'btn btn-secondary btn-large btn-block'} %>
+		</div>
 	</div>
 </div>

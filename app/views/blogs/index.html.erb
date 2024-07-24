@@ -27,8 +27,8 @@
   <% unless @blogs.empty? %>
   <% @blogs.each do |blog| %>
   <article class="media rounded" itemscope itemprop="blogPost" itemtype="http://schema.org/Blog">
+		<% unless blog.blog_pictures_count.zero? %>
     <%=link_to blog_path(blog),:class=>"pull-left" do %>
-    <% unless blog.blog_pictures_count.zero? %>
       <%=image_tag sl_get_thumb(blog.photo.to_s,'small'), :class=>"media-object",:itemprop=>"thumbnailUrl",:alt=>"..." %>
     <% end %>
     <% end %>

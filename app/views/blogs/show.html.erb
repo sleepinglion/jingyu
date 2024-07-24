@@ -37,15 +37,5 @@
 			<%=link_to t(:link_list),blogs_path,{class: 'btn btn-secondary btn-large btn-block'} %>
 		</div>
 	</div>
-	<!-- <%=link_to t(:link_new_blog_comment_form),new_blog_blog_comment_path(@blog) %> -->
-	<div id="sl_content_bottom_menu">
-		<% if(params[:blog_category_id]) %>
-		<%= link_to t(:link_list),blogs_path({:blog_category_id=>@blog.blog_category_id}) %>
-			<% else %>
-		<%= link_to t(:link_list),blogs_path() %>
-			<% end %>
-		<% if user_signed_in? %>
-		&nbsp; | &nbsp; <%= link_to t(:link_edit), edit_blog_path(@blog) %> &nbsp; | &nbsp; <%= link_to t(:link_delete), @blog, method: :delete, data: { confirm: '정말로 삭제합니까?' } %>
-		<% end %>
-	</div>
+
 </div>

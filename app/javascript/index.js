@@ -112,6 +112,11 @@ var ready=function(){
             $(this).find('span:eq(1)').html('&nbsp;&gt;&gt;');
         }
     });
+
+    /*$("#sl_blog_index article.media").click(function(event){
+
+    }).css('cursor','pointer'); */
+
 };
 
 function nl2br (str, is_xhtml) {
@@ -119,5 +124,5 @@ function nl2br (str, is_xhtml) {
     return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 }
 
-$(document).ready(ready);
+
 document.addEventListener("turbo:load", ready);

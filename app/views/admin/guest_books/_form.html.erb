@@ -13,12 +13,10 @@
     <%= f.label :title %>
     <%= f.text_field :title, :class=>'form-control', :required=>'required' %>
   </div>
-  <%= f.fields_for :guest_book_content do |c| %>
   <div class="form-group">
     <%= c.label :content %>
     <%= c.text_area :content, :class=>'form-control', :id => "sl_content" %>
   </div>
-  <% end %>
   <div class="form-group">
   	<%= f.label :count %>
   	<%= f.number_field :count %>

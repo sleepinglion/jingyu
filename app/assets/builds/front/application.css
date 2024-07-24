@@ -13981,30 +13981,6 @@ a.left:active {
     border: none;
   }
 }
-@media all and (min-width: 768px) and (max-width: 1199px) {
-  header {
-    height: 8em;
-  }
-  header h1 a, header .h1 a {
-    display: block;
-    margin: 0.5em 0 0;
-    padding: 0;
-  }
-  header nav ul li:first-child {
-    margin-left: 0;
-  }
-  footer {
-    height: 5em;
-  }
-  #mom {
-    margin: -8em 0 -5em;
-    min-height: 100%;
-  }
-  #main {
-    padding-top: 8em;
-    padding-bottom: 5em;
-  }
-}
 @media all and (min-width: 992px) {
   html, body {
     font-size: 14px;
