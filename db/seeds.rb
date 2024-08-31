@@ -458,7 +458,7 @@ Blog.create!(id: 25, user_id: 1, blog_category_id: 3,title: '위대한 정충신
 ')
 
 
-Blog.create!(id: 25, user_id: 1, blog_category_id: 3,title: '박정희는 특별할게 없는 평범한 독재자 입니다.',description: '그냥 국민 탄압하고 죽을때까지 권력유지하려고한 평범한 독재자 박정희', created_at: 1.day.ago,tag_list: '',
+Blog.create!(id: 26, user_id: 1, blog_category_id: 3,title: '박정희는 특별할게 없는 평범한 독재자 입니다.',description: '그냥 국민 탄압하고 죽을때까지 권력유지하려고한 평범한 독재자 박정희', created_at: 1.day.ago,tag_list: '',
              content: '뭐 박정희가 대단한것이나 빨아대는 정신나간놈들이 많이 보인다.
 참 우리나라의 미래가 암담하다고 할 수 있다.
 
@@ -466,15 +466,11 @@ Blog.create!(id: 25, user_id: 1, blog_category_id: 3,title: '박정희는 특별
 ')
 
 
-Blog.create!(id: 25, user_id: 1, blog_category_id: 3,title: '조선의 실질적 건국자, 정도전이 바란 조선은?',description: '이성계는 얼굴마담이고 실제 조선은 정도전이 건국했습니다.', created_at: 1.day.ago,tag_list: '',
+Blog.create!(id: 27, user_id: 1, blog_category_id: 3,title: '조선의 실질적 건국자, 정도전이 바란 조선은?',description: '이성계는 얼굴마담이고 실제 조선은 정도전이 건국했습니다.', created_at: 1.day.ago,tag_list: '',
              content: '정치체제도 독재왕권이 아닌 능력있는 재상이 운영하는 나라 만드려고 했고요(영국이 초강대국이된 비결인 수상제와 같은 체제를 생각한것입니다.)
-
 정도전은 사실 영국처럼 왕은 얼굴마담만 하는 나라를 만드려고 했습니다만
-
 이에 반발한 이방원이 난을 일으켜 기존의 독재왕권 체제로 가려고 했으나
-
 정도전이 이미 마련해놓은 체계가 흠잡을대가 없어서 완전한 독재왕권으로 못가고 그 유산이 남은 왕권체제로 가지요
-
 그래서 나온말이 "조선시대 왕이 현 대통령보다 권한이 적다"라는 말도 있습니다.
 ')
 
