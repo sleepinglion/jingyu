@@ -488,19 +488,12 @@ jquery-tagcanvas@^2.9.0:
   resolved "https://registry.yarnpkg.com/jquery-tagcanvas/-/jquery-tagcanvas-2.9.0.tgz#8e4a0fef161516191f196e7cf194c70c4c531e90"
   integrity sha512-nZaJHtoJQY7iYgToLZX4woVqiBZYesqH82irIEMorV275HzH3Jq9r9S3OMFKRIqf1Jkyif2xLLm7wtSpZJEFug==
 
-jquery-ui@^1.13.3:
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.13.3.tgz#d9f5292b2857fa1f2fdbbe8f2e66081664eb9bc5"
-  integrity sha512-D2YJfswSJRh/B8M/zCowDpNFfwsDmtfnMPwjJTyvl+CBqzpYwQ+gFYIbUUlzijy/Qvoy30H1YhoSui4MNYpRwA==
-  dependencies:
-    jquery ">=1.8.0 <4.0.0"
-
 jquery.easing@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jquery.easing/-/jquery.easing-1.4.1.tgz#47982c5836bd758fd48494923c4a101ef6e93e3b"
   integrity sha512-BVpRacWCbNfo/ALWxnLkIY/WRa4Ydg/LtwzIJZvDm7vrhV8Txv+ACi6EGnU11zT19sTc3KEPathWx6CtjWLD1w==
 
-"jquery@>=1.8.0 <4.0.0", jquery@^3.7.1:
+jquery@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
