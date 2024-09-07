@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     @notices = Notice.order('id desc').page(0).per(5)
     @questions = Question.order('id desc').page(0).per(5)
-    @galleries = Gallery.order('id desc').page(0).per(24)
+    @galleries = Gallery.order('id desc').page(0).per(6)
     @blogs = Blog.order('id desc').page(0).per(5)
   end
 
