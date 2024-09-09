@@ -13897,6 +13897,9 @@ a.left:active {
   aside .box {
     margin-top: 0;
   }
+  .container {
+    max-width: none;
+  }
   footer {
     height: 5em;
   }
