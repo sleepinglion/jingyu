@@ -6,8 +6,8 @@ if defined?(AssetSync)
     config.fog_provider = 'fog/aws'  # S3 호환 API를 사용하는 경우
 
     # 필요에 따라 이 두 줄을 사용하지 않을 수도 있습니다
-    config.aws_access_key_id = ENV['ORACLE_CLOUD_ACCESS_KEY']
-    config.aws_secret_access_key = ENV['ORACLE_CLOUD_SECRET_KEY']
+    config.aws_access_key_id = ENV['ORACLE_ACCESS_KEY']
+    config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
 
     config.fog_directory = ENV['ORACLE_BUCKET']
     config.fog_region = ENV['ORACLE_REGION']
