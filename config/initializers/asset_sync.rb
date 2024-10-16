@@ -1,9 +1,5 @@
 if defined?(AssetSync)
   AssetSync.configure do |config|
-    require 'dotenv/load'
-    # Set this to true to enable assets sync
-    config.enabled = true
-
     config.fog_provider = 'AWS'  # S3 호환 API를 사용하는 경우
 
     # 필요에 따라 이 두 줄을 사용하지 않을 수도 있습니다
@@ -25,9 +21,6 @@ if defined?(AssetSync)
 
     # Caching 설정 (옵션)
     config.custom_headers = { 'Cache-Control' => 'max-age=315576000, public' }
-
-    # Invalidations for CDN (선택 사항)
-    config.invalidate = true
 
     # 기존 파일 덮어쓰기 방지 (옵션)
     config.always_upload = false
