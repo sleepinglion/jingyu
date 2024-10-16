@@ -4,7 +4,6 @@ CarrierWave.configure do |config|
 
     config.fog_provider = 'fog/oracle'  # Oracle Cloud용 fog provider 설정
     config.fog_directory = ENV['ORACLE_BUCKET']  # 버킷 이름
-    config.existing_remote_files = "keep"  # 기존 파일 처리 방식
 
     # Oracle Cloud 인증 정보를 위한 설정 (환경 변수 사용)
     config.fog_credentials = {
