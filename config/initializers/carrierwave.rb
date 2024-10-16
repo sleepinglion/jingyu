@@ -5,7 +5,7 @@ CarrierWave.configure do |config|
     aws_access_key_id:     ENV['ORACLE_ACCESS_KEY'],  # Oracle Cloud Access Key
     aws_secret_access_key: ENV['ORACLE_SECRET_KEY'],  # Oracle Cloud Secret Key
     region:                ENV['ORACLE_REGION'],           # Oracle Cloud 리전 (예: 'us-ashburn-1')
-    endpoint:              "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com",  # Oracle S3 호환 API 엔드포인트
+    #   endpoint:              "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com",  # Oracle S3 호환 API 엔드포인트
     path_style:            true  # Oracle Object Storage의 호환성을 위한 설정
   }
   config.fog_directory  = ENV['ORACLE_BUCKET']  # Object Storage 버킷 이름
