@@ -1,22 +1,21 @@
 CarrierWave.configure do |config|
-  if Rails.env.production?
-    require 'dotenv/load'
-    require 'fog/azurerm'
-    config.storage = :fog
-    config.fog_credentials = {
-      :provider => ENV['FOG_PROVIDER'], # required
-      :azure_storage_account_name => ENV['AZURE_STORAGE_ACCOUNT_NAME'], # required
-      :azure_storage_access_key => ENV['AZURE_STORAGE_ACCESS_KEY'] # required
-      # :region => 'ap-northeast-1' # optional, defaults to 'us-east-1'
-      #:host                   => 's3.example.com',             # optional, defaults to nil
-      #:endpoint               => 'https://s3.example.com:8080' # optional, defaults to nil
-    }
-    config.fog_directory = ENV['FOG_DIRECTORY']
-    #config.fog_public     = false                                   # optional, defaults to true
-    config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' } # optional, defaults to {}
-  else
-    config.storage = :file
-  end
+  config.fog_provider = 'fog/oracle'  # 사용할 fog provider
+  config.fog_credentials = {
+    provider: 'Oracle',               # Oracle Cloud를 사용함을 명시
+    oracle_username: ENV['ORACLE_USERNAME'], # Oracle Cloud 계정 정보
+    oracle_password: ENV['ORACLE_PASSWORD'], # Oracle Cloud 계정 비밀번호
+    oracle_domain: ENV['ORACLE_DOMAIN'],     # Oracle Cloud 도메인
+    oracle_object_storage_namespace: ENV['ORACLE_NAMESPACE'], # 스토리지 네임스페이스
+    oracle_tenancy: ENV['ORACLE_TENANCY'],   # Tenancy 정보
+    oracle_region: ENV['ORACLE_REGION'],     # 사용할 리전
+    oracle_fingerprint: ENV['ORACLE_FINGERPRINT'], # API Key의 Fingerprint
+    oracle_private_key_path: ENV['ORACLE_PRIVATE_KEY_PATH'], # API Key의 프라이빗 키 파일 경로
+    oracle_bucket: ENV['ORACLE_BUCKET'], # 사용할 버킷 이름
+  }
+
+  config.fog_directory  = ENV['ORACLE_BUCKET']   # 업로드할 버킷 이름
+  config.fog_public     = false                       # 파일이 공개인지 여부
+  config.fog_attributes = { cache_control: "public, max-age=86400" } # 캐싱 옵션
 
   config.cache_dir = File.join(Rails.root, 'tmp', 'uploads', Rails.env)
 end

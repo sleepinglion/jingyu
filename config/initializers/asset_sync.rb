@@ -1,27 +1,40 @@
 if defined?(AssetSync)
   AssetSync.configure do |config|
-    config.fog_provider = ENV['FOG_PROVIDER']
-    config.azure_storage_account_name = ENV['AZURE_STORAGE_ACCOUNT_NAME']
-    config.azure_storage_access_key = ENV['AZURE_STORAGE_ACCESS_KEY']
-    config.fog_directory = ENV['FOG_DIRECTORY']
+    # Set this to true to enable assets sync
+    config.enabled = true
 
-    # Don't delete files from the store
-    config.existing_remote_files = "delete"
+    # AWS S3 호환 API 사용
+    config.aws_access_key_id = ENV['ORACLE_ACCESS_KEY']
+    config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
 
-    # Automatically replace files with their equivalent gzip compressed version
+    # Oracle Object Storage의 S3 호환 API 엔드포인트
+    config.fog_provider = 'AWS'
+    config.fog_directory = ENV['ORACLE_BUCKET']
+    config.fog_region = ENV['ORACLE_REGION']
+    config.fog_host = ENV['ORACLE_ENDPOINT'] # Oracle Object Storage S3 호환 API 엔드포인트
+
+    # 해당 리소스에 대한 public-read 권한 부여 (필요시 설정)
+    config.aws_acl = 'public-read'
+
+    # 옵션: gzip 설정
     config.gzip_compression = true
-
-    # Use the Rails generated 'manifest.yml' file to produce the list of files to
-    # upload instead of searching the assets directory.
     config.manifest = true
 
-    config.custom_headers = { '.*' => { cache_control: 'max-age=31536000', expires: 1.year.from_now.httpdate } }
+    # Caching 설정 (옵션)
+    config.custom_headers = { 'Cache-Control' => 'max-age=315576000, public' }
 
-    config.add_local_file_paths do
-      # Add files to be uploaded
-      Dir.chdir(Rails.root.join('public')) do
-        Dir[File.join('packs', '**', '**')]
-      end
-    end
+    # Invalidations for CDN (선택 사항)
+    config.invalidate = true
+
+    # 기존 파일 덮어쓰기 방지 (옵션)
+    config.always_upload = false
+    config.existing_remote_files = 'delete' # or keep or ignore
+
+    #config.add_local_file_paths do
+    #  # Add files to be uploaded
+    #  Dir.chdir(Rails.root.join('public')) do
+    #    Dir[File.join('packs', '**', '**')]
+    #  end
+    #end
   end
 end
