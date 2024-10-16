@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  config.fog_provider = 'fog/oracle'  # 사용할 fog provider
+  config.fog_provider = 'Oracle'  # 사용할 fog provider
   config.fog_credentials = {
     provider: 'Oracle',               # Oracle Cloud를 사용함을 명시
     oracle_username: ENV['ORACLE_USERNAME'], # Oracle Cloud 계정 정보
