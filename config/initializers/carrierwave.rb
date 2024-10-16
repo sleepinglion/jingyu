@@ -1,14 +1,24 @@
 CarrierWave.configure do |config|
-  config.fog_provider = 'fog/oracle'  # fog-oracle 사용
-  config.fog_credentials = {
-    provider:              'Oracle',  # Oracle Cloud 사용
-    oracle_storage_namespace: ENV['ORACLE_NAMESPACE'],  # 네임스페이스
-    oracle_region:        ENV['ORACLE_REGION'],  # 리전 (예: us-ashburn-1)
-    oracle_access_key:    ENV['ORACLE_ACCESS_KEY'],  # Oracle API 키 (Access Key)
-    oracle_secret_key:    ENV['ORACLE_SECRET_KEY'],  # Oracle API 키 (Secret Key)
-  }
-  config.fog_directory  = ENV['ORACLE_BUCKET']  # Object Storage 버킷 이름
-  config.fog_attributes = { cache_control: "public, max-age=86400" }  # 캐시 설정
+  if Rails.env.production?
+    config.storage = :fog
+
+    config.fog_provider = 'fog/oracle'  # Oracle Cloud용 fog provider 설정
+    config.fog_directory = ENV['ORACLE_BUCKET']  # 버킷 이름
+    config.existing_remote_files = "keep"  # 기존 파일 처리 방식
+
+    # Oracle Cloud 인증 정보를 위한 설정 (환경 변수 사용)
+    config.fog_credentials = {
+      provider:              'Oracle',
+      oracle_storage_namespace: ENV['ORACLE_NAMESPACE'],
+      oracle_access_key:    ENV['ORACLE_ACCESS_KEY'],
+      oracle_secret_key:    ENV['ORACLE_SECRET_KEY'],
+      region:                ENV['ORACLE_REGION'],
+    }
+    #config.fog_public     = false                                   # optional, defaults to true
+    config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' } # optional, defaults to {}
+  else
+    config.storage = :file
+  end
 
   config.cache_dir = File.join(Rails.root, 'tmp', 'uploads', Rails.env)
 end
