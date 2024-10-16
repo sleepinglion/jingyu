@@ -4,14 +4,26 @@ if defined?(AssetSync)
     config.enabled = true
 
     # AWS S3 호환 API 사용
-    config.aws_access_key_id = ENV['ORACLE_USERNAME']
-    config.aws_secret_access_key = ENV['ORACLE_PASSWORD']
+    config.aws_access_key_id = ENV['ORACLE_ACCESS_KEY']
+    config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
 
     # Oracle Object Storage의 S3 호환 API 엔드포인트
-    config.fog_provider = 'AWS'
+    config.fog_provider = 'fog/aws'
     config.fog_directory = ENV['ORACLE_BUCKET']
     config.fog_region = ENV['ORACLE_REGION']
     config.fog_host = ENV['ORACLE_ENDPOINT'] # Oracle Object Storage S3 호환 API 엔드포인트
+
+    config.aws_access_key_id = ENV['ORACLE_FINGERPRINT']
+    config.aws_secret_access_key = ENV['ORACLE_CLOUD_SECRET_KEY']
+
+    config.fog_credentials = {
+      provider: 'AWS',
+      aws_access_key_id: ENV['ORACLE_ACCESS_KEY'],  # S3 호환 API의 Access Key
+      aws_secret_access_key: ENV['ORACLE_SECRET_KEY'],  # S3 호환 API의 Secret Key
+      region: ENV['ORACLE_REGION'],  # 리전 이름
+      endpoint: "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com"
+    }
+
 
     # 해당 리소스에 대한 public-read 권한 부여 (필요시 설정)
     config.aws_acl = 'public-read'
