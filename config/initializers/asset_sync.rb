@@ -1,6 +1,6 @@
 if defined?(AssetSync)
   AssetSync.configure do |config|
-    config.fog_provider = 'fog/oracle'  # Oracle Cloud용 fog provider 설정
+    config.fog_provider = 'oracle'  # Oracle Cloud용 fog provider 설정
     config.fog_directory = ENV['ORACLE_BUCKET']  # 버킷 이름
 
     config.existing_remote_files = "keep"  # 기존 파일 처리 방식
