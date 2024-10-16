@@ -4,8 +4,8 @@ if defined?(AssetSync)
     config.enabled = true
 
     # AWS S3 호환 API 사용
-    config.aws_access_key_id = ENV['ORACLE_ACCESS_KEY']
-    config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
+    config.aws_access_key_id = ENV['ORACLE_USERNAME']
+    config.aws_secret_access_key = ENV['ORACLE_PASSWORD']
 
     # Oracle Object Storage의 S3 호환 API 엔드포인트
     config.fog_provider = 'AWS'
