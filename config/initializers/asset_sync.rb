@@ -11,7 +11,7 @@ if defined?(AssetSync)
     config.fog_provider = 'AWS'
     config.fog_directory = ENV['ORACLE_BUCKET']
     config.fog_region = ENV['ORACLE_REGION']
-
+    config.fog_host ="//#{ENV['ORACLE_NAMESPACE']}.objectstorage.#{ENV['ORACLE_REGION']}.oci.customer-oci.com/n/#{ENV['ORACLE_NAMESPACE']}/b/#{ENV['ORACLE_BUCKET']}/o/"
 
     # 해당 리소스에 대한 public-read 권한 부여 (필요시 설정)
     config.aws_acl = 'public-read'
