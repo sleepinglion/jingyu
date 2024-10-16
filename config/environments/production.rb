@@ -31,7 +31,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   #config.asset_host = "//#{ENV['AZURE_STORAGE_ACCOUNT_NAME']}.blob.core.windows.net/#{ENV['FOG_DIRECTORY']}"
-  #config.asset_host = "//#{ENV['ORACLE_NAMESPACE']}.objectstorage.#{ENV['ORACLE_REGION']}.oci.customer-oci.com/n/#{ENV['ORACLE_NAMESPACE']}/b/#{ENV['ORACLE_BUCKET']}/o/"
+  config.asset_host = "//#{ENV['ORACLE_NAMESPACE']}.objectstorage.#{ENV['ORACLE_REGION']}.oci.customer-oci.com/n/#{ENV['ORACLE_NAMESPACE']}/b/#{ENV['ORACLE_BUCKET']}/o/"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
