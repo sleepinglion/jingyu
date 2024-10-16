@@ -8,7 +8,7 @@ if defined?(AssetSync)
     config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
 
     # Oracle Object Storage의 S3 호환 API 엔드포인트
-    config.fog_provider = 'fog/aws'
+    config.fog_provider = 'AWS'
     config.fog_directory = ENV['ORACLE_BUCKET']
     config.fog_region = ENV['ORACLE_REGION']
     config.fog_host ="https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com"
