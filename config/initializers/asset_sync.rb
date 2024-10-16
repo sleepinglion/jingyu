@@ -1,18 +1,19 @@
 if defined?(AssetSync)
   AssetSync.configure do |config|
-    config.fog_provider = 'AWS'  # S3 호환 API를 사용하는 경우
+    config.fog_provider = 'fog/oracle'  # Oracle Cloud용 fog provider 설정
 
-    # 필요에 따라 이 두 줄을 사용하지 않을 수도 있습니다
-    config.aws_access_key_id = ENV['ORACLE_ACCESS_KEY']
-    config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
+    config.fog_credentials = {
+      provider:              'Oracle',  # Oracle Cloud 사용
+      oracle_storage_namespace: ENV['ORACLE_STORAGE_NAMESPACE'],  # 네임스페이스
+      oracle_access_key:    ENV['ORACLE_ACCESS_KEY'],  # API Access Key
+      oracle_secret_key:    ENV['ORACLE_SECRET_KEY'],  # API Secret Key
+      region:                ENV['ORACLE_REGION'],  # 리전
+    }
 
-    config.fog_directory = ENV['ORACLE_BUCKET']
-    config.fog_region = ENV['ORACLE_REGION']
+    config.fog_directory = ENV['ORACLE_BUCKET']  # 버킷 이름
+    config.asset_host = "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com/#{ENV['ORACLE_BUCKET']}"
 
-    # Endpoint 설정
-    config.fog_host = "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com"
-    # 해당 리소스에 대한 public-read 권한 부여 (필요시 설정)
-    #config.aws_acl = 'public-read'
+    config.existing_remote_files = "keep"  # 기존 파일 처리 방식
 
     # 옵션: gzip 설정
     config.gzip_compression = true
