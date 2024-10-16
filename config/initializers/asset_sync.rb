@@ -1,9 +1,18 @@
 if defined?(AssetSync)
   AssetSync.configure do |config|
-    config.fog_provider = 'oracle'  # Oracle Cloud용 fog provider 설정
-    config.fog_directory = ENV['ORACLE_BUCKET']  # 버킷 이름
+    config.fog_provider = 'AWS'  # S3 호환 API를 사용하는 경우
 
-    config.existing_remote_files = "keep"  # 기존 파일 처리 방식
+    # 필요에 따라 이 두 줄을 사용하지 않을 수도 있습니다
+    config.aws_access_key_id = ENV['ORACLE_ACCESS_KEY']
+    config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
+
+    config.fog_directory = ENV['ORACLE_BUCKET']
+    config.fog_region = ENV['ORACLE_REGION']
+
+    # Endpoint 설정
+    config.fog_host = "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com"
+    # 해당 리소스에 대한 public-read 권한 부여 (필요시 설정)
+    #config.aws_acl = 'public-read'
 
     # 옵션: gzip 설정
     config.gzip_compression = true
