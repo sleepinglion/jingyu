@@ -14,7 +14,7 @@ CarrierWave.configure do |config|
   }
 
   config.fog_directory  = ENV['ORACLE_BUCKET']   # 업로드할 버킷 이름
-  config.fog_public     = false                       # 파일이 공개인지 여부
+  config.fog_public     = true                       # 파일이 공개인지 여부
   config.fog_attributes = { cache_control: "public, max-age=86400" } # 캐싱 옵션
 
   config.cache_dir = File.join(Rails.root, 'tmp', 'uploads', Rails.env)
