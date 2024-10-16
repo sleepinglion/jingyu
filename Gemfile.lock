@@ -209,6 +209,10 @@ GEM
     fog-json (1.2.0)
       fog-core
       multi_json (~> 1.10)
+    fog-oracle (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
@@ -475,6 +479,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   fog-aws
+  fog-oracle
   gretel
   impressionist
   jbuilder
