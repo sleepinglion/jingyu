@@ -4,7 +4,7 @@ if defined?(AssetSync)
 
     config.fog_credentials = {
       provider:              'Oracle',  # Oracle Cloud 사용
-      oracle_storage_namespace: ENV['ORACLE_STORAGE_NAMESPACE'],  # 네임스페이스
+      oracle_storage_namespace: ENV['ORACLE_NAMESPACE'],  # 네임스페이스
       oracle_access_key:    ENV['ORACLE_ACCESS_KEY'],  # API Access Key
       oracle_secret_key:    ENV['ORACLE_SECRET_KEY'],  # API Secret Key
       region:                ENV['ORACLE_REGION'],  # 리전
