@@ -3,17 +3,11 @@ if defined?(AssetSync)
     # Set this to true to enable assets sync
     config.enabled = true
 
-    config.fog_provider = 'AWS'  # S3 호환 API를 사용하는 경우
-
-    # 필요에 따라 이 두 줄을 사용하지 않을 수도 있습니다
-    config.aws_access_key_id = ENV['ORACLE_ACCESS_KEY']
-    config.aws_secret_access_key = ENV['ORACLE_SECRET_KEY']
-
+    config.fog_provider = 'fog/oracle'
     config.fog_directory = ENV['ORACLE_BUCKET']
     config.fog_region = ENV['ORACLE_REGION']
+    config.fog_host = "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com"
 
-    # Endpoint 설정
-    config.fog_host = "https://axriilkfiyqt.compat.objectstorage.ap-chuncheon-1.oraclecloud.com"
 
     # 해당 리소스에 대한 public-read 권한 부여 (필요시 설정)
     config.aws_acl = 'public-read'
