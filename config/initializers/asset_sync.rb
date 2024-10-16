@@ -1,5 +1,6 @@
 if defined?(AssetSync)
   AssetSync.configure do |config|
+    require 'dotenv/load'
     # Set this to true to enable assets sync
     config.enabled = true
 
