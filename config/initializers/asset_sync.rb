@@ -26,11 +26,11 @@ if defined?(AssetSync)
     config.always_upload = false
     config.existing_remote_files = 'delete' # or keep or ignore
 
-    #config.add_local_file_paths do
+    config.add_local_file_paths do
     #  # Add files to be uploaded
-    #  Dir.chdir(Rails.root.join('public')) do
-    #    Dir[File.join('packs', '**', '**')]
-    #  end
-    #end
+      Dir.chdir(Rails.root.join('public')) do
+        Dir[File.join('packs', '**', '**')]
+      end
+    end
   end
 end
