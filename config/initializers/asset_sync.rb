@@ -14,7 +14,7 @@ if defined?(AssetSync)
 
     # Endpoint 설정
     config.fog_host = "https://#{ENV['ORACLE_NAMESPACE']}.compat.objectstorage.#{ENV['ORACLE_REGION']}.oraclecloud.com"
-
+    puts config.fog_host
     # 해당 리소스에 대한 public-read 권한 부여 (필요시 설정)
     config.aws_acl = 'public-read'
 
