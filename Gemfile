@@ -1,7 +1,9 @@
 source "https://rubygems.org"
 
+ruby "3.3.4"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3", ">= 7.1.3.4"
+gem "rails", "~> 7.1.5"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -16,7 +18,7 @@ gem "puma", ">= 5.0"
 gem "jsbundling-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+# gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 #gem "stimulus-rails"
@@ -45,9 +47,9 @@ gem 'devise'
 gem 'cancancan'
 gem 'kaminari'
 gem 'carrierwave', '~> 2.0'
-gem 'aws-sdk-s3'
-gem 'fog-aws'
-gem 'fog-oracle'
+#gem 'aws-sdk-s3'
+#gem 'fog-aws'
+#gem 'fog-oracle'
 gem 'mini_magick'
 gem 'sitemap_generator'
 gem 'meta-tags'
@@ -93,6 +95,7 @@ end
 
 group :production do
   gem 'asset_sync'
+  gem 'fog-azure-rm', git: 'https://github.com/sleepinglion/fog-azure-rm'
   gem 'mysql2'
   gem "redis", "~> 5.0" # Redis client for Ruby
   gem "redis-actionpack", "~> 5.3" # Redis session store for ActionPack
