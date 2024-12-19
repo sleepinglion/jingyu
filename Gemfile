@@ -47,13 +47,8 @@ gem 'devise'
 gem 'cancancan'
 gem 'kaminari'
 gem 'carrierwave', '~> 2.0'
-<<<<<<< HEAD
 #gem 'aws-sdk-s3'
 #gem 'fog-aws'
-=======
-gem 'aws-sdk-s3'
-gem 'fog-aws'
->>>>>>> 0d5754208a8196eb992f75139f83dc6549ff3998
 #gem 'fog-oracle'
 gem 'mini_magick'
 gem 'sitemap_generator'
