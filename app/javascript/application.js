@@ -10,5 +10,5 @@ window.$ = window.jQuery = jQuery;
 import "bootstrap";
 import "jquery-easing";
 import "tagcanvas";  // TagCanvas 로드
-import './common'
-import './index'
+import 'common'
+import 'index'

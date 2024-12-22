@@ -11,12 +11,17 @@ if defined?(AssetSync)
     # Automatically replace files with their equivalent gzip compressed version
     config.gzip_compression = true
 
-    # Make sure importmap JavaScript files are included
-    config.manifest = 'public/assets/manifest.json'
-
-    # If you're using the asset pipeline and Sprockets for JS files, include the directory
-    config.include = ['app/assets/javascripts', 'public/assets']
+    # Use the Rails generated 'manifest.yml' file to produce the list of files to
+    # upload instead of searching the assets directory.
+    config.manifest = true
 
     config.custom_headers = { '.*' => { cache_control: 'max-age=31536000', expires: 1.year.from_now.httpdate } }
+
+    config.add_local_file_paths do
+      # Add files to be uploaded
+      Dir.chdir(Rails.root.join('public')) do
+        Dir[File.join('packs', '**', '**')]
+      end
+    end
   end
 end
