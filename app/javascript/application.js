@@ -1,11 +1,14 @@
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-import Rails from '@rails/ujs';
-window.Rails = Rails;
+import "rails-ujs"
 
-import * as bootstrap from "bootstrap"
-import './add_jquery'
-import '@fancyapps/fancybox';
-import  'jquery-tagcanvas';
+import jQuery from "jquery";
+
+// jQuery를 전역 변수로 설정
+window.$ = window.jQuery = jQuery;
+
+import "bootstrap";
+import "jquery-easing";
+import "tagcanvas";  // TagCanvas 로드
 import './common'
 import './index'
-

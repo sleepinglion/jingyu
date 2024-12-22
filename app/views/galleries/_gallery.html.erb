@@ -6,7 +6,7 @@
 			m_class="nav-link active"
 			else
 			m_class="nav-link"
-			end				
+			end
 		%>
 		<%= link_to galleries_path(:gallery_category_id=>gallery_category.id),:class=>m_class do %>
 		<%= gallery_category.title %><span class="hidden-xs">(<%= gallery_category.galleries_count %>)</span>

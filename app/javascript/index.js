@@ -1,4 +1,6 @@
 var ready=function(){
+    /*
+    /*
     $("a.simple_image").fancybox({
         'opacity'   : true,
         'overlayShow'        : true,
@@ -7,7 +9,7 @@ var ready=function(){
         'titleShow':true,
         'openEffect'  : 'elastic',
         'closeEffect' : 'elastic'
-    });
+    }); */
 
     $('#sl_main_gallery').on('slide.bs.carousel', function(e) {
         var $nextImage = $(e.relatedTarget).find('img');
@@ -54,14 +56,16 @@ var ready=function(){
         }
     });
 
-    if(!$('#myCanvas').tagcanvas({
-        outlineThickness : 1,
-        maxSpeed : 0.05,
-        textFont: null,
-        textColour: null,
-        weight: true,
-        depth : 1
-    },'tags')) {
+    if (document.getElementById('myCanvas')) {
+        TagCanvas.Start('myCanvas', 'tags', {
+            outlineThickness : 1,
+            maxSpeed : 0.05,
+            textFont: null,
+            textColour: null,
+            weight: true,
+            depth : 1
+        });
+    } else {
         // TagCanvas failed to load
         $('#myCanvasContainer').hide();
         $("#tags ul").css({'margin':0,'padding':0,'list-style':'none'});
