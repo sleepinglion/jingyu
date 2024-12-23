@@ -23,7 +23,7 @@
 	<% if gallery %>
 	<div id="sl_gallery_left" class="col-12 col-lg-5">
 		<span class="none" itemprop="genre"><%= gallery.gallery_category_id %></span>
-		<%=link_to gallery.photo.to_s,{:title=>gallery.title,:class=>'simple_image'} do %>
+		<%=link_to gallery.photo.to_s,{title: gallery.title,"data-src": gallery.photo.to_s,"data-fancybox": "gallery"} do %>
 		<figure>
 			<%= image_tag sl_get_thumb(gallery.photo.to_s,'large'),:class=>'img-responsive',:itemprop=>"contentURL" %>
 			<figcaption id="gallery<%= gallery.id %>_img<%= gallery.id %>_span" class="image_caption" itemprop="name">
