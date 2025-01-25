@@ -1,24 +1,15 @@
-# README
+What is jingyu Homepage
+www.jingyu.pe.kr Source
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+www.jingyu.pe.kr is a site personal homepage
 
-Things you may want to cover:
+This Application is composed of Rails + UI Boostrap
 
-* Ruby version
+Server Requirements
+Rails version 7 or newer is recommended.
 
-* System dependencies
+License
+MIT, All Free
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Author
+SleepingLion
