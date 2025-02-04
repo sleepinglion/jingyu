@@ -1,4 +1,4 @@
-set :application, "sleepinglion"
+set :application, "jingyu"
 set :repo_url, "git@github.com:sleepinglion/jingyu.git"
 set :branch, 'main'
 set :deploy_to, '/home/deploy/jingyu'
@@ -19,14 +19,14 @@ set :bundle_path, '/usr/local/bundle'
 set :keep_releases, 5
 
 namespace :deploy do
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
+  #after :restart, :clear_cache do
+  #  on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
-      within release_path do
-        execute :rake, 'tmp:clear'
-      end
-    end
-  end
+  #   within release_path do
+  #      execute :rake, 'tmp:clear'
+  #   end
+  #  end
+  #end
 
   desc 'Refresh sitemap'
   task :refresh_sitemap do
