@@ -286,11 +286,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-<<<<<<< HEAD
-    mime-types-data (3.2025.0701)
-=======
-    mime-types-data (3.2025.0603)
->>>>>>> f43bce50e84e7411246516feffeac0a72a122d9a
+    mime-types-data (3.2025.0708)
     mini_magick (5.2.0)
       benchmark
       logger
@@ -306,15 +302,11 @@ GEM
       faraday-cookie_jar (~> 0.0.6)
       ms_rest (~> 0.6.3)
     msgpack (1.8.0)
-    multi_json (1.15.0)
+    multi_json (1.16.0)
     multipart-post (2.4.1)
     mutex_m (0.3.0)
     mysql2 (0.5.6)
-<<<<<<< HEAD
     net-imap (0.5.9)
-=======
-    net-imap (0.5.8)
->>>>>>> f43bce50e84e7411246516feffeac0a72a122d9a
       date
       net-protocol
     net-pop (0.1.2)
@@ -348,11 +340,7 @@ GEM
       racc (~> 1.4)
     observer (0.1.2)
     orm_adapter (0.5.0)
-<<<<<<< HEAD
     ostruct (0.6.2)
-=======
-    ostruct (0.6.1)
->>>>>>> f43bce50e84e7411246516feffeac0a72a122d9a
     pkg-config (1.6.2)
     popper_js (2.11.8)
     pp (0.6.2)
@@ -413,11 +401,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.3.0)
-<<<<<<< HEAD
     rdoc (6.14.2)
-=======
-    rdoc (6.14.0)
->>>>>>> f43bce50e84e7411246516feffeac0a72a122d9a
       erb
       psych (>= 4.0.0)
     recaptcha (5.19.0)
@@ -427,11 +411,7 @@ GEM
       actionpack (>= 5)
       redis-rack (>= 2.1.0, < 4)
       redis-store (>= 1.1.0, < 2)
-<<<<<<< HEAD
     redis-client (0.25.0)
-=======
-    redis-client (0.24.0)
->>>>>>> f43bce50e84e7411246516feffeac0a72a122d9a
       connection_pool
     redis-rack (3.0.0)
       rack-session (>= 0.2.0)
@@ -465,11 +445,7 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-<<<<<<< HEAD
     selenium-webdriver (4.34.0)
-=======
-    selenium-webdriver (4.33.0)
->>>>>>> f43bce50e84e7411246516feffeac0a72a122d9a
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -485,25 +461,14 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-<<<<<<< HEAD
-    sqlite3 (2.7.1-aarch64-linux-gnu)
-    sqlite3 (2.7.1-aarch64-linux-musl)
-    sqlite3 (2.7.1-arm-linux-gnu)
-    sqlite3 (2.7.1-arm-linux-musl)
-    sqlite3 (2.7.1-arm64-darwin)
-    sqlite3 (2.7.1-x86_64-darwin)
-    sqlite3 (2.7.1-x86_64-linux-gnu)
-    sqlite3 (2.7.1-x86_64-linux-musl)
-=======
-    sqlite3 (2.6.0-aarch64-linux-gnu)
-    sqlite3 (2.6.0-aarch64-linux-musl)
-    sqlite3 (2.6.0-arm-linux-gnu)
-    sqlite3 (2.6.0-arm-linux-musl)
-    sqlite3 (2.6.0-arm64-darwin)
-    sqlite3 (2.6.0-x86_64-darwin)
-    sqlite3 (2.6.0-x86_64-linux-gnu)
-    sqlite3 (2.6.0-x86_64-linux-musl)
->>>>>>> f43bce50e84e7411246516feffeac0a72a122d9a
+    sqlite3 (2.7.2-aarch64-linux-gnu)
+    sqlite3 (2.7.2-aarch64-linux-musl)
+    sqlite3 (2.7.2-arm-linux-gnu)
+    sqlite3 (2.7.2-arm-linux-musl)
+    sqlite3 (2.7.2-arm64-darwin)
+    sqlite3 (2.7.2-x86_64-darwin)
+    sqlite3 (2.7.2-x86_64-linux-gnu)
+    sqlite3 (2.7.2-x86_64-linux-musl)
     sshkit (1.24.0)
       base64
       logger
@@ -514,7 +479,7 @@ GEM
     ssrf_filter (1.3.0)
     stringio (3.1.7)
     thor (1.3.2)
-    tilt (2.6.0)
+    tilt (2.6.1)
     timeliness (0.5.3)
     timeout (0.4.3)
     turbo-rails (2.0.16)
