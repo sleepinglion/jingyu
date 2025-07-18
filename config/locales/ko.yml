@@ -36,6 +36,11 @@ ko:
   all : '전체'
   all_category : '전체'
 
+  theme: '모양'
+  light: '밝은'
+  dark: '어두운'
+  auto: '자동'
+
   login_page : '로그인 페이지'
   login_title : '관리자 로그인'
   login_p_id : '아이디를 입력하세요'
