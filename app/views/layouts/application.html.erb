@@ -12,7 +12,13 @@
 											 viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
 											 reverse: true
 	%>
-<meta name="author" content="Sleeping-Lion">
+	<%= display_meta_tags og: {
+		title: @title,
+		description: @meta_description,
+		url: t(:site_full_url),
+		image: @meta_image
+	} %>
+<meta name="author" content="Sleeping1-Lion">
 <link rel="canonical" href="<%=t(:site_full_url) %>">
 <link rel="alternate" type="application/rss+xml" title="Jingyu RSS Feed" href="<%= t(:site_full_url) %>/feed?format=rss">
 <%= stylesheet_link_tag "front/application", :media => "all", "data-turbolinks-track" => true %>
@@ -28,7 +34,7 @@
 			<%= render 'layouts/page_header' %>
 		<% end  %>
 		<div class="row">
-			<main <% if current_page?(root_path) %>id="main_main"<% end %> class="sub_main<% if session[:no_aside] %> col-12<% else %> col-12 col-xl-9<% end %>">
+			<main <% if current_page?(root_path) %>id="main_main"<% end %> class="sub-main<% if session[:no_aside] %> col-12<% else %> col-12 col-xl-9<% end %>">
 				<%= render 'layouts/ad' %>
 				<%=yield %>
 			</main>

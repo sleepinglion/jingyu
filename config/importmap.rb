@@ -9,5 +9,3 @@ pin "tagcanvas", to: "tagcanvas.min.js"
 pin "bootstrap", to: "bootstrap.min.js"
 pin "common", to: "common.js"
 pin "index", to: "index.js"
-
-
