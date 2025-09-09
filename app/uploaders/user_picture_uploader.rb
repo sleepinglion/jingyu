@@ -1,17 +1,12 @@
-class UserUploader < CarrierWave::Uploader::Base
+class UserPictureUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   #include CarrierWave::MiniMagick
 
-  # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
     storage :fog
   else
     storage :file
-  end
-
-  def size_range
-    1.byte..1.megabytes
   end
 
   # Override the directory where uploaded files will be stored.
@@ -23,6 +18,10 @@ class UserUploader < CarrierWave::Uploader::Base
     end
 
     return upload_dir
+  end
+
+  def size_range
+    1.byte..5.megabytes
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -38,22 +37,23 @@ class UserUploader < CarrierWave::Uploader::Base
   end
 
   # Create different versions of your uploaded files:
+  version :tiny_thumb do
+    process resize_to_fill: [30, 30]
+  end
+
+  # Create different versions of your uploaded files:
   version :small_thumb do
-    process :resize_to_fill => [50, 50]
+    process resize_to_fill: [100, 100]
   end
 
   version :medium_thumb do
-    process :resize_to_fill => [100, 100]
-  end
-
-  version :large_thumb do
-    process :resize_to_fill => [400, 300]
+    process resize_to_fill: [300, 300]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-  %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png)
   end
 
   # Override the filename of the uploaded files:
@@ -61,5 +61,4 @@ class UserUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
 end

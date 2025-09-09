@@ -1,4 +1,4 @@
-class Faq < ActiveRecord::Base
+class Faq < ApplicationRecord
   is_impressionable
   acts_as_taggable
   acts_as_commentable

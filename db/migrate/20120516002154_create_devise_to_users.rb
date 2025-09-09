@@ -41,6 +41,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
 
       ## Token authenticatable
       # t.string :authentication_token
+      t.integer :user_pictures_count, null: false, default: 0
       t.boolean :admin, :null=>false, :default => false
       t.boolean :enable, :null=>false, :default=>true
       t.timestamps null: false

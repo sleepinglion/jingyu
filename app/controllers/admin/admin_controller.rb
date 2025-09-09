@@ -1,25 +1,26 @@
 class Admin::AdminController < ApplicationController
-    load_and_authorize_resource except: [:create]
-
-    def current_ability
-        @current_ability ||= AdminAbility.new(current_admin)
-    end
+    before_action :authenticate_admin!
+    load_and_authorize_resource
 
     def resource_name
-      :admin
+        :admin
     end
 
     def resource
-      @resource ||= Admin.new
+        @resource ||= Admin.new
     end
 
     def devise_mapping
-      @devise_mapping ||= Devise.mappings[:admin]
+        @devise_mapping ||= Devise.mappings[:admin]
     end
 
     rescue_from CanCan::AccessDenied do |_exception|
         if current_user
-            render file: "#{Rails.root}/public/403.html", status: 403, layout: false
+            if current_user.admin?
+                render file: "#{Rails.root}/public/403.html", status: 403, layout: false
+            else
+                redirect_to root_path
+            end
         else
             redirect_to new_admin_session_path
         end
@@ -29,7 +30,11 @@ class Admin::AdminController < ApplicationController
         if params[:no_layout]
             false
         else
-            'admin/application'
+            if params[:popup]
+                'admin/popup'
+            else
+                'admin/application'
+            end
         end
     end
 end

@@ -9,14 +9,12 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *= require_tree .
- *= require_self
  */
 
 @charset "utf-8";
 
 @import "bootstrap";
-@import "./fancybox";
+@import "../fancybox";
 
 @font-face {
   font-family: 'Nanum Gothic';
@@ -69,11 +67,6 @@ legend {display:none}
 a img {border:none}
 a {text-decoration: none}
 
-h1 {font-size :180%}
-h2 {font-size :150%}
-h3 {font-size :130%}
-h4,h5,h6 {font-size : 110%}
-
 /* Getting the new tags to behave */
 article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
 mark, rp, rt, ruby, summary, time {display:inline;}
@@ -114,7 +107,7 @@ footer div {margin:0.3em 0 0}
 
 /* header */
 header {position:relative;background:#eee;border-bottom:1px solid var(--bs-border-color)}
-header h1 a {display:block;margin:1.2em 0 0;padding:0}
+header h1 a {display:block;margin:1rem 0 0;padding:0}
 header nav { position: relative; z-index: 999; margin:20px 0 0; padding:0}
 header nav ul { float: right; margin: 1.5em 0 0 0; padding: 0}
 header nav li { float: left; list-style: none; margin: 0 0 0 20px}
@@ -153,7 +146,7 @@ footer form {position:absolute;top:10px;right:10px}
 #gallery_main_content {margin:0 0 20px}
 #sl_gallery_left {float:left;position:relative;overflow:hidden}
 #sl_gallery_left figure {position:relative;overflow: hidden}
-#sl_gallery_left figure figcaption {position:absolute;display:block;bottom:0px;padding:5px 0;margin:0;text-align:center;color:#fff;width:100%;max-width:400px;background:#333;opacity:0.8}
+#sl_gallery_left figure figcaption {position:absolute;display:block;bottom:0px;padding:5px 0;margin:0;text-align:center;color:#fff;width:100%;background:#333;opacity:0.8}
 #sl_gallery_right h4 {margin:0 0 10px;padding:0}
 #sl_gallery_right div.text {margin:0 0 20px;line-height:170%}
 #sl_gallery_right div.text p {margin:0;padding:0}

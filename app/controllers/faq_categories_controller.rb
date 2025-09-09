@@ -1,4 +1,5 @@
 class FaqCategoriesController < ApplicationController
+  before_action :authenticate_user!, :except => [:index,:show]
   before_action :set_faq_category, only: [:show]
 
   # GET /faq_categories

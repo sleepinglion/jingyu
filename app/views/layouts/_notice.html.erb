@@ -1,18 +1,16 @@
-<div id="messages">
-  <% if notice %>
-    <div class="alert alert-success" role="alert">
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span><span class="sr-only"><%= t(:close) %></span></button>
-      <h4><%= t(:success_title) %></h4>
-      <p id="message-notice"><%= notice %></p>
-    </div>
-  <% end %>
-  <% if alert %>
-    <div class="alert alert-danger" role="alert">
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span><span class="sr-only"><%= t(:close) %></span></button>
-      <h4><%= t(:alert_title) %></h4>
-      <p id="message-alert"><%= alert %></p>
-    </div>
-  <% end %>
+<div id="messages" class="row">
+  <div class="col-12">
+    <% if notice %>
+      <div class="alert alert-success" role="alert">
+        <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <p id="message-notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn-close close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <p id="message-alert"><%= alert %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
