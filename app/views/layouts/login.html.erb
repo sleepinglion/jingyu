@@ -26,19 +26,17 @@
 	<%= csrf_meta_tags %>
 	<%= csp_meta_tag -%>
 </head>
-<body>
-<%= render :partial => 'layouts/header' %>
+<body id="user-login">
 <div id="mom">
-	<div id="main" class="container">
-		<%= render 'layouts/page_header' %>
-		<main class="sub-main">
+	<%= render :partial => 'layouts/header' %>
+	<main id="main" class="container">
+		<div class="sub-main">
 			<%= render :partial => 'layouts/notice', :locals => { :notice => notice, :alert => alert } %>
-			<%=yield %>
-		</main>
-	</div>
+			<%= yield %>
+		</div>
+	</main>
 </div>
 <%= render :partial => 'layouts/footer' %>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
 <%= javascript_importmap_tags %>
 </body>
 </html>

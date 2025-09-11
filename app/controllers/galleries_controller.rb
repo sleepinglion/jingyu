@@ -49,6 +49,8 @@ class GalleriesController < ApplicationController
     if @gallery
       @title = @gallery.title
       @meta_description = @gallery.content
+
+      set_meta_tags canonical: gallery_url(@gallery)
     end
   end
 

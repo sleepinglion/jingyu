@@ -1,20 +1,37 @@
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => {:class=>'form-horizontal' }, data: { turbo: false }) do |f| %>
-	<%= render "users/shared/error_messages", resource: resource %>
-	<div class="form-group">
-		<%= f.label :email, :class=>"col-sm-2 form-label fs-5" %>
-		<div class="col-sm-10">
-			<%= f.email_field :email,:class=>'form-control form-control-lg',:required=>'required' %>
-		</div>
-	</div>
-	<div class="form-group">
-		<%= f.label :password, :class=>"col-sm-2 form-label fs-5" %>
-		<div class="col-sm-10">
-			<%= f.password_field :password,:class=>'form-control form-control-lg',:required=>'required' %>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<%= f.submit '로그인',:class=>'btn btn-lg btn-primary' %>
-		</div>
-	</div>
-<% end %>
+<div class="row">
+	<section class="col-12 col-lg-8 col-xl-6 mx-auto">
+		<h2><%= t(:service_name) %> <%= t(:login) %></h2>
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => {:class=>'form-horizontal' }, data: { turbo: false }) do |f| %>
+			<%= render "users/shared/error_messages", resource: resource %>
+			<div class="card">
+				<div class="card-body p-4">
+					<div class="form-group row  mt-3">
+						<label for="user_email" class="col-sm-2 col-form-label text-right"><%= t(:email) %></label>
+						<div class="col-sm-10">
+							<%= f.text_field :email, :autofocus => true, :class => "form-control form-control-lg", :required => "required", :placeholder => t(:login_p_email) %>
+						</div>
+					</div>
+					<div class="form-group row mt-3">
+						<label for="user_password" class="col-sm-2 col-form-label text-right"><%= t(:password) %></label>
+						<div class="col-sm-10">
+							<%= f.password_field :password, :class => "form-control form-control-lg", :required => "required", :placeholder => t(:login_p_password) %>
+						</div>
+					</div>
+					<div class="form-group row mt-3">
+						<div class="col-sm-offset-2 col-sm-10">
+							<%= f.check_box :remember_me, data: {
+								controller: "login",
+								action: "change->login#handleRememberMe"
+							}
+							%>
+							<%= f.label :remember_me %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="d-grid gap-2 mt-3">
+				<button type="submit" class="btn btn-primary btn-lg"><%= t(:login) %></button>
+			</div>
+		<% end %>
+	</section>
+</div>
