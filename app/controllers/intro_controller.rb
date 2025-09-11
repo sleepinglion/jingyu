@@ -7,7 +7,6 @@ class IntroController < ApplicationController
     
     @title=t('activerecord.models.intro')+t(:title_separator)+t(:application_name)
     @meta_description=t(:meta_description_intro)
-    @page_itemtype="http://schema.org/ProfilePage"
   end
 
   # GET /intro

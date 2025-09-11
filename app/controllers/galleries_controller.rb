@@ -7,7 +7,6 @@ class GalleriesController < ApplicationController
     @controller_name = t('activerecord.models.gallery')
     @title = t('activerecord.models.gallery')
     @meta_description = t(:meta_description_gallery)
-    @page_itemtype = "http://schema.org/ImageGallery"
   end
 
   # GET /galleries
