@@ -32,11 +32,11 @@
 			<% end %>
 		</div>
 		<div id="sl_gallery_right" class="col-12 col-lg-5">
-			<div itemprop="description">
+			<div>
 				<%= simple_format gallery.content %>
 			</div>
 			<div class="add_info">
-				<span itemprop="dateCreated" datetime="<%= gallery.created_at %>"><%= get_dt_format(gallery.created_at.to_date) %></span><span class="none" itemprop="dateModified" datetime="<%= gallery.updated_at %>"><%= gallery.updated_at.to_date %></span>
+				<span><%= get_dt_format(gallery.created_at.to_date) %></span>
 			</div>
 		</div>
 	<% end %>

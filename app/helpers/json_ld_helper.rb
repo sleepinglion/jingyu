@@ -69,7 +69,7 @@ module JsonLdHelper
       "mainEntity": {
         "@type": "Person",
         "name": "정진규",
-        "url": 'https://www.jingyu.pe.kr',
+        "url": t(:site_full_url),
         "image": asset_url('intro.jpg'),
         "jobTitle": "은퇴자",
         "birthDate": "1953-11-02"

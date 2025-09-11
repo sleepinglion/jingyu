@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>" data-bs-theme="auto">
 <head>
-<meta charset="utf-8">
+	<meta charset="utf-8">
 	<%=display_meta_tags site: t(:application_name),
 											 title: @title,
 											 description: @meta_description,
@@ -18,26 +18,23 @@
 		url: t(:site_full_url),
 		image: @meta_image
 	} %>
-<meta name="author" content="Sleeping-Lion">
-<link rel="canonical" href="<%=t(:site_full_url) %>">
-<link rel="alternate" type="application/rss+xml" title="Sleeping-Lion RSS Feed" href="<%= t(:site_full_url) %>/feed?format=rss">
+	<meta name="author" content="Sleeping-Lion">
+	<link rel="canonical" href="<%=t(:site_full_url) %>">
+	<link rel="alternate" type="application/rss+xml" title="Sleeping-Lion RSS Feed" href="<%= t(:site_full_url) %>/feed?format=rss">
 	<%= stylesheet_link_tag "front/application", :media => "all", "data-turbolinks-track" => true %>
-<%= favicon_link_tag 'favicon.ico' %>
-<%= csrf_meta_tags %>
-<%= csp_meta_tag -%>
+	<%= favicon_link_tag 'favicon.ico' %>
+	<%= csrf_meta_tags %>
+	<%= csp_meta_tag -%>
 </head>
 <body>
 <%= render :partial => 'layouts/header' %>
 <div id="mom">
 	<div id="main" class="container">
-
-			<%= render 'layouts/page_header' %>
-		<div class="row">
-			<main class="sub-main col-12">
-				<%= render :partial => 'layouts/notice', :locals => { :notice => notice, :alert => alert } %>
-				<%=yield %>
-			</main>
-		</div>
+		<%= render 'layouts/page_header' %>
+		<main class="sub-main">
+			<%= render :partial => 'layouts/notice', :locals => { :notice => notice, :alert => alert } %>
+			<%=yield %>
+		</main>
 	</div>
 </div>
 <%= render :partial => 'layouts/footer' %>
