@@ -33,14 +33,14 @@
 		<dl id="faqList">
 			<% unless @faq_count.zero? %>
 			<% @faqs.each do |faq| %>
-			<dt <% if @faq %><% if @faq.id==faq.id %>class="on"<% end %><% end %> itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+			<dt <% if @faq %><% if @faq.id==faq.id %>class="on"<% end %><% end %>>
 				<%= link_to faq_path(faq),{:class=>'title',:itemprop=>'name'} do %>
 					<%=truncate(faq.title,:length => 80) %><span><i class="material-icons">add</i></span>
 					<% end %>
 			</dt>
 			<% if(@faq)%>
 			<% if(faq.id==@faq.id) %>
-					<dd itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><%=simple_format(@faq.content.to_s) %></dd>
+					<dd><%=simple_format(@faq.content.to_s) %></dd>
 			<% end %>
 			<% end %>
 
@@ -55,3 +55,8 @@
 	</div>
 	</div>
 </section>
+<% content_for :json_ld do %>
+	<script type="application/ld+json">
+		<%= raw(JSON.pretty_generate(json_ld_for_faq_page(@faqs))) %>
+	</script>
+<% end %>

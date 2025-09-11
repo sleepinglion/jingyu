@@ -45,6 +45,23 @@ module JsonLdHelper
     }
   end
 
+  def json_ld_for_faq_page(faqs)
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map do |faq|
+        {
+          "@type": "Question",
+          "name": faq.title,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.content.to_plain_text
+          }
+        }
+      end
+    }
+  end
+
   def json_ld_for_profile()
     {
       "@context": "https://schema.org",
