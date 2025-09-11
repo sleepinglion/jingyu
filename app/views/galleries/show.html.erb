@@ -2,3 +2,8 @@
 <div id="sl_gallery_show" class="sl_gallery">
   <%= render 'gallery',gallery_categories: @gallery_categories,galleries: @galleries,gallery: @gallery,gallery_category_id: @gallery_category_id %>
 </div>
+<% content_for :json_ld do %>
+  <script type="application/ld+json">
+    <%= raw(JSON.pretty_generate(json_ld_for_gallery(@gallery))) %>
+  </script>
+<% end %>

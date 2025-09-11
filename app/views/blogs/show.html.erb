@@ -1,41 +1,33 @@
 <% breadcrumb :blog, @blog %>
-<% if notice %>
-<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
-<% end %>
-<div id="sl_blog_show" itemscope itemprop="blogPost" itemtype="http://schema.org/Blog">
+<div id="sl_blog_show">
 	<div class="slboard_content">
 		<div class="sl_content_header box_header">
 			<h2 itemprop="name"><%= @blog.title %></h2>
-			<span class="none" itemprop="genre"><%=@blog.blog_category_id %></span>
-			<p>작성자 :  <%= render :partial => 'users/data', :locals => { :user => @blog.user, :itemprop => 'author' } %> &nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span itemprop="dateCreated"><%= time_ago_in_words @blog.created_at.to_date %></span><span class="none" itemprop="dateModified"><%= @blog.updated_at %></span></p>
+			<p>작성자 :  <%= render :partial => 'users/data', :locals => { :user => @blog.user } %> &nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span><%= @blog.created_at %></span></p>
 		</div>
 		<div class="sl_content_main">
-			<div class="sl_content_text" itemprop="text"><%=simple_format sanitize(@blog.content.to_s.gsub(/\n/, '<br />'), :tags => %w(br img a)) %></div>
+			<div class="sl_content_text">
+				<%=simple_format @blog.content.to_s %>
+			</div>
 		</div>
 	</div>
 	<% unless @blog.tags.count.zero? %>
-	<p>
-	Tags: <%= raw @blog.tags.map { |t| link_to t, tag_path(:tag=>t.name) }.join(', ') %>
-	</p>
+		<p>
+			<%=t('activerecord.models.tag') %> : <%= raw @blog.tags.map { |t| link_to t, tag_path(:tag=>t.name) }.join(', ') %>
+		</p>
 	<% end %>
-	<script>
-		function showHide(id) {
-			var obj = document.getElementById(id);
-			if (obj.style.display == 'none')
-				obj.style.display = 'block';
-			else
-				obj.style.display = 'none';
-		}
-	</script>
 	<div class="row">
-		<div class="col-12">
-			<%= render partial: "comments/templete", locals: {commentable: @blog, new_comment: @comment} %>
+		<div class="btn-group btn-group-lg col-12 mt-3" role="group">
+			<% if params[:blog_category_id].present? %>
+				<%= link_to t(:link_list),blogs_path({:blog_category_id=>@blog.blog_category_id}), class: 'btn btn-secondary btn-large btn-block' %>
+			<% else %>
+				<%= link_to t(:link_list),blogs_path, class: 'btn btn-secondary btn-large btn-block' %>
+			<% end %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="btn-group btn-group-lg col-12" role="group" style="margin-top:3rem">
-			<%=link_to t(:link_list),blogs_path,{class: 'btn btn-secondary btn-large btn-block'} %>
-		</div>
-	</div>
-
 </div>
+<% content_for :json_ld do %>
+	<script type="application/ld+json">
+		<%= raw(JSON.pretty_generate(json_ld_for_blog(@blog))) %>
+	</script>
+<% end %>

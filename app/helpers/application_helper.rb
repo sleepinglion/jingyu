@@ -61,13 +61,30 @@ module ApplicationHelper
 
   def manage_width(model)
     if can?(:delete, model) && can?(:update, model)
-      return 'style="width:180px;"'
+      return 'style=width:170px;'
     else
-      return 'style="width:90px"'
+      return 'style=width:90px'
     end
   end
 
   def get_dt_format(date)
     return I18n.l date, :format => :long
+  end
+
+
+  def userName(gg,length=false)
+    if length
+      if gg.user
+        return gg.user.nickname
+      else
+        return gg.name
+      end
+    else
+      if gg.user
+        return gg.user.nickname
+      else
+        return gg.name
+      end
+    end
   end
 end

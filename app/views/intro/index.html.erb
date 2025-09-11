@@ -1,11 +1,8 @@
 <% breadcrumb :intro %>
-<% if notice %>
-<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
-<% end %>
-<section id="sl_intro_index mt-5"  itemprop="mainEntity" itemtype="https://schema.org/Person" itemscope>
+<section id="sl_intro_index mt-5"  data-controller="gallery">
   <article id="intro_main_content" class="row">
     <div id="sl_intro_left" class="col-sm-12 col-md-6">
-      <%=link_to image_tag('intro.jpg',:class=>'img-responsive',:alt=>'정진규'), asset_path('intro_large.jpg'), :class=>'simple_image', :title=>'허허허허', :itemprop=>"image" %>
+      <%=link_to image_tag('intro.jpg',loading: 'lazy',:alt=>'정진규'), asset_path('intro_large.jpg'), :title=>'허허허허',"data-fancybox": "gallery" %>
     </div>
     <div id="sl_intro_right" class="col-sm-12 col-md-6" itemprop="dateCreated" datetime="2024-01-02T17:00Z">
       <h3>정진규 극비 신상공개!!!</h3>
@@ -61,3 +58,8 @@
   <% end %>
   </article>
 </section>
+<% content_for :json_ld do %>
+  <script type="application/ld+json">
+    <%= raw(JSON.pretty_generate(json_ld_for_profile())) %>
+  </script>
+<% end %>

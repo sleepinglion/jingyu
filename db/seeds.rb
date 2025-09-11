@@ -1,4 +1,4 @@
-User.create(id: 1, email: 'admin@sleepinglion.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_picture_attributes: { picture:  File.open(Rails.root.join("app", "assets", "images", "intro.jpg"))},admin: true)
+User.create(id: 1, email: 'admin@jingyu.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_picture_attributes: { picture:  File.open(Rails.root.join("app", "assets", "images", "intro.jpg"))},admin: true)
 
 GalleryCategory.create!(id: 1, title: '멋진 나')
 GalleryCategory.create!(id: 2, title: '가족')

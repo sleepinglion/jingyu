@@ -34,6 +34,8 @@ class BlogsController < ApplicationController
    @meta_keywords=@blog.tag_list+t(:meta_keywords)
    @title=@blog.title
 
+    set_meta_tags canonical: blog_url(@blog)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @blog_comments }

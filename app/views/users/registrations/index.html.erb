@@ -1,7 +1,4 @@
 <section id="users_main" class="sub_main">
-	<% if notice %>
-		<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
-	<% end %>	
 	<div id="index_main">
 	<% unless @users.empty? %>		
 	<% @users.each do |user| %>

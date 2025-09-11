@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.5", ">= 7.1.5.1"
+gem "rails", "~> 7.1.5"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -98,5 +98,4 @@ group :production do
   gem "redis-actionpack", "~> 5.3" # Redis session store for ActionPack
   gem 'dotenv-rails'
   gem 'recaptcha', :require => 'recaptcha/rails'
-  gem 'rails-letsencrypt'
 end

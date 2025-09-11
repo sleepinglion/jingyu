@@ -2,7 +2,7 @@
   <h3><%= t(:gallery,scope: [:activerecord,:models]) %></h3>
   <div class="row">
     <% @galleries.each do |gallery| %>
-      <%= link_to image_tag(sl_get_thumb(gallery.photo.to_s, 'medium'),width: "100%", alt: gallery.title) , gallery_path(gallery), class: "col-6 col-md-4 col-xl-3 col-xxl-2 mb-3" %>
+      <%= link_to image_tag(sl_get_thumb(gallery.photo.to_s, 'medium'),width: "100%",loading: 'lazy', alt: gallery.title) , gallery_path(gallery), class: "col-6 col-md-4 col-xl-3 col-xxl-2 mb-3" %>
     <% end %>
   </div>
   <%=link_to t(:link_more),galleries_path,:class=>'more' %>
