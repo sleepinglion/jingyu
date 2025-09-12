@@ -7,5 +7,7 @@ class Question < ApplicationRecord
 
   validates_presence_of :title
   validates_length_of :title, minimum: 4, maximum: 60
-  belongs_to :user, optional: true
+  belongs_to :user
+
+  has_many :answers, dependent: :destroy
 end

@@ -49,6 +49,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_142207) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "answers", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "accepted", default: false, null: false
+    t.boolean "enable", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
   create_table "blog_categories", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", limit: 60, null: false
@@ -146,9 +157,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_142207) do
   create_table "guest_books", force: :cascade do |t|
     t.integer "user_id"
     t.string "title", limit: 60, null: false
-    t.string "name", limit: 60
-    t.string "encrypted_password", limit: 40
-    t.string "salt", limit: 100
     t.integer "count", default: 0, null: false
     t.boolean "enable", default: true, null: false
     t.datetime "created_at", null: false
@@ -259,9 +267,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_142207) do
   create_table "questions", force: :cascade do |t|
     t.integer "user_id"
     t.string "title", limit: 60, null: false
-    t.string "name", limit: 60
-    t.string "encrypted_password", limit: 40
-    t.string "salt", limit: 100
     t.boolean "secret", default: false, null: false
     t.integer "count", default: 0, null: false
     t.boolean "enable", default: true, null: false

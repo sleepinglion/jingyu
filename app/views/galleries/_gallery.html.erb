@@ -25,7 +25,7 @@
 			<%=link_to gallery.photo.to_s,{:title=>gallery.title, :'data-fancybox'=>"gallery" } do %>
 				<figure>
 					<%= image_tag sl_get_thumb(gallery.photo.to_s,'large'),:class=>'img-responsive w-100' %>
-					<figcaption id="gallery<%= gallery.id %>_img<%= gallery.id %>_span" class="image_caption" itemprop="name">
+					<figcaption id="gallery<%= gallery.id %>_img<%= gallery.id %>_span" class="image_caption">
 						<%= gallery.title %>
 					</figcaption>
 				</figure>
@@ -59,7 +59,7 @@
 							<% if(index2>=5) then g_class=' nm' else g_class='' end %>
 							<%= link_to image_tag(asset_path('ajax-loader.gif'),:alt=>gallery.title,:'data-gallery-target'=>"galleryImage",:'data-original'=>sl_get_thumb(gallery.photo.to_s,'medium'),:'data-date'=>get_dt_format(gallery.created_at.to_date),:class=>'lazyload'),gallery_path(gallery),:class=>"#{g_class}" %>
 							<noscript>
-								<%= link_to image_tag(sl_get_thumb(gallery.photo.to_s,'medium'),:alt=>gallery.title),gallery_path(gallery),:title=>gallery.title %><% if gallery.id==gallery.id %><span class="none" itemprop="thumbnailUrl"><%= sl_get_thumb(gallery.photo.to_s,'small') %></span><% end %>
+								<%= link_to image_tag(sl_get_thumb(gallery.photo.to_s,'medium'),:alt=>gallery.title),gallery_path(gallery),:title=>gallery.title %><% if gallery.id==gallery.id %><span class="none"><%= sl_get_thumb(gallery.photo.to_s,'small') %></span><% end %>
 							</noscript>
 						<% end %>
 					</div>

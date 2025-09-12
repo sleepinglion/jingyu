@@ -567,32 +567,32 @@ Blog.create!(id: 29, user_id: 1, blog_category_id: 3,title: '탄핵 2번은 시�
 ')
 
 
-Question.create!(id: 1, title: '홈페이지 너무 좋네요', name: '나야나', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 10.day.ago,
+Question.create!(id: 1, user_id: 1, title: '홈페이지 너무 좋네요', created_at: 10.day.ago,
                  content: '저도 이런 홈페이지 만들고 싶은데 어떻게 하면 될지 알려주시면 감사하겠습니다.')
 
-Question.create!(id: 2, title: '안녕하세요 궁금해서 그러는데요', name: '궁금궁금', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 7.day.ago,
+Question.create!(id: 2, user_id: 1, title: '안녕하세요 궁금해서 그러는데요', created_at: 7.day.ago,
                  content: '연락해서 물어볼수 있는 연락처좀 알 수 있을까요?')
 
-Question.create!(id: 3, title: '연무동 도시재생 사업에 참여하고 싶은데요', name: '주민', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 3.day.ago,
+Question.create!(id: 3, user_id: 1, title: '연무동 도시재생 사업에 참여하고 싶은데요', created_at: 3.day.ago,
                  content: '연무동 도시재생 사업에 참여하고 싶은데, 어떻게 하면 될까요?')
 
 
-GuestBook.create!(id: 1, title: '형님 안녕하세요', name: '동생', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 11.day.ago,
+GuestBook.create!(id: 1, user_id: 1, title: '형님 안녕하세요',  created_at: 11.day.ago,
                   content: '형님 빨리 또 만나서 술 한잔 해요')
 
-GuestBook.create!(id: 2, title: '회장님, 잘 지내시지요?', name: '회원', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 9.day.ago,
+GuestBook.create!(id: 2, user_id: 1, title: '회장님, 잘 지내시지요?', created_at: 9.day.ago,
                   content: '회장님 고생하십니다.  조만간 또 뵙고 한 잔 하시지요~')
 
-GuestBook.create!(id: 3, title: '좋은 글들이네요', name: '지나가다', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 7.day.ago,
+GuestBook.create!(id: 3, user_id: 1, title: '좋은 글들이네요', created_at: 7.day.ago,
                   content: '좋은글들 잘 읽었습니다. 계속 방문할께요')
 
-GuestBook.create!(id: 4, title: '좋은분인것 같아요', name: '손님', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 3.day.ago,
+GuestBook.create!(id: 4, user_id: 1, title: '좋은분인것 같아요', created_at: 3.day.ago,
                   content: '저장강박 잘 치료 받으시길 바랄께요')
 
-GuestBook.create!(id: 5, title: '접니다, ㅎㅎ', name: '나야나', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 1.day.ago,
+GuestBook.create!(id: 5, user_id: 1, title: '접니다, ㅎㅎ',  created_at: 1.day.ago,
                   content: '형님, 보고싶네요,  그럼 또 연락드릴께요')
 
-GuestBook.create!(id: 6, title: '잘보고 갑니다, ㅎㅎ', name: '손님', encrypted_password: 'dfa8d92e78a1d994f5228703c418e00b6e40d826', salt: '2257200.7532190434930376', created_at: 1.day.ago,
+GuestBook.create!(id: 6, user_id: 1, title: '잘보고 갑니다, ㅎㅎ', created_at: 1.day.ago,
                   content: '좋은글, 사진 잘 보고 갑니다.  다음에 또 올께요')
 
 

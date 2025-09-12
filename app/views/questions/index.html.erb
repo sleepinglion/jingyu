@@ -10,30 +10,30 @@
 				<col style="width:130px" />
 			</colgroup>
 			<thead class="thead-default">
-				<tr>
-					<th class="sl_t_name"><%=t(:label_name) %></th>
-					<th class="sl_t_title"><%=t(:label_title) %></th>
-					<th class="text-right"><%=t(:label_answer) %></th>
-					<th class="text-right"><%=t(:label_count) %></th>
-					<th class="text-center"><%=t(:label_created_at) %></th>
-				</tr>
+			<tr>
+				<th class="sl_t_name"><%=t(:label_name) %></th>
+				<th class="sl_t_title"><%=t(:label_title) %></th>
+				<th class="text-right"><%=t(:label_answer) %></th>
+				<th class="text-right"><%=t(:label_count) %></th>
+				<th class="text-center"><%=t(:label_created_at) %></th>
+			</tr>
 			</thead>
 			<tbody>
-				<% unless @questions.empty? %>
+			<% unless @questions.empty? %>
 				<% @questions.each do |question| %>
-				<tr>
-					<td class="sl_t_name"><%=userName(question,10) %></td>
-					<td class="sl_t_title"> <% if(question.secret?) %><%=image_tag('lock.png') %><% end %></td>
-					<td class="text-right"><% if question.comment_threads.count.to_s %><%=t(:answer) %><% else %><%=t(:no_answer) %><% end %></td>
-					<td class="text-right"><%=question.count+question.impressionist_count(:filter=>:ip_address) %></td>
-					<td class="text-center"><%=time_ago_in_words question.created_at.to_date %></td>
-				</tr>
+					<tr>
+						<td class="sl_t_name"><%=question.user.nickname %></td>
+						<td class="sl_t_title"> <% if(question.secret?) %><%=image_tag('lock.png') %><% if question.user==current_user %>  <%=link_to question.title,question %> <% else %>비밀글입니다.<% end %><% else %> <%=link_to question.title,question %><% end %> </td>
+						<td class="text-right"><% if question.comment_threads.count.zero? %><%=t(:answer) %><% else %><%=t(:no_answer) %><% end %></td>
+						<td class="text-right"><%=question.count+question.impressionist_count(:filter=>:ip_address) %></td>
+						<td class="text-center"><%=time_ago_in_words question.created_at.to_date %></td>
+					</tr>
 				<% end %>
-				<% else %>
+			<% else %>
 				<tr>
 					<td colspan="5"><p><%=t(:no_data) %></p></td>
 				</tr>
-				<% end %>
+			<% end %>
 			</tbody>
 		</table>
 	</article>
@@ -42,3 +42,8 @@
 		<%= paginate @questions %>
 	</div>
 </div>
+<% content_for :json_ld do %>
+	<script type="application/ld+json">
+		<%= raw(JSON.pretty_generate(qa_page_jsonld(@questions))) %>
+	</script>
+<% end %>
