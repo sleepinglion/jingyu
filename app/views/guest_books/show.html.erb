@@ -17,6 +17,6 @@
 </section>
 <% content_for :json_ld do %>
 	<script type="application/ld+json">
-		<%= raw(JSON.pretty_generate(article_json_ld(@guest_book))) %>
+		<%= raw(JSON.pretty_generate(json_ld_for_article(@guest_book))) %>
 	</script>
 <% end %>
