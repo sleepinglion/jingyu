@@ -37,11 +37,6 @@ ko:
   display: '보임'
   hidden: '숨김'
 
-  add: "신규"
-  edit: "수정"
-  delete: "삭제"
-  manage: '관리'
-
   new_answer: '답변'
 
 
@@ -96,7 +91,12 @@ ko:
   link_home : '홈으로'
   link_new_blog_comment_form : '댓글쓰기'
 
-  manage : '관리'
+
+  add: "신규"
+  edit: "수정"
+  delete: "삭제"
+  manage: '관리'
+
   edit : '수정'
   delete : '삭제'
   not_insert : '미입력'
