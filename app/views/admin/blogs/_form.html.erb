@@ -1,41 +1,53 @@
-<%= form_for [:admin, blog],:html => {:multipart => true} do |f| %>
-	<% if blog.errors.any? %>
-	<div id="error_explanation">
-		<h2><%= pluralize(blog.errors.count, "error") %> prohibited this notice from being saved:</h2>
-		<ul>
-			<% blog.errors.full_messages.each do |msg| %>
-			<li><%= msg %></li>
-			<% end %>
-		</ul>
-	</div>
-	<% end %>
-  <div class="form-group">
-    <%= f.label :blog_category_id %>
-    <%= f.select :blog_category_id, options_from_collection_for_select(BlogCategory.all, 'id', 'title',@blog_category_id),:class=>'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :title %>
-    <%= f.text_field :title, :class=>'form-control', :required=>"required" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_field :description, :class=>'form-control', :required=>"required" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :photo,:class=>'control-label' %>
-    <div>
-      <% if blog.photo? %>
-      <%= image_tag(blog.photo.small_thumb) %>
+<%= form_with(model: [:admin, blog], local: true) do |form| %>
+  <% if blog.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <h2><%= pluralize(blog.errors.count, "error") %> prohibited this request from being saved:</h2>
+      <ul>
+        <% blog.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card">
+    <div class="card-body">
+      <div class="form-group">
+        <%= form.label :blog_category_id %>
+        <%
+          if blog.blog_category_id.present?
+            blog_category=blog.blog_category_id
+          else
+            if params[:category].present?
+              blog_category = params[:category]
+            end
+          end
+        %>
+        <%= form.select :blog_category_id, options_from_collection_for_select(BlogCategory.where(:enable => true).all, 'id', 'title', blog_category), {}, { :class => "form-control" } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :user_id %>
+        <%= form.select :user_id, options_from_collection_for_select(User.where(:enable => true).all, 'id', 'name', blog.user_id), {}, { :class => "form-control" } %>
+      </div>
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, :class => 'form-control', :required => 'required' %>
+      </div>
+      <%= form.fields_for :blog_picture do |p| %>
+        <div class="form-group">
+          <%= p.label :picture %>
+          <%= p.file_field :picture, :class => "form-control-file" %>
+        </div>
       <% end %>
-      <%= f.file_field :photo %>
-      <%= f.hidden_field :photo_cache %>
+      <div class="form-group">
+        <%= form.label :content %>
+        <%= form.rich_text_area :content, style: 'min-height:20em' %>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <%= c.label :content %>
-    <%= c.text_area :content, :class=>'form-control',  :id => "sl_content" %>
-  </div>
   <div class="form-group actions">
-    <%= f.submit :class=>"btn btn-primary" %>
+    <%= form.submit :class => "btn btn-primary btn-block btn-lg" %>
   </div>
 <% end %>

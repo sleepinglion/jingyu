@@ -1,0 +1,21 @@
+<%
+    a_class = 'nav-link'
+    b_class = 'nav-link'
+
+    if params[:controller] == 'admin/galleries'
+      a_class += ' active'
+    end
+
+    if params[:controller] == 'admin/gallery_categories'
+      b_class += ' active'
+    end
+
+  %>
+  <div class="col-12">
+    <nav class="sub-nav">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><%= link_to t(:gallery, scope: [:activerecord, :models]), admin_galleries_path, { :class => a_class } %></li>
+        <li class="nav-item"><%= link_to t(:gallery_category, scope: [:activerecord, :models]), admin_gallery_categories_path, { :class => b_class } %></li>
+      </ul>
+    </nav>
+  </div>

@@ -1,3 +1,3 @@
-<%= render 'form',:question=>@admin_question %>
-<%= link_to t(:link_show), admin_question_path(@admin_question) %> |
+<%= render 'form',question: @question %>
+<%= link_to t(:link_show), admin_question_path(@question) %> |
 <%= link_to t(:link_list), admin_questions_path %>

@@ -1,89 +1,118 @@
-<div class="row">
-	<h3 class="col-xs-12 col-sm-6"><%= @controller_name %> <%= actionNameChange controller.action_name %></h3>
-	<div class="col-xs-12 col-sm-6">
+<%
+  a_class='nav-link'
+  unless @blog_category.present?
+    a_class+=' active'
+  end
+%>
+<div class="col-12">
+  <nav class="sub-nav">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><%= link_to t(:all), admin_blogs_path, class: a_class %></li>
+      <% unless @blog_categories.empty? %>
+        <% @blog_categories.each do |blog_category|
+          b_class='nav-link'
 
-	</div>
-</div>
-<div class="table-responsive">
-  <table class="table table-bordered table-striped">
-    <colgroup>
-      <col style="width:100px" />
-      <col style="width:130px" />
-      <col />
-      <col />
-      <col style="width:130px" />
-      <col style="width:130px" />
-      <col style="width:130px" />
-      <% if can?(:update, Blog) || can?(:delete, Blog) %>
-      <col <%=raw manage_width(Blog) %> />
-      <% end %>
-    </colgroup>
-    <thead>
-      <tr>
-        <th><%= t(:label_number) %></th>
-        <th><%=t(:photo,scope:[:activerecord,:attributes,:blog]) %></th>
-        <th><%=t(:blog_category_id,scope:[:activerecord,:attributes,:blog]) %></th>
-        <th><%=t(:title,scope:[:activerecord,:attributes,:blog]) %></th>
-        <th><%=t(:count,scope:[:activerecord,:attributes,:blog]) %></th>
-        <th><%=t(:blog_comments_count,scope:[:activerecord,:attributes,:blog]) %></th>
-        <th><%=t(:enable,scope:[:activerecord,:attributes,:blog]) %></th>
-				<% if can?(:update, Blog) || can?(:delete, Blog) %>
-				<th><%= t(:label_manage) %></th>
-				<% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% unless @admin_blogs.empty? %>
-      <% @admin_blogs.each do |admin_blog| %>
-      <tr>
-        <td><%=admin_blog.id %></td>
-        <td>
-					<% if admin_blog.photo? %>
-					<%=link_to admin_blog_path(admin_blog) do %>
-						<%=image_tag admin_blog.photo.small_thumb %>
-					<% end %>
-					<% else %>
-					<%=t(:no_photo) %>
-					<% end %>
-				</td>
-        <td><%=link_to admin_blog.blog_category.title,admin_blog_category_path(admin_blog.blog_category_id) %></td>
-        <td><%=link_to admin_blog.title,admin_blog_path(admin_blog) %></td>
-        <td><%=admin_blog.count+admin_blog.impressionist_count(:filter=>:ip_address) %></td>
-        <td><%=admin_blog.blog_comments_count %></td>
-				<td><%= raw flagToString(admin_blog.enable) %></td>
-        <% if can?(:update, admin_blog) || can?(:delete, admin_blog) %>
-        <td>
-          <% if can? :update, admin_blog %>
-          <%= link_to edit_admin_blog_path(admin_blog),:class=>"btn btn-default" do %>
-          <i class="glyphicon glyphicon-pencil"></i> <%=t(:link_edit) %>
-          <% end %>
-          <% end %>
-          <% if can? :delete, admin_blog %>
-          <%= link_to admin_blog_path(admin_blog), :method => :delete, :data => { :confirm => t(:delete_confirm) },:class=>"btn btn-danger" do %>
-          <i class="glyphicon glyphicon-trash"></i> <%=t(:link_delete) %>
-          <% end %>
-          <% end %>
-        </td>
+          if @blog_category.present?
+            if @blog_category.id==blog_category.id
+              b_class+=' active'
+            end
+          end
+        %>
+          <li class="nav-item"><%=link_to blog_category.title,admin_blogs_path(:category=>blog_category),class: b_class %></li>
         <% end %>
-      </tr>
       <% end %>
-      <% else %>
-      <tr>
-        <td colspan="8"><%=t(:no_data) %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+    </ul>
+  </nav>
 </div>
-<div class="row">
-  <div class="col-xs-6 col-sm-3 col-md-2">
-    <% if can? :create, Blog %>
-    <%= link_to new_admin_blog_path,:class=>"btn btn-primary" do %>
-    <i class="glyphicon glyphicon-plus"></i> <%= t(:link_new) %>
-    <% end %>
-    <% end %>
-  </div>
-	<nav class="col-xs-12 col-sm-9 col-md-10">
-		<%= paginate @admin_blogs %>
-	</nav>
-</div>
+<div class="col-12">
+  <h2 class="float-start hidden-title"><%= t(:blog_list) %></h2>
+      <div class="float-end">
+        <p class="summary">
+          <span id="list_count" style="display:none"><%=@blog_count %></span>
+          <%=raw t(:there_are_n_blogs,count: @blog_count) %>
+        </p>
+      </div>
+    </div>
+    <article class="col-12">
+      <table class="table table-striped table-hover">
+        <colgroup>
+          <col style="width:120px">
+          <col>
+          <col>
+          <col>
+          <col style="width:100px">
+          <col style="width:210px">
+          <% if can?(:update, Blog) || can?(:delete, Blog) %>
+            <col <%=manage_width(Blog) %>>
+          <% end %>
+        </colgroup>
+        <thead class="thead-default">
+        <tr>
+          <th class="text-center"><%= t(:enable,scope:[:activerecord,:attributes,:blog]) %></th>
+          <th><%= t(:title,scope:[:activerecord,:attributes,:blog]) %></th>
+          <th><%= t(:blog_category_id, scope: [:activerecord, :attributes, :blog]) %></th>
+          <th class="text-right"><%= t(:picture,scope:[:activerecord,:attributes,:blog_picture]) %></th>
+          <th class="text-right"><%= t(:label_count) %></th>
+          <th class="text-right"><%= t(:created_at,scope:[:activerecord,:attributes,:blog]) %></th>
+          <% if can?(:update, Blog) || can?(:delete, Blog) %>
+            <th class="text-center"><%= t(:manage) %></th>
+          <% end %>
+        </tr>
+        </thead>
+        <tbody>
+        <% unless @blog_count.zero? %>
+          <% @blogs.each_with_index do |blog,index| %>
+            <tr>
+              <td>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="notice_display<%= index %>"
+                    value="<%= blog.id %>"
+                    <% if blog.enable %> checked <% end %>
+                  >
+                  <label class="form-check-label" for="notice_display<%= index %>">
+                    <% if blog.enable %> <%= t(:display) %> <% else %> <%= t(:hidden) %> <% end %>
+                  </label>
+                </div>
+              </td>
+              <td><%= link_to blog.title,admin_blog_path(blog) %></td>
+              <td><%=blog.blog_category.title %></td>
+              <td class="text-right">
+                <% if blog.blog_picture.present? %>
+                  <%= image_tag blog.blog_picture.picture.small_thumb.url %>
+                <% else %>
+                  <%= t(:not_insert) %>
+                <% end %>
+              </td>
+              <td class="text-right"><%= blog.impressionist_count(:filter => :ip_address) %></td>
+              <td class="text-right"><%= I18n.l blog.created_at.to_date, :format => :long %></td>
+              <% if can?(:update, blog) or can?(:delete, blog) %>
+                <td class="text-right">
+                  <% if can? :update, blog %>
+                    <%= link_to edit_admin_blog_path(blog), :class => "btn btn-secondary" do %>
+                      <%= t(:edit) %>
+                    <% end %>
+                  <% end %>
+                  <% if can? :delete, blog %>
+                    <%= link_to admin_blog_path(blog), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
+                      <%= t(:delete) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="8" class="text-center"><%= t(:no_data) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <div class="pagination justify-content-center">
+        <%= paginate @blogs %>
+      </div>
+      <%= link_to t(:add), new_admin_blog_path, :class => "btn btn-primary" %>
+    </article>

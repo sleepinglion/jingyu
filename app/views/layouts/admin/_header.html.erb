@@ -1,18 +1,18 @@
 <header class="row">
   <div class="col-12">
-    <% if ['admin/contacts','admin/users'].include?(params[:controller]) %>
-      <%= render 'admin/contacts/nav' %>
+    <% if ['admin/blogs','admin/blog_categories'].include?(params[:controller]) %>
+      <%= render 'admin/blogs/nav' %>
     <% end %>
-    <% if ['admin/notices','admin/blogs','admin/histories','admin/galleries'].include?(params[:controller]) %>
-      <%= render 'admin/notices/nav' %>
+    <% if ['admin/galleries','admin/gallery_categories'].include?(params[:controller]) %>
+      <%= render 'admin/galleries/nav' %>
     <% end %>
     <ul id="top-menu">
       <% if admin_signed_in? %>
         <li id="admin-info">
-            <% if current_admin.user_picture.present? %>
-              <%= image_tag(current_admin.user_picture.picture.small_thumb.url, { :height => 50, :width => 50 }) %>
-            <% end %>
-            <span class="text-dark"><%= current_admin.nickname %></span>
+          <% if current_admin.user_picture.present? %>
+            <%= image_tag(current_admin.user_picture.picture.small_thumb.url, { :height => 50, :width => 50 }) %>
+          <% end %>
+          <span class="text-dark"><%= current_admin.nickname %></span>
         </li>
         <li>
           <%= link_to destroy_admin_session_path, :id => "p_logout", :method => :delete do %>

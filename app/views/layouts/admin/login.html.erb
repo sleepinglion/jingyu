@@ -7,15 +7,16 @@
   <meta name="author" content="Sleeping-Lion">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= stylesheet_link_tag "admin/application", :media => "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "actiontext", :media => "all", "data-turbolinks-track" => true %>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 </head>
-<body id="anon_body">
+<body>
+<%= render :partial => 'layouts/admin/login_header' %>
 <div id="mom">
-  <%= render :partial => 'layouts/admin/login_header' %>
   <main id="main" class="container">
-    <div class="sub-main">
+    <div class="sub-main p-5">
       <%= render :partial => 'layouts/notice', :locals => { :notice => notice, :alert => alert } %>
       <%= yield %>
     </div>

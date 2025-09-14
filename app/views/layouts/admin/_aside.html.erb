@@ -3,21 +3,34 @@
   <nav>
     <ul class="nav">
       <li class="nav-item
-            <% if ['admin/contacts','admin/users'].include?(params[:controller]) %> active
+            <% if ['admin/blogs','admin/blog_categories'].include?(params[:controller]) %> active
             <% end %>">
-        <%= link_to admin_contacts_path, :class => "nav-link" do %>
-          <i class="material-icons">payment</i><span><%= t(:menu_user_regi_contact) %></span>
+        <%= link_to admin_blogs_path, :class => "nav-link" do %>
+          <i class="material-icons">payment</i><span><%= t(:blog, scope: [:activerecord,:models]) %></span>
         <% end %>
       </li>
 
       <li class="nav-item
-            <% if ['admin/notices','admin/galleries','admin/blogs','admin/histories'].include?(params[:controller]) %> active
+            <% if ['admin/galleries','admin/gallery_categories'].include?(params[:controller]) %> active
             <% end %>">
-        <%= link_to admin_notices_path, :class => "nav-link" do %>
-          <i class="material-icons">settings</i><span><%= t(:menu_community) %></span>
+        <%= link_to admin_galleries_path, :class => "nav-link" do %>
+          <i class="material-icons">payment</i><span><%= t(:gallery, scope: [:activerecord,:models]) %></span>
         <% end %>
       </li>
-
+      <li class="nav-item
+            <% if ['admin/questions'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_questions_path, :class => "nav-link" do %>
+          <i class="material-icons">payment</i><span><%= t(:question, scope: [:activerecord,:models]) %></span>
+        <% end %>
+      </li>
+      <li class="nav-item
+            <% if ['admin/guest_books'].include?(params[:controller]) %> active
+            <% end %>">
+        <%= link_to admin_guest_books_path, :class => "nav-link" do %>
+          <i class="material-icons">settings</i><span><%= t(:guest_book, scope: [:activerecord,:models]) %></span>
+        <% end %>
+      </li>
     </ul>
   </nav>
 </aside>

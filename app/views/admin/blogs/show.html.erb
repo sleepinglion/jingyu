@@ -1,30 +1,28 @@
-<div class="sl_show">
-	<p>
-		<b><%=t(:title,scope:[:activerecord,:attributes,:blog]) %></b>
-		<%= @admin_blog.title %>
-	</p>
-	<p>
-  	<b><%=t(:content,scope:[:activerecord,:attributes,:blog]) %></b>
-		<%= simple_format(@admin_blog.content) %>
-	</p>
-	<p>
-  	<b><%=t(:label_count) %></b>
-  	<%=@admin_blog.count+@admin_blog.impressionist_count(:filter=>:ip_address) %>
-  </p>
-	<p>
-		<b><%=t(:enable,scope:[:activerecord,:attributes,:blog]) %></b>
-		<%=raw flagToString(@admin_blog.enable) %>
-	</p>
-	<p>
-  	<b><%=t(:label_created_at) %></b>
-  	<%= @blog.created_at %>
-  </p>
-  <p>
-  	<b><%=t(:label_updated_at) %></b>
-  	<%= @blog.created_at %>
-  </p>
-</div>
-<% if can? :update, @blog %>
-<%= link_to t(:link_edit), edit_admin_blog_path(@admin_blog) %> |
-<% end %>
-<%= link_to t(:link_list), admin_blogs_path %>
+<section id="show-blog" class="col-12">
+  <div class="row">
+    <div class="col-12">
+      <article class="card">
+        <h3 class="card-header"><%=@blog.title %></h3>
+        <div class="card-body">
+          <h3></h3>
+          <div><%=@blog.content %></div>
+          <dl>
+            <dt><%= t(:created_at, scope: [:activerecord, :attributes, :blog]) %></dt>
+            <dd><%= I18n.l @blog.created_at.to_date, :format => :long %></dd>
+            <dt><%= t(:updated_at, scope: [:activerecord, :attributes, :blog]) %></dt>
+            <dd><%= I18n.l @blog.updated_at.to_date, :format => :long %></dd>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-xl-6">
+      <%= link_to t(:link_list), admin_blogs_path, class: 'btn btn-secondary' %>
+    </div>
+    <div class="col-12 col-xl-6 text-right">
+      <%= link_to t(:edit), edit_admin_blog_path(@blog), class: 'btn btn-secondary' %>
+      <%= link_to t(:delete), admin_blog_path(@blog), :method => :delete, :data => { :confirm => t(:delete_confirm) }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</section>

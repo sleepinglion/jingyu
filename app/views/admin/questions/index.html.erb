@@ -1,76 +1,88 @@
-<div class="row">
-	<h3 class="col-xs-12 col-sm-6"><%= @controller_name %> <%= actionNameChange controller.action_name %></h3>
-	<div class="col-xs-12 col-sm-6">
-
-	</div>
+<div class="col-12">
+  <h2 class="float-start hidden-title"><%= t(:blog_list) %></h2>
+  <div class="float-end">
+    <p class="summary">
+      <span id="list_count" style="display:none"><%=@question_count %></span>
+      <%=raw t(:there_are_n_questions,count: @question_count) %>
+    </p>
+  </div>
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered table-striped">
+<article class="col-12">
+  <table class="table table-striped table-hover">
     <colgroup>
-      <col style="width:100px" />
-      <col />
-      <col />
-      <col style="width:70px" />
-      <col style="width:100px" />
-      <col style="width:130px" />
+      <col style="width:120px">
+      <col>
+      <col>
+      <col>
+      <col style="width:100px">
+      <col style="width:210px">
       <% if can?(:update, Question) || can?(:delete, Question) %>
-      <col <%=raw manage_width(Question) %> />
+        <col <%=manage_width(Question) %>>
       <% end %>
     </colgroup>
-    <thead>
-      <tr>
-        <th><%=t(:label_number) %></th>
-        <th><%=t(:user_id,scope:[:activerecord,:attributes,:question]) %></th>
-        <th><%=t(:title,scope:[:activerecord,:attributes,:question]) %></th>
-        <th><%=t(:label_count) %></th>
-        <th><%=t(:enable,scope:[:activerecord,:attributes,:question]) %></th>
-        <th><%=t(:label_created_at) %></th>
-        <th><%=t(:label_manage) %></th>
-      </tr>
+    <thead class="thead-default">
+    <tr>
+      <th class="text-center"><%= t(:enable,scope:[:activerecord,:attributes,:blog]) %></th>
+      <th><%= t(:title,scope:[:activerecord,:attributes,:blog]) %></th>
+      <th><%= t(:blog_category_id, scope: [:activerecord, :attributes, :blog]) %></th>
+      <th class="text-right"><%= t(:picture,scope:[:activerecord,:attributes,:blog_picture]) %></th>
+      <th class="text-right"><%= t(:label_count) %></th>
+      <th class="text-right"><%= t(:created_at,scope:[:activerecord,:attributes,:blog]) %></th>
+      <% if can?(:update, Question) || can?(:delete, Question) %>
+        <th class="text-center"><%= t(:manage) %></th>
+      <% end %>
+    </tr>
     </thead>
     <tbody>
-      <% unless @admin_questions.empty? %>
-      <% @admin_questions.each do |admin_question| %>
-      <tr>
-				<td><%=link_to admin_question.id, admin_question_path(admin_question) %></td>
-        <td><%=userName(admin_question,10) %></td>
-        <td><%= link_to admin_question.title, admin_question_path(admin_question) %></td>
-        <td><%= admin_question.count+admin_question.impressionist_count(:filter=>:ip_address) %></td>
-        <td><%= raw flagToString(admin_question.enable) %></td>
-        <td><%=admin_question.created_at.to_date %></td>
-        <% if can?(:update, admin_question) || can?(:delete, admin_question) %>
-        <td>
-          <% if can? :update, admin_question %>
-          <%= link_to edit_admin_question_path(admin_question),:class=>"btn btn-default" do %>
-          <i class="glyphicon glyphicon-pencil"></i> <%=t(:link_edit) %>
+    <% unless @question_count.zero? %>
+      <% @questions.each_with_index do |question,index| %>
+        <tr>
+          <td>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="notice_display<%= index %>"
+                value="<%= question.id %>"
+                <% if question.enable %> checked <% end %>
+              >
+              <label class="form-check-label" for="notice_display<%= index %>">
+                <% if question.enable %> <%= t(:display) %> <% else %> <%= t(:hidden) %> <% end %>
+              </label>
+            </div>
+          </td>
+          <td><%= link_to question.title,admin_question_path(question) %></td>
+          <td></td>
+          <td class="text-right">
+
+          </td>
+          <td class="text-right"><%= question.impressionist_count(:filter => :ip_address) %></td>
+          <td class="text-right"><%= I18n.l question.created_at.to_date, :format => :long %></td>
+          <% if can?(:update, question) or can?(:delete, question) %>
+            <td class="text-right">
+              <% if can? :update, question %>
+                <%= link_to edit_admin_question_path(question), :class => "btn btn-secondary" do %>
+                  <%= t(:edit) %>
+                <% end %>
+              <% end %>
+              <% if can? :delete, question %>
+                <%= link_to admin_question_path(question), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
+                  <%= t(:delete) %>
+                <% end %>
+              <% end %>
+            </td>
           <% end %>
-          <% end %>
-          <% if can? :delete, admin_question %>
-          <%= link_to admin_question_path(admin_question), :method => :delete, :data => { :confirm => t(:delete_confirm) },:class=>"btn btn-danger" do %>
-          <i class="glyphicon glyphicon-trash"></i> <%=t(:link_delete) %>
-          <% end %>
-          <% end %>
-        </td>
-        <% end %>
-      </tr>
+        </tr>
       <% end %>
-      <% else %>
+    <% else %>
       <tr>
-        <td colspan="6"><%=t(:no_data) %></td>
+        <td colspan="8" class="text-center"><%= t(:no_data) %></td>
       </tr>
-      <% end %>
+    <% end %>
     </tbody>
   </table>
-</div>
-<div class="row">
-  <div class="col-xs-6 col-sm-3 col-md-2">
-    <% if can? :create, Gallery %>
-    <%= link_to new_admin_question_path,:class=>"btn btn-primary" do %>
-    <i class="glyphicon glyphicon-plus"></i> <%= t(:link_new) %>
-    <% end %>
-    <% end %>
+  <div class="pagination justify-content-center">
+    <%= paginate @questions %>
   </div>
-	<nav class="col-xs-12 col-sm-9 col-md-10">
-  	<%= paginate @admin_questions %>
-	</nav>
-</div>
+  <%= link_to t(:add), new_admin_question_path, :class => "btn btn-primary" %>
+</article>

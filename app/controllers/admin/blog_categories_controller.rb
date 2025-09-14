@@ -1,23 +1,17 @@
 class Admin::BlogCategoriesController < Admin::AdminController
-  before_action :set_admin_blog_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog_category, only: [:show, :edit, :update, :destroy]
 
-  def initialize(*params)
-    super(*params)
-
-    @category = t(:menu_blog,scope:[:admin_menu])
-    @controller_name = t('activerecord.models.blog_category')
-  end
-
-  # GET /admin/blog_categories
-  # GET /admin/blog_categories.json
+  # GET /admin/gallery_categories
+  # GET /admin/gallery_categories.json
   def index
     params[:per_page] = 10 unless params[:per_page].present?
 
-    @admin_blog_categories = BlogCategory.order('id desc').page(params[:page]).per(params[:per_page])
+    @blog_category_count = BlogCategory.count
+    @blog_categories = BlogCategory.order('id desc').page(params[:page]).per(params[:per_page])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @admin_blog_categories }
+      format.json { render :json => @blog_category }
     end
   end
 
@@ -26,7 +20,7 @@ class Admin::BlogCategoriesController < Admin::AdminController
   def show
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @admin_blog_category }
+      format.json { render json: @blog_category }
     end
   end
 
@@ -37,7 +31,7 @@ class Admin::BlogCategoriesController < Admin::AdminController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @admin_blog_category }
+      format.json { render json: @blog_category }
     end
   end
 
@@ -48,15 +42,15 @@ class Admin::BlogCategoriesController < Admin::AdminController
   # POST /admin/blog_categories
   # POST /admin/blog_categories.json
   def create
-    @admin_blog_category = BlogCategory.new(admin_blog_category_params)
+    @blog_category = BlogCategory.new(blog_category_params)
 
     respond_to do |format|
-      if @admin_blog_category.save
-        format.html { redirect_to admin_blog_category_path(@admin_blog_category), notice: @controller_name +t(:message_success_create)}
-        format.json { render json: @admin_blog_category, status: :created, location: @admin_blog_category }
+      if @blog_category.save
+        format.html { redirect_to admin_blog_category_path(@blog_category), notice: @controller_name +t(:message_success_create)}
+        format.json { render json: @blog_category, status: :created, location: @blog_category }
       else
         format.html { render action: "new" }
-        format.json { render json: @admin_blog_category.errors, status: :unprocessable_entity }
+        format.json { render json: @blog_category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,12 +59,12 @@ class Admin::BlogCategoriesController < Admin::AdminController
   # PUT /admin/blog_categories/1.json
   def update
     respond_to do |format|
-      if @admin_blog_category.update_attributes(admin_blog_category_params)
-        format.html { redirect_to admin_blogs_path(@admin_blog_category), notice: @controller_name +t(:message_success_update)}
+      if @blog_category.update(blog_category_params)
+        format.html { redirect_to admin_blog_category_path(@blog_category), notice: @controller_name +t(:message_success_update)}
         format.json { head :ok }
       else
         format.html { render action: "edit" }
-        format.json { render json: @admin_blog_category.errors, status: :unprocessable_entity }
+        format.json { render json: @blog_category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,7 +72,7 @@ class Admin::BlogCategoriesController < Admin::AdminController
   # DELETE /admin/blog_categories/1
   # DELETE /admin/blog_categories/1.json
   def destroy
-    @admin_blog_category.destroy
+    @blog_category.destroy
 
     respond_to do |format|
       format.html { redirect_to admin_blog_categories_url }
@@ -88,12 +82,12 @@ class Admin::BlogCategoriesController < Admin::AdminController
 
     private
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin_blog_category
-      @admin_blog_category = BlogCategory.find(params[:id])
+    def set_blog_category
+      @blog_category = BlogCategory.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def admin_blog_category_params
-      params.require(:blog_category).permit(:blog_category_id,:title,:enable).merge(user_id: current_admin.id)
+    def blog_category_params
+      params.require(:blog_category).permit(:blog_category_id,:title,:enable)
     end
 end

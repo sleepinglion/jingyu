@@ -1,13 +1,16 @@
-<div class="row">
-	<h3 class="col-xs-12 col-sm-6"><%= @controller_name %> <%= actionNameChange controller.action_name %></h3>
-	<div class="col-xs-12 col-sm-6">
-
+<div class="col-12">
+	<h2 class="float-start hidden-title"><%= t(:blog_list) %></h2>
+	<div class="float-end">
+		<p class="summary">
+			<span id="list_count" style="display:none"><%=@gallery_category_count %></span>
+			<%=raw t(:there_are_n_gallery_categories,count: @gallery_category_count) %>
+		</p>
 	</div>
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered table-striped">
+<article class="col-12">
+	<table class="table table-striped table-hover">
 		<colgroup>
-			<col style="width:80px;" />
+			<col style="width:120px;" />
 			<col />
 			<col style="width:100px;" />
 			<col style="width:100px" />
@@ -16,9 +19,9 @@
 			<col <%= raw manage_width(GalleryCategory) %> />
 			<% end %>
 		</colgroup>
-		<thead>
+		<thead class="thead-default">
 			<tr>
-				<th><%= t(:label_number) %></th>
+				<th class="text-center"><%= t(:enable,scope:[:activerecord,:attributes,:gallery_category]) %></th>
 				<th><%=t(:title,scope:[:activerecord,:attributes,:gallery_category]) %></th>
 				<th><%=t(:galleries_count,scope:[:activerecord,:attributes,:gallery_category]) %></th>
 				<th><%=t(:enable,scope:[:activerecord,:attributes,:gallery_category]) %></th>
@@ -29,45 +32,52 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% unless @admin_gallery_categories.empty? %>
-			<% @admin_gallery_categories.each do |gallery_category| %>
+			<% unless @gallery_category_count.zero? %>
+			<% @gallery_categories.each do |gallery_category,index| %>
 			<tr>
-				<td><%= link_to gallery_category.id,admin_gallery_category_path(gallery_category) %></td>
+				<td>
+					<div class="form-check form-switch">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="notice_display<%= index %>"
+							value="<%= gallery_category.id %>"
+							<% if gallery_category.enable %> checked <% end %>
+						>
+						<label class="form-check-label" for="notice_display<%= index %>">
+							<% if gallery_category.enable %> <%= t(:display) %> <% else %> <%= t(:hidden) %> <% end %>
+						</label>
+					</div>
+				</td>
 				<td><%= link_to gallery_category.title,admin_gallery_category_path(gallery_category) %></td>
 				<td><%= link_to gallery_category.galleries_count,admin_gallery_category_path(gallery_category) %></td>
 				<td><%= raw flagToString(gallery_category.enable) %></td>
 				<td><%= gallery_category.created_at.to_date %></td>
-				<% if can?(:update, gallery_category) || can?(:delete, gallery_category) %>
-				<td>
-					<% if can? :update, gallery_category %>
-				<%= link_to edit_admin_gallery_category_path(gallery_category),:class=>"btn btn-default" do %> <i class="glyphicon glyphicon-pencil"></i> <%= t(:link_edit) %>
-				<% end %>
-				<% end %>
-				<% if can? :delete, gallery_category %>
-				<%= link_to admin_gallery_category_path(gallery_category), :method => :delete, :data => { :confirm => t(:delete_confirm) },:class=>"btn btn-danger" do %> <i class="glyphicon glyphicon-trash"></i> <%= t(:link_delete) %>
-				<% end %>
-				<% end %>
-				</td>
+				<% if can?(:update, gallery_category) or can?(:delete, gallery_category) %>
+					<td class="text-right">
+						<% if can? :update, gallery_category %>
+							<%= link_to edit_admin_gallery_category_path(gallery_category), :class => "btn btn-secondary" do %>
+								<%= t(:edit) %>
+							<% end %>
+						<% end %>
+						<% if can? :delete, gallery_category %>
+							<%= link_to admin_gallery_category_path(gallery_category), :method => :delete, :data => { :confirm => t(:delete_confirm) }, :class => "btn btn-danger" do %>
+								<%= t(:delete) %>
+							<% end %>
+						<% end %>
+					</td>
 				<% end %>
 			</tr>
 			<% end %>
-			<% else %>
+		<% else %>
 			<tr>
-				<td colspan="6"><%= t(:no_data)%></td>
+				<td colspan="8" class="text-center"><%= t(:no_data) %></td>
 			</tr>
-			<% end %>
+		<% end %>
 		</tbody>
 	</table>
-</div>
-<div class="row">
-	<div class="col-xs-6 col-sm-3 col-md-2">
-		<% if can? :create, GalleryCategory %>
-		<%= link_to new_admin_gallery_category_path,:class=>"btn btn-primary" do %>
-		<i class="glyphicon glyphicon-plus"></i> <%= t(:link_new) %>
-		<% end %>
-		<% end %>
+	<div class="pagination justify-content-center">
+		<%= paginate @gallery_categories %>
 	</div>
-	<nav class="col-xs-12 col-sm-9 col-md-10">
-		<%= paginate @admin_gallery_categories %>
-	</nav>
-</div>
+	<%= link_to t(:add), new_admin_gallery_category_path, :class => "btn btn-primary" %>
+</article>

@@ -1,22 +1,22 @@
 <div class="sl_show">
 	<p>
 		<b><%=t(:title,scope:[:activerecord,:attributes,:gallery]) %></b>
-		<%= @admin_gallery.title %>
+		<%= @gallery.title %>
 	</p>
 	<p>
 		<b><%=t(:enable,scope:[:activerecord,:attributes,:gallery]) %></b>
-		<%=raw flagToString(@admin_gallery.enable) %>
+		<%=raw flagToString(@gallery.enable) %>
 	</p>
 	<p>
   	<b><%=t(:label_created_at) %></b>
-  	<%= @admin_gallery.created_at %>
+  	<%= @gallery.created_at %>
   </p>
   <p>
   	<b><%=t(:label_updated_at) %></b>
-  	<%= @admin_gallery.created_at %>
+  	<%= @gallery.created_at %>
   </p>
 </div>
-<% if can? :update, @admin_gallery %>
-<%= link_to t(:link_edit), edit_admin_gallery_path(@admin_gallery) %> |
+<% if can? :update, @gallery %>
+<%= link_to t(:link_edit), edit_admin_gallery_path(@gallery) %> |
 <% end %>
 <%= link_to t(:link_list), admin_galleries_path %>

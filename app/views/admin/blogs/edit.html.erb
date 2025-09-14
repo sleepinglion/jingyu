@@ -1,3 +1,12 @@
-<%= render 'form',:blog=>@admin_blog %>
-<%= link_to t(:link_show), admin_blog_path(@admin_blog) %> |
-<%= link_to t(:link_list), admin_blogs_path %>
+<section id="edit-blog" class="col-12">
+  <div class="row">
+    <h2 class="col-12"><%= t(:edit_blog) %></h2>
+  </div>
+  <div class="row">
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= render 'form', blog: @blog %>
+    </div>
+  </div>
+</section>

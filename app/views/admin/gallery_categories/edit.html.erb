@@ -1,3 +1,3 @@
-<%= render 'form',:gallery_category=>@admin_gallery_category %>
-<%= link_to t(:link_show), admin_gallery_category_path(@admin_gallery_category) %> |
+<%= render 'form', gallery_category: @gallery_category %>
+<%= link_to t(:link_show), admin_gallery_category_path(@gallery_category) %> |
 <%= link_to t(:link_list), admin_gallery_categories_path %>

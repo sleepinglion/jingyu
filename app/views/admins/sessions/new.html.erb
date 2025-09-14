@@ -1,7 +1,7 @@
 <div class="row">
   <section class="col-12 col-lg-8 col-xl-6 mx-auto">
     <h2><%= t(:service_name) %> <%= t(:login_title) %></h2>
-    <%= form_for(resource, as: :user, url: user_session_path, html: { class: "form-horizontal", id: "sl_login_form", role: "form" , data: { turbo: false }}) do |f| %>
+    <%= form_for(resource, as: :user, url: user_session_path, html: { class: "form-horizontal", role: "form" , data: { turbo: false }}) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
       <%= hidden_field_tag :admin_login, true %>
       <div class="card">
