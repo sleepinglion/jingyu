@@ -47,5 +47,15 @@
 <%= render :partial => 'layouts/footer' %>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"></div>
 <%= javascript_importmap_tags %>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TZXFX7C4PT"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-TZXFX7C4PT');
+</script>
+
 </body>
 </html>
