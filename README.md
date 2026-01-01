@@ -13,7 +13,7 @@ easy customization, and long-term maintenance.
 
 ```bash
 git clone https://github.com/sleepinglion/jingyu.git
-cd cafe
+cd jingyu
 bundle install
 rails db:create db:migrate db:seed
 rails server
