@@ -13,8 +13,8 @@
 
 @charset "utf-8";
 
-@import "bootstrap";
-@import "../fancybox";
+@use "bootstrap/scss/bootstrap" as *;
+@use "fancybox";
 
 @font-face {
   font-family: 'Nanum Gothic';
