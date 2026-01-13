@@ -1,5 +1,5 @@
 <div class="row">
-	<section class="col-12 col-lg-8 col-xl-6 mx-auto">
+	<section class="col-12 col-lg-8 mx-auto">
 		<h2><%= t(:service_name) %> <%= t(:login) %></h2>
 		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),:html => {:class=>'form-horizontal' }, role: "form" , data: { turbo: false }) do |f| %>
 			<%= render "users/shared/error_messages", resource: resource %>

@@ -22,7 +22,7 @@ if defined?(AssetSync)
 
     config.add_local_file_paths do
       Dir.chdir(Rails.root.join('public')) do
-        Dir['assets/**/*']
+        Dir['assets/**/*'] + Dir['fonts/**/*']+ Dir['images/**/*']
       end
     end
   end
