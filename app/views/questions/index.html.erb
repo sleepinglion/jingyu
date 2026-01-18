@@ -1,7 +1,7 @@
 <% breadcrumb :questions %>
 <div id="sl_question_index">
 	<article class="table-responsive-lg">
-		<table class="table table-striped table-hover" data-controller="click-redirect">
+		<table class="table table-striped table-hover">
 			<colgroup>
 				<col style="width:130px" />
 				<col />
@@ -21,7 +21,7 @@
 			<tbody>
 			<% unless @questions.empty? %>
 				<% @questions.each do |question| %>
-					<tr data-action="click->click-redirect#mediaClick">
+					<tr data-controller="click-redirect" data-action="click->click-redirect#mediaClick">
 						<td class="sl_t_name"><%=question.user.nickname %></td>
 						<td class="sl_t_title"> <% if(question.secret?) %><%=image_tag('lock.png') %><% if question.user==current_user %>  <%=link_to question.title,question %> <% else %>비밀글입니다.<% end %><% else %> <%=link_to question.title,question %><% end %> </td>
 						<td class="text-right"><% if question.comment_threads.count.zero? %><%=t(:answer) %><% else %><%=t(:no_answer) %><% end %></td>

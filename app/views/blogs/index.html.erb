@@ -23,10 +23,10 @@
   	<% end %>
 		<% end %>
   </ol>
-  <section id="sl_blog" data-controller="click-redirect">
+  <section id="sl_blog">
   <% unless @blogs.empty? %>
   <% @blogs.each do |blog| %>
-  <article class="media p-3 rounded" data-action="click->click-redirect#mediaClick">
+  <article class="media p-3 rounded" data-controller="click-redirect" data-action="click->click-redirect#mediaClick">
 		<% unless blog.blog_pictures_count.zero? %>
     <%=link_to blog_path(blog),:class=>"pull-left" do %>
       <%=image_tag sl_get_thumb(blog.photo.to_s,'small'), :class=>"media-object",:itemprop=>"thumbnailUrl",:alt=>"..." %>

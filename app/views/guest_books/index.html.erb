@@ -1,7 +1,7 @@
 <% breadcrumb :guest_books %>
 <section id="sl_guest_book_index">
 	<article class="table-responsive-lg">
-		<table class="table table-striped table-hover" data-controller="click-redirect">
+		<table class="table table-striped table-hover">
 			<colgroup>
 				<col style="width:130px" />
 				<col />
@@ -21,7 +21,7 @@
 			<tbody>
 				<% unless @guest_books.empty? %>
 				<% @guest_books.each do |guest_book| %>
-				<tr data-action="click->click-redirect#mediaClick">
+				<tr data-controller="click-redirect" data-action="click->click-redirect#mediaClick">
 					<td class="sl_t_name hidden-sm hidden-xs"><%=userName(guest_book,10) %></td>
 					<td class="sl_t_title"><%= link_to guest_book.title, guest_book  %></td>
 					<td class="text-right"><%= guest_book.comment_threads.count.to_s %></td>
