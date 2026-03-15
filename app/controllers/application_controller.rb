@@ -113,12 +113,9 @@ class ApplicationController < ActionController::Base
     return true if params[:sort].present?
     return true if params[:q].present?
 
-    # 흔한 facet/filter/UI 파라미터들
-    filter_keys = %w[
-      color size brand price_min price_max
-      tag tags search keyword order direction
-      per view tab commit utf8
-    ]
+    return true if controller_name == "tags"
+
+    filter_keys = %w[list_type locale tag tags search keyword order direction per view tab commit utf8]
 
     (params.keys.map(&:to_s) & filter_keys).any?
   end
