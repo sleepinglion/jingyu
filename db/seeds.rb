@@ -467,7 +467,7 @@ Blog.create!(id: 24, user_id: 1, blog_category_id: 3,title: '삼인행 필유아
 최근에는 국뽕-네오나치,창조과학자,알콜중독자에게도 많은것을 배웠습니다.
 ')
 
-Blog.create!(id: 25, user_id: 1, blog_category_id: 3,title: '위대한 정충신장군',description: '노비에서 장군이되어 나라를 구한 장군이야기 들어보셨나요?', created_at: 1.day.ago,tag_list: '', content:
+Blog.create!(id: 25, user_id: 1, blog_category_id: 3,title: '위대한 정충신장군',description: '노비에서 장군이되어 나라를 구한 장군이야기 들어보셨나요?', created_at: 1.day.ago,tag_list: '정충신,장군,영웅,위대함,', content:
   '역사상 수많은 위인들이 있습니다만 전통사회는 신분제로서 위인들 역시 거의 귀족,금수저 출신입니다.
 비천한 출신으로 위인에 남은 인물들은 거의 없다는 것이지요
 중국의 수많은 인물중에서도 생각나는것은 주원장 밖에 없군요, 다른 인물들 알고 있으면 알려주세요~
@@ -488,7 +488,7 @@ Blog.create!(id: 25, user_id: 1, blog_category_id: 3,title: '위대한 정충신
 ')
 
 
-Blog.create!(id: 26, user_id: 1, blog_category_id: 3,title: '박정희는 특별할게 없는 평범한 독재자 입니다.',description: '그냥 국민 탄압하고 죽을때까지 권력유지하려고한 평범한 독재자 박정희', created_at: 1.day.ago,tag_list: '',
+Blog.create!(id: 26, user_id: 1, blog_category_id: 3,title: '박정희는 특별할게 없는 평범한 독재자 입니다.',description: '그냥 국민 탄압하고 죽을때까지 권력유지하려고한 평범한 독재자 박정희', created_at: 1.day.ago,tag_list: '박정희,독재자,유신개헌,삼선개헌,정신병,어리석음,아프리카',
              content: '뭐 박정희가 대단한것이나 빨아대는 정신나간놈들이 많이 보인다.
 참 우리나라의 미래가 암담하다고 할 수 있다.
 뇌과학에서 밝혀낸 사실로 권력을 잡으면 자신이 아니면 안된다고, 이끌 사람이 없다고 생각하게 머리가 이상해진다고 한다.
