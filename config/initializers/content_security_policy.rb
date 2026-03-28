@@ -14,7 +14,10 @@ Rails.application.configure do
                       'https://cdn.jsdelivr.net',
                       'https://cdnjs.cloudflare.com',
                       'https://pagead2.googlesyndication.com',
-                      'https://www.googletagservices.com'
+                      'https://www.googletagservices.com',
+                      :unsafe_inline
+
+    policy.frame_ancestors :self
 
     # 스타일: 자기 도메인 + HTTPS + CDN
     policy.style_src :self, :https, 'https://fonts.googleapis.com', 'https://cdn.jsdelivr.net'
@@ -24,9 +27,6 @@ Rails.application.configure do
 
     # 객체, 플러그인 사용 금지
     policy.object_src :none
-
-    # 클릭재킹 방지
-    policy.frame_ancestors :none
 
     # CSP 위반 보고 필요 시 (선택)
     # policy.report_uri "/csp-violation-report-endpoint"
