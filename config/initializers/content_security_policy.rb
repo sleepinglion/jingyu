@@ -1,41 +1,59 @@
 # config/initializers/content_security_policy.rb
 
 Rails.application.configure do
-  # 사이트 전용 CSP 설정
   config.content_security_policy do |policy|
-    # 기본 리소스 허용: 자기 도메인 + HTTPS
     policy.default_src :self, :https
 
-    # 이미지: 자기 도메인 + HTTPS + base64(data:) + 외부 이미지 호스팅
-    policy.img_src :self, :https, :data, 'https://jedaeroweb.blob.core.windows.net'
-
-    # 스크립트: 자기 도메인 + HTTPS + CDN + AdSense 도메인
+    # 스크립트
     policy.script_src :self, :https,
-                      'https://cdn.jsdelivr.net',
-                      'https://cdnjs.cloudflare.com',
+                      :unsafe_inline,
                       'https://pagead2.googlesyndication.com',
+                      'https://partner.googleadservices.com',
+                      'https://googleads.g.doubleclick.net',
                       'https://www.googletagservices.com',
-                      :unsafe_inline
+                      'https://www.google-analytics.com',
+                      'https://www.googletagmanager.com',
+                      'https://cdn.jsdelivr.net',
+                      'https://cdnjs.cloudflare.com'
 
-    policy.frame_ancestors :self
+    # 스타일
+    policy.style_src :self, :https,
+                     :unsafe_inline,
+                     'https://fonts.googleapis.com',
+                     'https://cdn.jsdelivr.net'
 
-    # 스타일: 자기 도메인 + HTTPS + CDN
-    policy.style_src :self, :https, 'https://fonts.googleapis.com', 'https://cdn.jsdelivr.net'
+    # 이미지
+    policy.img_src :self, :https, :data,
+                   'https://jedaeroweb.blob.core.windows.net',
+                   'https://pagead2.googlesyndication.com',
+                   'https://googleads.g.doubleclick.net',
+                   'https://tpc.googlesyndication.com',
+                   'https://www.google.com',
+                   'https://www.google.co.kr'
 
-    # 폰트: 자기 도메인 + HTTPS + base64 + Google Fonts
+    # 프레임 (광고 iframe 핵심)
+    policy.frame_src :self, :https,
+                     'https://googleads.g.doubleclick.net',
+                     'https://tpc.googlesyndication.com',
+                     'https://pagead2.googlesyndication.com'
+
+    # XHR / fetch / beacon (광고 요청 핵심)
+    policy.connect_src :self, :https,
+                       'https://pagead2.googlesyndication.com',
+                       'https://googleads.g.doubleclick.net',
+                       'https://www.google-analytics.com',
+                       'https://www.googletagmanager.com'
+
+    # 폰트
     policy.font_src :self, :https, :data, 'https://fonts.gstatic.com'
 
-    # 객체, 플러그인 사용 금지
     policy.object_src :none
 
-    # CSP 위반 보고 필요 시 (선택)
-    # policy.report_uri "/csp-violation-report-endpoint"
+    # 이건 광고 표시랑 직접 관계 적음. 유지 가능
+    policy.frame_ancestors :self
   end
 
-  # 인라인 스크립트/스타일용 nonce 생성 (Importmap, Turbo, inline script/style 대응)
-  config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
-  config.content_security_policy_nonce_directives = %w(script-src style-src)
-
-  # 테스트용: 정책 위반 보고만 하고 실제 적용 안함
-  # config.content_security_policy_report_only = true
+  # nonce는 일단 AdSense 안정화 전까지 꺼두는 것도 방법
+  # config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
+  # config.content_security_policy_nonce_directives = %w(script-src style-src)
 end
