@@ -1,6 +1,6 @@
 <div id="sl_ad">
   <% if Rails.env.production? %>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5400903051441488"
+    <script nonce="<%= content_security_policy_nonce %>" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5400903051441488"
             crossorigin="anonymous"></script>
     <!-- default_ad -->
     <ins class="adsbygoogle"
