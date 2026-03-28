@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
+    set_meta_tags canonical: root_url
+
     @notices = Notice.order('id desc').page(0).per(5)
     @questions = Question.order('id desc').page(0).per(5)
     @galleries = Gallery.order('id desc').page(0).per(6)
