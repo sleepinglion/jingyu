@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
       canonical: canonical,
       noindex: seo_noindex?,
       follow: true,
-      viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+      viewport: 'width=device-width, initial-scale=1',
       og: {
         title: @og_title.presence || meta_title,
         description: @meta_description,
