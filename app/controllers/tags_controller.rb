@@ -29,7 +29,6 @@ class TagsController < ApplicationController
       @blogs = Blog.tagged_with(params[:tag]).page(params[:page]).per(params[:per_page])
       # @blogs = Blog.tagged_with(params[:tag]).page(params[:page]).per(15)
       #@blog_categories=BlogCategory.where(:leaf=>true).where(:enable=>true)
-      @meta_keywords=params[:tag]+','+t(:meta_keywords)
     else
       @blog_count=0
     end
@@ -38,7 +37,6 @@ class TagsController < ApplicationController
   def default_render
     render "/blogs/#{action_name.to_s}"
   end
-
 
   private
 
