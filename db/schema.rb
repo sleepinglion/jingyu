@@ -88,6 +88,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_142207) do
     t.integer "blog_comments_count", default: 0, null: false
     t.integer "blog_pictures_count", default: 0, null: false
     t.integer "count", default: 0, null: false
+    t.boolean "is_html", default: true, null: false
     t.boolean "enable", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

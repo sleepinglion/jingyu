@@ -7,7 +7,11 @@
 		</div>
 		<div class="sl_content_main">
 			<div class="sl_content_text">
-				<%=simple_format @blog.content.to_s %>
+				<% if @blog.is_html %>
+					<%= @blog.content.to_s %>
+				<% else %>
+					<%=simple_format @blog.content.to_s %>
+				<% end %>
 			</div>
 		</div>
 	</div>
