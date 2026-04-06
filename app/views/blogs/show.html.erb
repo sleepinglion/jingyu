@@ -2,7 +2,7 @@
 <div id="sl_blog_show">
 	<div class="slboard_content">
 		<div class="sl_content_header box_header">
-			<h2 itemprop="name"><%= @blog.title %></h2>
+			<h2><%= @blog.title %></h2>
 			<p>작성자 :  <%= render :partial => 'users/data', :locals => { :user => @blog.user } %> &nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span><%= @blog.created_at %></span></p>
 		</div>
 		<div class="sl_content_main">
