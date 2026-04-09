@@ -2,14 +2,6 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, :except => [:index,:show]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
-  def initialize(*params)
-    super(*params)
-    @controller_name=t('activerecord.models.question')
-    @title=t('activerecord.models.question')
-    @meta_description=t(:meta_description_question)
-    @page_itemtype="http://schema.org/QAPage"
-  end
-
   # GET /questions
   # GET /questions.json
   def index
@@ -24,9 +16,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    @comment  = Comment.build_from(@question, current_user, "")
-
-    @script="board/show"
+    @title = @question.title
 
     respond_to do |format|
       format.html # show.html.erb

@@ -2,7 +2,7 @@
 <html lang="<%=I18n.locale %>" data-bs-theme="auto">
 <head>
 <meta charset="utf-8">
-	<%=display_meta_tags %>
+	<%= display_meta_tags(default_meta_tags) %>
 <meta name="author" content="Sleeping-Lion">
 <link rel="alternate" type="application/rss+xml" title="Jingyu RSS Feed" href="<%= t(:site_full_url) %>/feed?format=rss">
 <%= stylesheet_link_tag "front", :media => "all", "data-turbolinks-track" => true %>

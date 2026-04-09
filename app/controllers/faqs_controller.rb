@@ -35,6 +35,8 @@ class FaqsController < ApplicationController
   # GET /faqs/1
   # GET /faqs/1.json
   def show
+    @title = @faq.title
+
     condition={enable: true}
 
     @faq_categories = FaqCategory.where(condition)

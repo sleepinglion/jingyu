@@ -2,16 +2,10 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, :except => [:index,:show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
-  def initialize(*params)
-    super(*params)
-    @controller_name=t('activerecord.models.blog')
-    @title=t('activerecord.models.blog')
-    @meta_description=t(:meta_description_blog)
-  end
-
   # GET /blogs
   # GET /blogs.json
   def index
+    @title=t('activerecord.models.blog')
     @blog_categories=BlogCategory.where(:enable=>true)
         if(params[:blog_category_id])
           @blog_category_id=params[:blog_category_id].to_i

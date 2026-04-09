@@ -23,8 +23,6 @@ class GuestBooksController < ApplicationController
   # GET /guest_books/1
   # GET /guest_books/1.json
   def show
-    @comment  = Comment.build_from(@guest_book, current_user, "")
-
     @title = @guest_book.title + t(:title_separator) + t(:application_name)
     @script = "board/show"
 

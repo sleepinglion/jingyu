@@ -3,28 +3,26 @@ class ApplicationController < ActionController::Base
 
   before_action :normalize_seo_query_params
   before_action :before_init
-  before_action :set_og_title
-  before_action :prepare_default_meta_tags
-
-  helper_method :seo_noindex?
+  helper_method :default_meta_tags, :seo_noindex?
 
   def before_init
-    @meta_description = t(:meta_description)
-    @meta_image       = t(:meta_image)
-    @meta_url         = t(:meta_url)
-
-    @aside_blog_categories = BlogCategory.where(:enable=>true)
-    @tags = Blog.tag_counts_on(:tags, :limit => 20, :order => "taggings_count desc")
+    @aside_blog_categories = BlogCategory.where(enable: true)
+    @tags = Blog.tag_counts_on(:tags, limit: 20, order: "taggings_count desc")
   end
 
-  def prepare_default_meta_tags
-    meta_title = @title.presence || t(:default_title)
-    canonical  = canonical_url_for_current_page
+  def default_meta_tags
+    meta_title       = @title.presence || t(:default_title)
+    meta_description = @meta_description.presence || t(:meta_description)
+    meta_image       = @meta_image.presence || t(:meta_image)
+    canonical        = @meta_url.presence || canonical_url_for_current_page
+    og_title         = @og_title.presence || meta_title
+    og_type          = @meta_type.presence || 'website'
 
-    set_meta_tags(
+    {
       site: t(:application_name),
       title: meta_title,
-      description: @meta_description,
+      description: meta_description,
+      keywords: @meta_keywords,
       separator: t(:title_separator),
       reverse: true,
       canonical: canonical,
@@ -32,25 +30,21 @@ class ApplicationController < ActionController::Base
       follow: true,
       viewport: 'width=device-width, initial-scale=1',
       og: {
-        title: @og_title.presence || meta_title,
-        description: @meta_description,
+        title: og_title,
+        description: meta_description,
         url: canonical,
-        image: @meta_image,
-        type: 'website',
+        image: meta_image,
+        type: og_type,
         site_name: t(:application_name),
         locale: I18n.locale.to_s
       },
       twitter: {
         card: 'summary_large_image',
-        title: @og_title.presence || meta_title,
-        description: @meta_description,
-        image: @meta_image
+        title: og_title,
+        description: meta_description,
+        image: meta_image
       }
-    )
-  end
-
-  def set_og_title
-    @og_title = @title.presence || t(:default_title)
+    }
   end
 
   # 내부 링크에 locale 유지

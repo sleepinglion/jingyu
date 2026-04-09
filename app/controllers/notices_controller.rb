@@ -2,11 +2,6 @@ class NoticesController < ApplicationController
   before_action :authenticate_user!, :except => [:index,:show]
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
 
-  def initialize(*params)
-    super(*params)
-    @controller_name=t('activerecord.models.notice')
-  end
-
   # GET /notices
   # GET /notices.json
   def index
