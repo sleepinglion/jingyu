@@ -6,6 +6,7 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     @title=t('activerecord.models.blog')
+
     @blog_categories=BlogCategory.where(:enable=>true)
         if(params[:blog_category_id])
           @blog_category_id=params[:blog_category_id].to_i

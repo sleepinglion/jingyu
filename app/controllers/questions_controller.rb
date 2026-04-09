@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @title = @question.title
+    @comment  = Comment.build_from(@question, current_user, "")
 
     respond_to do |format|
       format.html # show.html.erb
