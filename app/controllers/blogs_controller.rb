@@ -26,8 +26,14 @@ class BlogsController < ApplicationController
   def show
     @comment  = Comment.build_from(@blog, current_user, "")
 
-   @meta_keywords=@blog.tag_list+t(:meta_keywords)
-   @title=@blog.title
+    @meta_description = @blog.description.presence || t(:meta_description_blog)
+    @title=@blog.title
+
+    @related_blogs = Blog.joins(:tags)
+                         .where(tags: { id: @blog.tags.ids })
+                         .where.not(id: @blog.id)
+                         .distinct
+                         .limit(5)
 
     set_meta_tags canonical: blog_url(@blog)
 

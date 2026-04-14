@@ -20,6 +20,18 @@
 			<%=t('activerecord.models.tag') %> : <%= raw @blog.tags.map { |t| link_to t, tag_path(:tag=>t.name) }.join(', ') %>
 		</p>
 	<% end %>
+
+	<% if @related_blogs.present? %>
+		<h3>관련 글</h3>
+		<ul>
+			<% @related_blogs.each do |blog| %>
+				<li>
+					<%= link_to blog.title, blog_path(blog) %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
 	<div class="row">
 		<div class="btn-group btn-group-lg col-12 mt-3" role="group">
 			<% if params[:blog_category_id].present? %>

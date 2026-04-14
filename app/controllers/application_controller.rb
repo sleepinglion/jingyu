@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
       site: t(:application_name),
       title: meta_title,
       description: meta_description,
-      keywords: @meta_keywords,
       separator: t(:title_separator),
       reverse: true,
       canonical: canonical,
