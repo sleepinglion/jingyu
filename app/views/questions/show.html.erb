@@ -3,7 +3,7 @@
 	<div class="slboard_content">
 		<div class="sl_content_header box_header">
 			<h2><%= @question.title %></h2>
-			<p><%=t(:label_name)%> : <span><%=userName(@question,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span><%= @question.created_at %></span></p>
+			<p><%=t(:label_name)%> : <span><%=userName(@question,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span><%= l(@question.created_at.to_date, format: :long) %></span></p>
 		</div>
 		<div class="sl_content_main">
 			<div class="sl_content_text"><%= simple_format(@question.content.to_s) %></div>
