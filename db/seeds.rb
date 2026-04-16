@@ -869,6 +869,7 @@ Blog.create!(id: 12, user_id: 1,blog_category_id: 1,
 Blog.create!(id: 13, user_id: 1, blog_category_id: 2,title: '엄청나게 먼 거리의 존재의 유무',description: '상호작용 할수 없는 존재는 존재하는것이냐? 아니냐?',
              created_at:'2025-07-05 01:51:06',
              updated_at:'2025-07-05 01:51:06',
+             is_html: true,
              content:<<~HTML
 <h2>1광년 이상 거리의 존재는 정말 ‘존재’하는가?</h2>
 <p>
