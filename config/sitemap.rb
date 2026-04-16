@@ -52,10 +52,13 @@ SitemapGenerator::Sitemap.create do
     add faq_path(faq), :lastmod => faq.updated_at
   end
 
-  Tag.includes(:blogs).find_each do |tag|
-    next if tag.taggings_count < 5
+  Tag.find_each do |tag|
+    taggings = tag.taggings.where(taggable_type: "Blog")
 
-    lastmod = tag.blogs.maximum(:updated_at) || tag.updated_at
+    next if taggings.count < 5
+
+    lastmod = Blog.where(id: taggings.select(:taggable_id))
+                  .maximum(:updated_at)
 
     add tag_path(tag: tag.name),
         priority: 0.6,
