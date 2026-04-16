@@ -11,19 +11,16 @@ class NoticesController < ApplicationController
   # GET /notices/1
   # GET /notices/1.json
   def show
+    @title = @notice.title + t(:title_separator) + t(:application_name)
   end
 
   # GET /notices/new
   def new
     @notice = Notice.new
-    @notice.build_notice_content
-
-    @script="board/new"
   end
 
   # GET /notices/1/edit
   def edit
-    @script="board/edit"
   end
 
   # POST /notices
@@ -31,8 +28,6 @@ class NoticesController < ApplicationController
   def create
     @notice = Notice.new(notice_params)
     @notice.user_id=current_user.id
-
-    @script="board/new"
 
     respond_to do |format|
       if @notice.save
@@ -48,8 +43,6 @@ class NoticesController < ApplicationController
   # PATCH/PUT /notices/1
   # PATCH/PUT /notices/1.json
   def update
-    @script="board/edit"
-
     respond_to do |format|
       if @notice.update(notice_params)
         format.html { redirect_to @notice, notice: @controller_name +t(:message_success_update)}

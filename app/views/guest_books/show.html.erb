@@ -3,7 +3,7 @@
 	<div class="slboard_content">
 		<div class="sl_content_header box_header">
 			<h2><%= @guest_book.title %></h2>
-			<p><%=t(:label_name)%> : <span><%=userName(@guest_book,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span><%= @guest_book.created_at %></span></p>
+			<p><%=t(:label_name)%> : <span><%=userName(@guest_book,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span><%= l(@guest_book.created_at.to_date, format: :long) %></span></p>
 		</div>
 		<div class="sl_content_main">
 			<div class="sl_content_text"><%=simple_format sanitize(@guest_book.content.to_s.gsub(/\n/, '<br />'), :tags => %w(br img a)) %></div>

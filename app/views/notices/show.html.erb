@@ -1,12 +1,12 @@
 <% breadcrumb :notice,@notice %>
-<article id="sl_notice_show" itemscope itemprop="article" itemtype="http://schema.org/Article">
+<article id="sl_notice_show">
   <div class="slboard_content">
     <div class="sl_content_header">
-      <h3 itemprop="name"><%= @notice.title %></h3>
-      <p><%=t(:label_name)%> : <span  itemprop="author"><%=userName(@notice,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span itemprop="dateCreated"><%= @notice.created_at %></span><span class="none" itemprop="dateModified"><%= @notice.updated_at %></span></p>
+      <h3><%= @notice.title %></h3>
+      <p><%=t(:label_name)%> : <span><%=userName(@notice,10) %></span>&nbsp;&nbsp;&nbsp; <%=t(:label_created_at)%> : <span><%= l(@notice.created_at.to_date, format: :long) %></span></p>
     </div>
     <div class="sl_content_main">
-      <div class="sl_content_text" itemprop="text"><%=simple_format @notice.notice_content.content %></div>
+      <div class="sl_content_text"><%=simple_format @notice.content %></div>
     </div>
   </div>
   <div class="row">

@@ -6,7 +6,6 @@ class FaqCategoriesController < ApplicationController
   # GET /faq_categories.json
   def index
     @faq_categories = FaqCategory.order('id desc').page(params[:page]).per(10)
-    @script='board/faqs/index'
 
     respond_to do |format|
       format.html # _slide.html.erb

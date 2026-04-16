@@ -1,8 +1,8 @@
 <article>
 	<% unless @users.empty? %>
-	<dl class="dl-horizontal" itemscope itemtype="http://schema.org/Person">
+	<dl class="dl-horizontal">
 		<% @users.each do |user| %>
-		<dt itemprop="name"><%=user.name %> </dt>
+		<dt><%=user.name %> </dt>
 		<dd><%=user.description %></dd>
 		<% end %>
 	</dl>

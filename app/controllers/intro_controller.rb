@@ -8,8 +8,6 @@ class IntroController < ApplicationController
     @user=User.find(1)
     @histories=History.page(params[:page]).per(15)
 
-    @script='intro'
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @user }

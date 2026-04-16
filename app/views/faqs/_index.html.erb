@@ -34,7 +34,7 @@
 			<% unless @faq_count.zero? %>
 			<% @faqs.each do |faq| %>
 			<dt <% if @faq %><% if @faq.id==faq.id %>class="on"<% end %><% end %>>
-				<%= link_to faq_path(faq),{:class=>'title',:itemprop=>'name'} do %>
+				<%= link_to faq_path(faq),{:class=>'title'} do %>
 					<%=truncate(faq.title,:length => 80) %><span><i class="material-icons">add</i></span>
 					<% end %>
 			</dt>

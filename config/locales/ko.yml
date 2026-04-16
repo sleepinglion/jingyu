@@ -113,7 +113,6 @@ ko:
   ########### intro #############
   sl_intro_title : '잠자는사자 극비 신상공개!!!'
   name : '이름'
-  name_call : '<span itemprop="additionalName">잠자는사자</span>로 불리운다'
   sex : '성별'
   male : '남자'
   birthday : '생일'
