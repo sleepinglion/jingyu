@@ -1,0 +1,30 @@
+<% breadcrumb :blogs %>
+<section id="sl_blog_index">
+  <section id="sl_blog">
+  <% unless @blogs.empty? %>
+  <% @blogs.each do |blog| %>
+  <article class="media p-3 rounded">
+    <%=link_to blog_path(blog), class: "pull-left",rel: "nofollow" do %>
+    <% unless blog.blog_pictures_count.zero? %>
+      <%=image_tag blog.blog_picture.picture.small_thumb.url, :class=>"media-object",:alt=>"..." %>
+    <% end %>
+    <% end %>
+    <div class="media-body">
+      <h3 class="media-heading" itemprop="name"><%=link_to blog.title,blog_path(blog) %></h3>
+      <p itemprop="description"><%=link_to blog.description,blog_path(blog) %></p>
+    </div>
+  </article>
+  <% end %>
+	<% else %>
+  <div>
+  	<p><%=t(:no_data) %></p>
+  </div>
+  <% end %>
+  <div id="sl_bottom_menu">
+  <% if can? :create, Blog %>
+  <%= link_to t(:link_new), new_blog_path,:rel=>"nofollow",:class=>"btn btn-default" %>
+  <% end %>
+  <%= paginate @blogs %>
+  </div>
+	</section>
+</section>
