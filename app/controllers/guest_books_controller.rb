@@ -23,7 +23,7 @@ class GuestBooksController < ApplicationController
   # GET /guest_books/1
   # GET /guest_books/1.json
   def show
-    @title = @guest_book.title + t(:title_separator) + t(:application_name)
+    @title = @guest_book.title
 
     respond_to do |format|
       format.html # show.html.erb

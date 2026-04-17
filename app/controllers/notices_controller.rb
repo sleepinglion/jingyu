@@ -11,7 +11,7 @@ class NoticesController < ApplicationController
   # GET /notices/1
   # GET /notices/1.json
   def show
-    @title = @notice.title + t(:title_separator) + t(:application_name)
+    @title = @notice.title
   end
 
   # GET /notices/new
