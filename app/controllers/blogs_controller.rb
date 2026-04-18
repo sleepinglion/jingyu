@@ -30,6 +30,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @comment  = Comment.build_from(@blog, current_user, "")
+    @blog_categories = BlogCategory.where(enable: true)
 
     @meta_description = @blog.description.presence || t(:meta_description_blog)
     @title=@blog.title
