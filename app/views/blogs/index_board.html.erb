@@ -3,7 +3,7 @@
 	<ol class="nav nav-tabs">
 		<% unless @blog_categories.empty? %>
 		<% @blog_categories.each do |blog_category| %>
-		<li <% if(@categoryId==blog_category.id) %>class="active"<% end %>><%= link_to blog_category.title.truncate(20),blogs_path(:blog_category_id=>blog_category.id) %></li>
+		<li <% if(@blog_category==blog_category.id) %>class="active"<% end %>><%= link_to blog_category.title.truncate(20),blogs_path(:blog_category_id=>blog_category.id) %></li>
 		<% end %>
   	<% else %>	
 		<li><%=t(:no_data)%></li>
@@ -37,7 +37,7 @@
 			<% @blogs.each do |blog| %>
 			<tr>
 				<td><p class="sl_name"><%= blog.user.name %></p></td>
-				<td><p><%= link_to blog.title, blog  %></p></td>
+				<td><p><%= link_to blog.title,blog_path(blog,{:blog_category_id=>@blog_category,:page=>params[:page]})  %></p></td>
 				<td class="sl_right"><p class="sl_count"></p></td>
 				<td class="sl_right"><p class="sl_registered_date"><%=blog.created_at.to_date %></p></td>
 			</tr>

@@ -1,0 +1,21 @@
+<ol class="nav nav-pills sl_categories hidden-lg">
+  <li class="nav-item">
+    <%= link_to t(:all_category),
+                blogs_path,
+                class: "nav-link #{'active' unless @blog_category.present?}" %>
+  </li>
+
+  <% if @blog_categories.present? %>
+    <% @blog_categories.each do |blog_category| %>
+      <li class="nav-item">
+        <%= link_to blogs_path(blog_category_id: blog_category.id),
+                    class: "nav-link #{'active' if @blog_category&.id == blog_category.id}" do %>
+          <%= blog_category.title.truncate(20) %>
+          <span class="hidden-xs">(<%= blog_category.blogs_count %>)</span>
+        <% end %>
+      </li>
+    <% end %>
+  <% else %>
+    <li><%= t(:no_data) %></li>
+  <% end %>
+</ol>

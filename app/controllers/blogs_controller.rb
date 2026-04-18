@@ -5,15 +5,20 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @title=t('activerecord.models.blog')
+    @blog_categories = BlogCategory.where(enable: true)
 
-    @blog_categories=BlogCategory.where(:enable=>true)
-        if(params[:blog_category_id])
-          @blog_category_id=params[:blog_category_id].to_i
-          @blogs = Blog.where(:blog_category_id=>@blog_category_id).order(:id=>'desc').page(params[:page]).per(15)
-        else
-          @blogs = Blog.order(:id=>'desc').page(params[:page]).per(15)
-        end
+    if params[:blog_category_id]
+      @blog_category = BlogCategory.find(params[:blog_category_id])
+      @title = t('activerecord.models.blog')+" > #{@blog_category.title}"
+      @meta_description = "#{@blog_category.title} 카테고리 글 목록입니다. #{t(:meta_description_blog)}"
+      @blogs = Blog.where(blog_category_id: @blog_category.id).order(id: :desc).page(params[:page]).per(15)
+    else
+      @title = t('activerecord.models.blog')
+      @meta_description = t(:meta_description_blog)
+      @blogs = Blog.order(id: :desc).page(params[:page]).per(15)
+    end
+
+    @template = '/blogs/index_default'
 
     respond_to do |format|
       format.html { render @template }
@@ -28,6 +33,10 @@ class BlogsController < ApplicationController
 
     @meta_description = @blog.description.presence || t(:meta_description_blog)
     @title=@blog.title
+
+    if params[:blog_category_id]
+      @blog_category = BlogCategory.find(params[:blog_category_id])
+    end
 
     @related_blogs = Blog.joins(:tags)
                          .where(tags: { id: @blog.tags.ids })
@@ -48,13 +57,13 @@ class BlogsController < ApplicationController
     @blog = Blog.new
     @blog.build_blog_picture
     if(params[:blog_category_id])
-      @blog_category_id=params[:blog_category_id]
+      @blog_category=params[:blog_category_id]
     end
   end
 
   # GET /blogs/1/edit
   def edit
-    @blog_category_id=@blog.blog_category_id
+    @blog_category=@blog.blog_category_id
   end
 
   # POST /blogs

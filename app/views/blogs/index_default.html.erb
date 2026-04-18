@@ -1,0 +1,38 @@
+<% breadcrumb :blogs %>
+<section id="sl_blog_index">
+	<%=render 'categories' %>
+  <section id="sl_blog">
+  <% unless @blogs.empty? %>
+  <% @blogs.each do |blog| %>
+  <article class="media p-3 rounded" data-controller="click-redirect" data-action="click->click-redirect#mediaClick">
+		<%=link_to blog_path(blog,{:blog_category_id=>@blog_category,:page=>params[:page]}),:class=>"pull-left" do %>
+    <% unless blog.blog_pictures_count.zero? %>
+      <%=image_tag sl_get_thumb(blog.blog_picture.picture.to_s,'small'), :class=>"media-object",:alt=>"..." %>
+    <% end %>
+    <% end %>
+    <div class="media-body">
+      <h3 class="media-heading"><%=link_to blog.title,blog_path(blog,{:blog_category_id=>@blog_category,:page=>params[:page]}) %></h3>
+      <p><%=link_to blog.description,blog_path(blog,{:blog_category_id=>@blog_category,:page=>params[:page]}) %></p>
+			<p class="tags">
+        <% blog.tags.each do |tag| %>
+				<% if tag.name? %>
+        <%=link_to "##{tag}",tag_path(:tag => tag.name) %>
+        <% end %>
+				<% end %>
+      </p>
+    </div>
+  </article>
+  <% end %>
+	<% else %>
+  <div>
+  	<p><%=t(:no_data) %></p>
+  </div>
+  <% end %>
+  <div id="sl_bottom_menu">
+  <% if can? :create, Blog %>
+  <%= link_to t(:link_new), new_blog_path,:rel=>"nofollow",:class=>"btn btn-default" %>
+  <% end %>
+  <%= paginate @blogs %>
+  </div>
+	</section>
+</section>

@@ -1,5 +1,6 @@
 <% breadcrumb :blog, @blog %>
 <div id="sl_blog_show">
+	<%=render 'categories' %>
 	<div class="slboard_content">
 		<div class="sl_content_header box_header">
 			<h2><%= @blog.title %></h2>
@@ -34,11 +35,7 @@
 
 	<div class="row">
 		<div class="btn-group btn-group-lg col-12 mt-3" role="group">
-			<% if params[:blog_category_id].present? %>
-				<%= link_to t(:link_list),blogs_path({:blog_category_id=>@blog.blog_category_id}), class: 'btn btn-secondary btn-large btn-block' %>
-			<% else %>
-				<%= link_to t(:link_list),blogs_path, class: 'btn btn-secondary btn-large btn-block' %>
-			<% end %>
+			<%= link_to t(:link_list),blogs_path(page: params[:page], blog_category_id: @blog_category), class: 'btn btn-secondary btn-large btn-block' %>
 		</div>
 	</div>
 </div>

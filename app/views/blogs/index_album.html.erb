@@ -22,15 +22,15 @@
 				<td class="sl_right"><p class="sl_registered_date"></p></td>
 			</tr>
 			<% unless @blogs.empty? %>
-			<% @blogs.each do |notice| %>
-			<tr>
-				<td><p class="sl_name"><%= notice.user.name %></p></td>
-				<td><p><%= link_to notice.title, notice  %></p></td>
-				<td class="sl_right"><p class="sl_count"></p></td>
-				<td class="sl_right"><p class="sl_registered_date"><%=notice.created_at.to_date %></p></td>
-			</tr>
-			<% end %>			
-			<% else %>
+			<% @blogs.each do |blog| %>
+				<tr>
+					<td><p class="sl_name"><%= blog.user.name %></p></td>
+					<td><p><%= link_to blog.title,blog_path(blog,{:blog_category_id=>@blog_category,:page=>params[:page]}) %></p></td>
+					<td class="sl_right"><p class="sl_count"></p></td>
+					<td class="sl_right"><p class="sl_registered_date"><%=blog.created_at.to_date %></p></td>
+				</tr>
+			<% end %>
+		<% else %>
 			<tr>
 				<td colspan="4"><p<%=t(:no_data) %></p></td>
 			</tr>
