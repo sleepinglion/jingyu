@@ -33,13 +33,6 @@
 		<h3><%= form.label :content %></h3>
 		<%= form.rich_text_area :content, style: 'min-height:20em;background:#fff' %>
 	</div>
-<% if Rails.env.production? %>
-<% unless user_signed_in? %>
-<div class="form-group">
-	<%= recaptcha_tags :display => { :theme => "clean" } %>
-</div>
-<% end %>
-<% end %>
 <div class="form-group actions">
 	<%= form.submit :class=>'btn btn-primary btn-lg btn-block' %>
 </div>

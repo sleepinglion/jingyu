@@ -97,6 +97,12 @@ footer div {margin:0.3em 0 0}
 .noneData {text-align:center}
 .clear{clear:both}
 .none{display:none}
+
+.close {
+  position:absolute;
+  top:10px;
+  right:10px;
+}
 .number {font-family:Arial;letter-spacing:0}
 .clear{clear:both}
 .none{display:none}
@@ -286,6 +292,63 @@ a.left:active {background-position: -60px 0}
 .box_content {float:left;width:100%;margin-top: -1px;padding: 10px;border: 1px solid var(--bs-border-color);background: $secondary-bg ;border-radius: 0 0 2px 2px;box-shadow: 0 1px 0 rgba(255, 255, 255, .6);}
 
 .adsbygoogle {width:100%}
+
+.kakao-b-icon,.naver-b-icon,.google-b-icon,.apple-b-icon,.facebook-b-icon,.twitter-b-icon,.github-b-icon {width:60px;height:60px;border-radius:35px;display:inline-block;line-height:60px;text-align:center}
+.kakao-b-icon {
+  text-indent:-9999px;
+  background-image:url('../images/btn_kakao.png');
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-color:#fee500;
+}
+.naver-b-icon {
+  margin-left:15px;
+  text-indent:-9999px;
+  background-image:url('../images/btn_naver.png');
+  background-position:center center;
+}
+.apple-b-icon {
+  text-indent:-9999px;
+  margin-left:15px;
+  background-image:url('../images/btn_apple.png');
+  background-position:center center;
+  background-color:#000;
+  background-repeat: no-repeat;
+}
+.google-b-icon {
+  border:1px solid #ccc;
+  text-indent:-9999px;
+  margin-left:15px;
+  background-color:#fff;
+  background-image:url('../images/btn_google.png');
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+.facebook-b-icon {
+  border:1px solid #ccc;
+  text-indent:-9999px;
+  margin-left:15px;
+  background-color:#fff;
+  background-image:url('../images/btn_facebook.png');
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+.twitter-b-icon {
+  border:1px solid #ccc;
+  text-indent:-9999px;
+  margin-left:15px;
+  background-color:#fff;
+  background-image:url('../images/btn_twitter.png');
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+.github-b-icon {
+  margin-left:15px;
+  text-indent:-9999px;
+  background-image:url('../images/btn_github.png');
+  background-position:center center;
+  background-color:#fff;
+}
 
 @media all and (max-width: 767px) {
     .container {width: 100%;max-width:none}

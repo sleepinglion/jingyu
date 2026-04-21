@@ -1,46 +1,45 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout :layout
-    
-  def initialize(*params)
-    super(*params)
-    @controller_name=t('activerecord.models.user')
-  end
-  
+
   def index
     @users = User.order('id desc').page(params[:page]).per(10)
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @notices }
     end
   end
-  
+
   def show
     @users = User.order('id desc').page(params[:page]).per(10)
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @notices }
     end
   end
-    
- # GET /resource/sign_up
-#  def new
-#    resource = build_resource({})
-#    respond_with resource
-#  end
+
+  def new
+    self.resource = build_resource({})
+    resource.user_pictures.build if resource.user_pictures.empty?
+    respond_with resource
+  end
+
+  def edit
+    resource.user_pictures.build if resource.user_pictures.empty?
+  end
 
   # POST /resource
   def create
-    build_resource(resource_params)
-    
-    if Rails.env.production? 
-      result=verify_recaptcha(:model => resource) && resource.save
-    else 
-      result=resource.save
+    if Rails.env.production?
+      unless verify_turnstile
+        flash.now[:alert] = "로봇 차단됨"
+        render :new and return
+      end
     end
-    
-    if result
+
+    build_resource(resource_params)
+
+    if resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
@@ -55,8 +54,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
-  
-   def after_sign_up_path_for(resource)
+
+  def after_sign_up_path_for(resource)
     after_sign_in_path_for(resource)
   end
 
@@ -71,24 +70,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(resource)
     signed_in_root_path(resource)
   end
-  
-  def layout
-    if(params[:no_layout])
-      return nil
-    else
-      return 'application'
-    end
-  end
-  
+
   protected
-  
+
+
+  def verify_turnstile
+    token = params["cf-turnstile-response"]
+    return false if token.blank?
+
+    uri = URI("https://challenges.cloudflare.com/turnstile/v0/siteverify")
+    response = Net::HTTP.post_form(uri, {
+      "secret" => ENV["TURNSTILE_SECRET_KEY"],
+      "response" => token,
+      "remoteip" => request.remote_ip
+    })
+
+    json = JSON.parse(response.body)
+    json["success"] == true
+  end
+
   def account_update_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :gender, :alternate_name, :url, :job_title, :description, :photo, :photo_cache)
-  end  
-  
+    params.require(:user).permit(:nickname, :email, :password, :current_password, :description, user_pictures_attributes: [:id, :picture, :_destroy])
+  end
+
   private
 
   def resource_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :gender, :alternate_name, :url, :job_title, :description, :photo, :photo_cache)
+    params.require(:user).permit(:nickname, :email, :password, :current_password, :description, user_pictures_attributes: [:id, :picture, :_destroy])
   end
 end

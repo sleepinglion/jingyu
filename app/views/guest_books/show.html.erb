@@ -10,6 +10,11 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-12">
+			<%= render partial: "comments/templete", locals: {commentable: @guest_book, new_comment: @comment} %>
+		</div>
+	</div>
+	<div class="row">
 		<div class="btn-group btn-group-lg col-12 mt-3" role="group">
 			<%=link_to t(:link_list),guest_books_path,{class: 'btn btn-secondary btn-large btn-block'} %>
 		</div>

@@ -24,8 +24,8 @@
 			<% if @admin_users.empty? %>
 			<% @admin_users.each do |user| %>
 			<tr>
-				<td><%= user.user.name %></td>
-				<td><%= link_to user.name, admin_user_path(user)  %></td>
+				<td><%= user.id %></td>
+				<td><%= link_to user.nickname, admin_user_path(user)  %></td>
 				<td><%= link_to sign_in_count, admin_user_path(user)  %></td>
 				<td><%= link_to user.created_at.to_date, admin_user_path(user) %></td>
 			</tr>

@@ -57,7 +57,7 @@ class BlogsController < ApplicationController
   def new
     @blog = Blog.new
     @blog.build_blog_picture
-    if(params[:blog_category_id])
+    if params[:blog_category_id]
       @blog_category=params[:blog_category_id]
     end
   end

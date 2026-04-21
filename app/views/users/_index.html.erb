@@ -2,7 +2,7 @@
 	<% unless @users.empty? %>
 	<dl class="dl-horizontal">
 		<% @users.each do |user| %>
-		<dt><%=user.name %> </dt>
+		<dt><%=user.nickname %> </dt>
 		<dd><%=user.description %></dd>
 		<% end %>
 	</dl>

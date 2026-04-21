@@ -1,4 +1,12 @@
-User.create(id: 1, email: 'admin@jingyu.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_picture_attributes: { picture:  File.open(Rails.root.join("public", "images", "intro.jpg"))},admin: true)
+AuthenticationProvider.create!(name: 'kakao')
+AuthenticationProvider.create!(name: 'twitter')
+AuthenticationProvider.create!(name: 'google_oauth2')
+AuthenticationProvider.create!(name: 'apple')
+AuthenticationProvider.create!(name: 'facebook')
+AuthenticationProvider.create!(name: 'naver')
+AuthenticationProvider.create!(name: 'github')
+
+User.create(id: 1, email: 'admin@jingyu.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_pictures_attributes: [{ picture:  File.open(Rails.root.join("public", "images", "intro.jpg"))}],admin: true)
 
 GalleryCategory.create!(id: 1, title: '멋진 나')
 GalleryCategory.create!(id: 2, title: '가족')

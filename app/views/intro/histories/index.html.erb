@@ -3,7 +3,7 @@
 		<h1><%=@board_name %></h1>
 		<p class="path"><%=link_to '홈으로',root_path,:title=>'홈으로' %>  &gt; <strong><%=@board_name %></strong></p>
 	</div>
-	<table width="100%" cellpadding="0" cellspacing="0" class="slboard_list">
+	<table width="100%" class="slboard_list">
 		<colgroup>
 			<col width="100px" />
 			<col />
@@ -28,7 +28,7 @@
 			<% if(@histories.length>0) %>
 			<% @histories.each do |history| %>
 			<tr>
-				<td><p class="sl_name"><%= history.user.name %></p></td>
+				<td><p class="sl_name"><%= history.user.nickname %></p></td>
 				<td><p><%= link_to history.title, notice  %></p></td>
 				<td class="sl_right"><p class="sl_count"><%= history.impressionist_count(:filter=>:ip_address) %></p></td>
 				<td class="sl_right"><p class="sl_registered_date"><%=getFormatDate(history.created_at.to_s) %></p></td>

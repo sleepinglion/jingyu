@@ -7,7 +7,7 @@
 	<div class="slboard_content">
 		<div class="sl_content_header">
 			<h3><%= @history.title %></h3>
-			<p>작성자 :<%= @history.user.name %>&nbsp;&nbsp;&nbsp; 작성일 : <%= @history.created_at %></p>
+			<p>작성자 :<%= @history.user.nickname %>&nbsp;&nbsp;&nbsp; 작성일 : <%= @history.created_at %></p>
 		</div>
 		<div class="sl_content_main">
 			<div class="sl_content_text"><%= simple_format(@history.content) %></div>

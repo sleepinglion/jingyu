@@ -56,6 +56,17 @@ gem 'acts-as-taggable-on'
 gem 'acts_as_commentable_with_threading'
 gem 'acts_as_votable'
 
+gem 'omniauth'
+gem 'oauth2', '1.4.11'
+gem 'omniauth-oauth2'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-facebook'
+gem 'omniauth-naver'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-apple'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

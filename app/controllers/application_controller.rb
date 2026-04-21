@@ -137,6 +137,20 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path, :notice => t(:login_first)
   end
 
+  def verify_turnstile
+    token = params["cf-turnstile-response"]
+    return false if token.blank?
+
+    uri = URI("https://challenges.cloudflare.com/turnstile/v0/siteverify")
+    response = Net::HTTP.post_form(uri, {
+      "secret" => ENV["TURNSTILE_SECRET_KEY"],
+      "response" => token,
+      "remoteip" => request.remote_ip
+    })
+
+    json = JSON.parse(response.body)
+    json["success"] == true
+  end
 
   def admin_signed_in?
     user_signed_in? && current_user.admin?
@@ -152,21 +166,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   helper_method :admin_signed_in?, :current_admin
-
-  def verify_turnstile
-    token = params["cf-turnstile-response"]
-    return false if token.blank?
-
-    uri = URI("https://challenges.cloudflare.com/turnstile/v0/siteverify")
-    response = Net::HTTP.post_form(uri, {
-      "secret" => ENV["TURNSTILE_SECRET_KEY"],
-      "response" => token,
-      "remoteip" => request.remote_ip
-    })
-
-    json = JSON.parse(response.body)
-    json["success"] == true
-  end
 end
 

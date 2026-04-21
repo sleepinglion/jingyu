@@ -1,40 +1,107 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name),:html => {:class=>'form-horizontal' }) do |f| %>
-  <%= devise_error_messages! %>
-<div class="form-group">
-	<%= f.label :email,:for=>"user_email",:class=>"col-sm-2 control-label" %>
-	<div class="col-sm-10">
-		<%= f.email_field :email, :class=>"form-control",:required=>'required' %>
-	</div>
-</div>
-<div class="form-group">
-	<%= f.label :name,:for=>"user_name",:class=>"col-sm-2 control-label" %>
-	<div class="col-sm-10">
-		<%= f.text_field :name, :class=>"form-control",:required=>'required' %>
-	</div>
-</div>
-<div class="form-group">
-	<%= f.label :password,:for=>"user_password",:class=>"col-sm-2 control-label" %>
-	<div class="col-sm-10">
-		<%= f.password_field :password, :class=>"form-control",:required=>'required' %>
-	</div>
-</div>
-<div class="form-group">
-	<%= f.label :password_confirmation,:for=>"user_password_confirmation",:class=>"col-sm-2 control-label" %>
-	<div class="col-sm-10">
-		<%= f.password_field :password_confirmation, :class=>"form-control",:required=>'required' %>
-	</div>
-</div>
-<div class="form-group">
-	<%= f.label :photo,:for=>"user_photo",:class=>"col-sm-2 control-label" %>
-	<div class="col-sm-10">
-		<%= f.file_field :photo %>
-	</div>
-</div>
-<div class="form-group">
-	<div class="col-sm-offset-2 col-sm-10">
-		<%= f.submit '회원가입',:class=>'btn btn-primary' %>
-	</div>
-</div>
-<% end %>
+<div class="row">
+	<section class="col-12">
+		<%= form_for resource,
+								 as: resource_name,
+								 url: registration_path(resource_name),
+								 html: { multipart: true },
+								 data: { controller: "user-form", action: "submit->user-form#submit", turbo: false } do |f|  %>
+			<%= render "users/shared/error_messages", resource: resource %>
+			<article>
+				<h3>필수입력 사항</h3>
+				<div class="card">
+					<div class="card-body">
+						<div class="form-group col-12">
+							<%= f.label :nickname, :class => 'form-label' %>
+							<%= f.text_field :nickname, :class => 'form-control-lg form-control', :required => 'required' %>
+						</div>
+						<div class="form-group col-12">
+							<%= f.label :email, :class => 'form-label' %>
+							<%= f.email_field :email, :class => 'form-control-lg form-control', :required => 'required' %>
+						</div>
+						<div class="form-group col-12">
+							<%= f.label :password, :class => 'form-label' %>
+							<%= f.password_field :password, :class => 'form-control-lg form-control', :required => 'required' %>
+						</div>
+						<div class="form-group col-12">
+							<%= f.label :description, :class => 'form-label' %>
+							<%= f.text_field :description, :class => 'form-control-lg form-control', :required => 'required' %>
+						</div>
+					</div>
+				</div>
+			</article>
+			<article class="mt-3">
+				<h3>선택입력 사항</h3>
+				<div class="card">
+					<div class="card-body">
+						<div class="form-group col-12">
+							<%= f.fields_for :user_pictures do |pp| %>
+								<div
+									class="user-picture mb-3"
+									data-controller="picture"
+								>
+									<% if pp.object.persisted? && pp.object.picture? %>
+										<img
+											src="<%= pp.object.picture.url %>"
+											class="preview img-thumbnail mb-2"
+											width="120"
+											data-picture-target="image"
+										>
 
-<%= render "devise/shared/links" %>
+										<div class="form-check mt-1">
+											<%= pp.check_box :_destroy,
+																			 class: "form-check-input",
+																			 data: { action: "change->picture#toggleDelete" } %>
+											<%= pp.label :_destroy, "삭제", class: "form-check-label" %>
+										</div>
+									<% else %>
+										<img
+											class="preview img-thumbnail mb-2"
+											width="120"
+											style="display:none"
+											data-picture-target="image"
+										>
+									<% end %>
+
+									<%= pp.file_field :picture,
+																		data: { action: "change->picture#preview" } %>
+								</div>
+							<% end %>
+						</div>
+						<div class="form-group col-12">
+							<%= f.label :url, :class => 'form-label' %>
+							<%= f.url_field :url,
+															class: 'form-control-lg form-control',
+															placeholder: "http://www.example.com",
+															data: { "user-form-target": "url", action: "focus->user-form#focusUrl" } %>
+						</div>
+					</div>
+				</div>
+			</article>
+			<% if Rails.env.production? %>
+				<div id="turnstile-container" class="mt-3"></div>
+			<% end %>
+			<div class="d-grid gap-2 mt-3">
+				<% disabled = Rails.env.production? %>
+				<%= f.submit "저장", id: "submit-btn", class: "btn btn-lg btn-primary", disabled: disabled %>
+			</div>
+		<% end %>
+	</section>
+</div>
+<% if Rails.env.production? %>
+	<script>
+		window.turnstileLoaded = function () {
+			const el = document.getElementById("turnstile-container");
+			if (!el) return;
+
+			el.innerHTML = '';
+
+			turnstile.render(el, {
+				sitekey: "<%= ENV['TURNSTILE_SITE_KEY'] %>",
+				callback: function () {
+					document.getElementById("submit-btn").disabled = false;
+				}
+			});
+		};
+	</script>
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileLoaded" async defer></script>
+<% end %>

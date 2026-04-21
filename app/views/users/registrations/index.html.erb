@@ -5,10 +5,10 @@
 	<div class="content_list">
 		<div>
 			<% if user.photo? %>
-				<%=image_tag user.photo.small_thumb, :alt=>user.name %>
+				<%=image_tag user.photo.small_thumb, :alt=>user.nickname %>
 			<% end %>
 		</div>
-		<div class="content_list_head"><span class="content_list_name"><%=user.name %></span> &nbsp;&nbsp; <span class="content_list_date"></span></div>
+		<div class="content_list_head"><span class="content_list_name"><%=user.nickname %></span> &nbsp;&nbsp; <span class="content_list_date"></span></div>
 		<div class="content_list_content"><%=user.description %></div>
 	</div>
 	<% end %>

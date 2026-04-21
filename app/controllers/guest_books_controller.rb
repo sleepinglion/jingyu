@@ -24,6 +24,7 @@ class GuestBooksController < ApplicationController
   # GET /guest_books/1.json
   def show
     @title = @guest_book.title
+    @comment  = Comment.build_from(@guest_book, current_user, "")
 
     respond_to do |format|
       format.html # show.html.erb

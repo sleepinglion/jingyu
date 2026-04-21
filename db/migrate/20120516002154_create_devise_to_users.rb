@@ -8,7 +8,6 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
       t.string :encrypted_password, :null => false, :limit=>100
       t.string :description, :limit=>150
       t.string :alternate_name, :limit=>100
-      t.string :name, :limit=>60
       t.boolean :gender, :default=>false
       t.datetime :birth_date
       t.string :job, :limit=>60
@@ -41,6 +40,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
 
       ## Token authenticatable
       # t.string :authentication_token
+
       t.integer :user_pictures_count, null: false, default: 0
       t.boolean :admin, :null=>false, :default => false
       t.boolean :enable, :null=>false, :default=>true

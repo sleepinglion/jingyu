@@ -16,6 +16,11 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-12">
+			<%= render partial: "comments/templete", locals: {commentable: @blog, new_comment: @comment} %>
+		</div>
+	</div>
 	<% unless @blog.tags.count.zero? %>
 		<p>
 			<%=t('activerecord.models.tag') %> : <%= raw @blog.tags.map { |t| link_to t, tag_path(:tag=>t.name) }.join(', ') %>
@@ -32,7 +37,6 @@
 			<% end %>
 		</ul>
 	<% end %>
-
 	<div class="row">
 		<div class="btn-group btn-group-lg col-12 mt-3" role="group">
 			<%= link_to t(:link_list),blogs_path(page: params[:page], blog_category_id: @blog_category), class: 'btn btn-secondary btn-large btn-block' %>
