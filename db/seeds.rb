@@ -6,7 +6,12 @@ AuthenticationProvider.create!(name: 'facebook')
 AuthenticationProvider.create!(name: 'naver')
 AuthenticationProvider.create!(name: 'github')
 
-User.create(id: 1, email: 'admin@jingyu.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_pictures_attributes: [{ picture:  File.open(Rails.root.join("public", "images", "intro.jpg"))}],admin: true)
+User.create(id: 1, email: 'admin@jingyu.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_pictures_attributes: [{ picture:  File.open(Rails.root.join("public", "images", "intro.jpg"))}], 'url': 'https://www.jingyu.pe.kr',admin: true)
+User.create!(id: 2, email: 'user1@jedaeroweb.co.kr', nickname: '잠자는사자', password: 'a12345', password_confirmation: 'a12345', 'url': 'https://www.sleepinglion.pe.kr')
+User.create!(id: 3, email: 'user2@jedaeroweb.co.kr', nickname: '예쁜간호사', password: 'a12345', password_confirmation: 'a12345', 'url': 'https://www.seonmi.pe.kr')
+User.create!(id: 4, email: 'user3@jedaeroweb.co.kr', nickname: '연무동주민', password: 'a12345', password_confirmation: 'a12345')
+User.create!(id: 5, email: 'user4@jedaeroweb.co.kr', nickname: '모임동생', password: 'a12345', password_confirmation: 'a12345')
+User.create!(id: 6, email: 'user5@jedaeroweb.co.kr', nickname: '지나가던사람', password: 'a12345', password_confirmation: 'a12345')
 
 GalleryCategory.create!(id: 1, title: '멋진 나')
 GalleryCategory.create!(id: 2, title: '가족')
@@ -1800,48 +1805,48 @@ Blog.create!(id: 32, user_id: 1, blog_category_id: 3,title: '공산혁명은 비
 아이러니하게도 공산주의가 남긴 역사적 압력의 간접적 수혜를 받고 있는 셈이다.')
 
 
-Question.create!(id: 1, user_id: 1, title: '홈페이지 너무 좋네요',
+Question.create!(id: 1, user_id: 2, title: '홈페이지 너무 좋네요',
                  created_at:'2026-01-03 18:05:12',
                  updated_at:'2026-01-03 18:05:12',
                  content: '저도 이런 홈페이지 만들고 싶은데 어떻게 하면 될지 알려주시면 감사하겠습니다.')
 
-Question.create!(id: 2, user_id: 1, title: '안녕하세요 궁금해서 그러는데요',
+Question.create!(id: 2, user_id: 4, title: '안녕하세요 궁금해서 그러는데요',
                  created_at:'2026-02-16 06:06:42',
                  updated_at:'2026-02-15 06:06:42',
                  content: '연락해서 물어볼수 있는 연락처좀 알 수 있을까요?')
 
-Question.create!(id: 3, user_id: 1, title: '연무동 도시재생 사업에 참여하고 싶은데요',
+Question.create!(id: 3, user_id: 4, title: '연무동 도시재생 사업에 참여하고 싶은데요',
                  created_at:'2026-03-02 01:17:33',
                  updated_at:'2026-03-02 01:17:33',
                  content: '연무동 도시재생 사업에 참여하고 싶은데, 어떻게 하면 될까요?')
 
-GuestBook.create!(id: 1, user_id: 1, title: '형님 안녕하세요',
+GuestBook.create!(id: 1, user_id: 5, title: '형님 안녕하세요',
                   created_at:'2026-03-04 23:55:36',
                   updated_at:'2026-03-04 23:55:36',
                   content: '형님 빨리 또 만나서 술 한잔 해요')
 
-GuestBook.create!(id: 2, user_id: 1, title: '회장님, 잘 지내시지요?',
+GuestBook.create!(id: 2, user_id: 2, title: '회장님, 잘 지내시지요?',
                   created_at:'2026-03-14 22:12:37',
                   updated_at:'2026-03-14 22:12:37',
                   content: '회장님 고생하십니다.
 조만간 또 뵙고 한 잔 하시지요~')
 
-GuestBook.create!(id: 3, user_id: 1, title: '좋은 글들이네요',
+GuestBook.create!(id: 3, user_id: 4, title: '좋은 글들이네요',
                   created_at:'2026-03-16 13:29:38',
                   updated_at:'2026-03-16 13:29:38',
                   content: '좋은글들 잘 읽었습니다. 계속 방문할께요')
 
-GuestBook.create!(id: 4, user_id: 1, title: '좋은분인것 같아요',
+GuestBook.create!(id: 4, user_id: 3, title: '좋은분인것 같아요',
                   created_at:'2026-03-21 16:12:39',
                   updated_at:'2026-03-21 16:12:39',
                   content: '저장강박 잘 치료 받으시길 바랄께요')
 
-GuestBook.create!(id: 5, user_id: 1, title: '접니다, ㅎㅎ',
+GuestBook.create!(id: 5, user_id: 5, title: '접니다, ㅎㅎ',
                   created_at:'2026-04-01 12:42:32',
                   updated_at:'2026-04-01 12:42:32',
                   content: '형님, 보고싶네요,  그럼 또 연락드릴께요')
 
-GuestBook.create!(id: 6, user_id: 1, title: '잘보고 갑니다, ㅎㅎ',
+GuestBook.create!(id: 6, user_id: 6, title: '잘보고 갑니다, ㅎㅎ',
                   created_at:'2026-04-16 03:25:32',
                   updated_at:'2026-04-16 03:25:32',
                   content: '좋은글, 사진 잘 보고 갑니다.
