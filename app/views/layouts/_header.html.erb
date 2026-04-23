@@ -1,23 +1,31 @@
 <header>
-  <div class="container">
-    <div class="row">
-      <h1 class="col-12 col-lg-6"><%= link_to t(:home_title),root_path %></h1>
-      <% if user_signed_in? %>
-        <ul id="top_menu">
-          <li><%= link_to current_user.nickname,edit_user_registration_path %><%= t(:welcome)%></li>
-          <li><%= link_to t(:logout),destroy_user_session_path, method: 'delete' %></li>
-        </ul>
-      <% end %>
-      <nav class="col-12 col-lg-6">
-        <ul class="nav nav-pills">
-          <li <% if params[:controller]=='intro' %>class="active"<% end %>><%=link_to intro_index_path do %><%= t('activerecord.models.intro') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
-          <li <% if params[:controller]=='galleries' %>class="active"<% end %>><%=link_to galleries_path do %><%= t('activerecord.models.gallery') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
-          <li <% if params[:controller]=='blogs' %>class="active"<% end %>><%=link_to blogs_path  do %><%= t('activerecord.models.blog') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
-          <li <% if params[:controller]=='questions' %>class="active"<% end %>><%=link_to questions_path do %><%= t('activerecord.models.question') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
-          <li <% if params[:controller]=='faqs' %>class="active"<% end %>><%=link_to faqs_path do %><%= t('activerecord.models.faq') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
-          <li <% if params[:controller]=='guest_books' %>class="active"<% end %>><%=link_to guest_books_path do %><%= t('activerecord.models.guest_book') %><span class="visible-xs glyphicon glyphicon-chevron-right pull-right"></span><% end %></li>
-        </ul>
-      </nav>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <!-- 서비스 이름 (왼쪽) -->
+      <h1><%= link_to t(:service_name), '/', class: "navbar-brand" %></h1>
+
+      <!-- 모바일 토글 버튼 (오른쪽 끝) -->
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Offcanvas 메뉴 (모바일) -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">매뉴</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto">
+            <li <% if params[:controller]=='intro' %>class="active"<% end %>><%=link_to t('activerecord.models.intro'),intro_index_path,class: "nav-link" %></li>
+            <li <% if params[:controller]=='galleries' %>class="active"<% end %>><%=link_to t('activerecord.models.gallery') ,galleries_path,class: "nav-link" %></li>
+            <li <% if params[:controller]=='blogs' %>class="active"<% end %>><%=link_to t('activerecord.models.blog'),blogs_path,class: "nav-link" %></li>
+            <li <% if params[:controller]=='questions' %>class="active"<% end %>><%=link_to  t('activerecord.models.question'),questions_path,class: "nav-link" %></li>
+            <li <% if params[:controller]=='faqs' %>class="active"<% end %>><%=link_to  t('activerecord.models.faq'),faqs_path,class: "nav-link" %></li>
+            <li <% if params[:controller]=='guest_books' %>class="active"<% end %>><%=link_to t('activerecord.models.guest_book'),guest_books_path, class: "nav-link" %></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+  </nav>
 </header>
