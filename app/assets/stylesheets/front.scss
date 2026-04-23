@@ -347,22 +347,26 @@ a.left:active {background-position: -60px 0}
 
 @media all and (max-width: 767px) {
     .container {width: 100%;max-width:none}
+    .container>.row {margin-right:0;margin-left:0}
     header {background:none;border-bottom:0;margin:0}
 	header h1 {font-size:1.6em}
 	header h1 a:hover {text-decoration:none}
 	header h1 a:active {color:red}
 	.nav-pills > li + li {margin:0}
 	#mom {width:100%;margin:0}
-	#main {margin:0;padding:0;padding-bottom:2%;width:100%;border-radius:5px}
+	#main {margin:0;padding:0 0 2%;width:100%;border-radius:5px}
 	#sl_main_gallery .carousel-inner a.m_nm {margin-right:0};
     #sl_main_gallery .carousel-control-prev, #sl_main_gallery .carousel-control-next {display:none}
 	#sl_main_blog li {margin-bottom:10px}
 	#sl_main_blog li.m_nm {margin-right:0}
+    #main_main {margin:0;padding:0;}
+    #main_main article {padding-left:2.5%;padding-right:2.5%}
+    #main_main article .more {right:2.5%}
 	#main_main article ul {margin:0;padding:0;list-style:none}
-	#sl_intro_index #sl_intro_right {float:left;width:100%}
+	#sl_intro_index #sl_intro_right {width:100%}
 	header nav ul a:hover {color:#000}
 	header nav ul a:active {color:red}
-	.page-header {float:left;margin-top:2%;margin-bottom:10px}
+	.page-header {margin-top:2%;margin-bottom:10px}
 	#sl_intro_index #sl_intro_right, #sl_gallery_index #sl_gallery_right {width:100%;margin:0}
 	#sl_intro_index #sl_intro_left {width:100%}
 
