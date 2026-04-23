@@ -347,20 +347,13 @@ a.left:active {background-position: -60px 0}
 
 @media all and (max-width: 767px) {
     .container {width: 100%;max-width:none}
-    header {background:none;border-bottom:0;margin:0 0 2rem}
+    header {background:none;border-bottom:0;margin:0}
 	header h1 {font-size:1.6em}
-	header h1 a {display:block;background:none;text-indent:0;width:100%;font-weight:bold;text-align: center}
 	header h1 a:hover {text-decoration:none}
 	header h1 a:active {color:red}
-    header nav.col-12 {margin:0;padding:0}
-	header nav ul {width:100%;margin:2% 0 0;padding:0;border-radius:5px}
-	header nav ul li,header ul li a {clear:both;float:left;width:100%;text-align:left}
-	header nav ul.nav-pills > li + li {margin-left:0}
-	header nav ul li {margin:0;padding:0}
-	header nav ul li a {display:block;border-bottom:1px solid var(--bs-border-color);text-indent:1em;padding:10px;border-radius:0}
 	.nav-pills > li + li {margin:0}
-	#mom {float:left;clear:both;width:100%;margin:0}
-	#main {float:left;margin:0;padding-top:2%;padding-bottom:2%;width:100%;border-radius:5px}
+	#mom {width:100%;margin:0}
+	#main {margin:0;padding:0;padding-bottom:2%;width:100%;border-radius:5px}
 	#sl_main_gallery .carousel-inner a.m_nm {margin-right:0};
     #sl_main_gallery .carousel-control-prev, #sl_main_gallery .carousel-control-next {display:none}
 	#sl_main_blog li {margin-bottom:10px}
@@ -369,7 +362,7 @@ a.left:active {background-position: -60px 0}
 	#sl_intro_index #sl_intro_right {float:left;width:100%}
 	header nav ul a:hover {color:#000}
 	header nav ul a:active {color:red}
-	.page-header {float:left;margin-top:0;margin-bottom:10px}
+	.page-header {float:left;margin-top:2%;margin-bottom:10px}
 	#sl_intro_index #sl_intro_right, #sl_gallery_index #sl_gallery_right {width:100%;margin:0}
 	#sl_intro_index #sl_intro_left {width:100%}
 
