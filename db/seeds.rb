@@ -6,7 +6,7 @@ AuthenticationProvider.create!(name: 'facebook')
 AuthenticationProvider.create!(name: 'naver')
 AuthenticationProvider.create!(name: 'github')
 
-User.create(id: 1, email: 'admin@jingyu.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_pictures_attributes: [{ picture:  File.open(Rails.root.join("public", "images", "intro.jpg"))}], 'url': 'https://www.jingyu.pe.kr',admin: true)
+User.create!(id: 1, email: 'admin@jingyu.pe.kr', nickname: '정진규', password: 'a12345', password_confirmation: 'a12345', description: '탁구가 최고야', user_pictures_attributes: [{ picture:  File.open(Rails.root.join("public", "images", "intro.jpg"))}], 'url': 'https://www.jingyu.pe.kr',admin: true)
 User.create!(id: 2, email: 'user1@jedaeroweb.co.kr', nickname: '잠자는사자', password: 'a12345', password_confirmation: 'a12345', 'url': 'https://www.sleepinglion.pe.kr')
 User.create!(id: 3, email: 'user2@jedaeroweb.co.kr', nickname: '예쁜간호사', password: 'a12345', password_confirmation: 'a12345', 'url': 'https://www.seonmi.pe.kr')
 User.create!(id: 4, email: 'user3@jedaeroweb.co.kr', nickname: '연무동주민', password: 'a12345', password_confirmation: 'a12345')
