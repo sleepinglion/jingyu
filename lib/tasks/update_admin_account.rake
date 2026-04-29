@@ -9,7 +9,7 @@ namespace :account do
       exit 1
     end
 
-    user = User.find_by(email: email)
+    user = User.find_by_id(1)
 
     unless user
       puts "❌ User not found: #{email}"
