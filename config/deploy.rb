@@ -50,6 +50,18 @@ namespace :deploy do
     end
   end
 
+  desc "Update admin account using ENV values"
+  task :update_admin_account do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :rake, "account:update_admin"
+        end
+      end
+    end
+  end
+
+  after :published, "deploy:update_admin_account"
   after :finishing, 'deploy:refresh_sitemap'
   after :finishing, 'deploy:cleanup'
 end
