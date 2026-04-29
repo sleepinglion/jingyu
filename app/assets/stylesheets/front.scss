@@ -73,8 +73,7 @@ article, aside, audio, canvas, command, datalist, details, embed, figcaption, fi
 mark, rp, rt, ruby, summary, time {display:inline;}
 
 /* layout */
-footer {clear:both;float:left;width:80%;margin:0 10%;;border-top:1px solid var(--bs-border-color);text-align: center}
-footer div {margin:0.3em 0 0}
+footer {clear:both;border-top:1px solid var(--bs-border-color);text-align: center}
 #mom {clear:both;float:left;width:100%;padding:0}
 .sub_main {padding-bottom:2rem;margin-bottom:2.5rem}
 .page-header {float:left;width:100%;margin:1rem 0;padding-bottom:7px;border-bottom:1px solid var(--bs-border-color)}
