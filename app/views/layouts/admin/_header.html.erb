@@ -9,8 +9,8 @@
     <ul id="top-menu">
       <% if admin_signed_in? %>
         <li id="admin-info">
-          <% if current_admin.user_picture.present? %>
-            <%= image_tag(current_admin.user_picture.picture.small_thumb.url, { :height => 50, :width => 50 }) %>
+          <% if current_admin.user_pictures[0].present? %>
+            <%= image_tag(current_admin.user_pictures[0].picture.small_thumb.url, { :height => 50, :width => 50 }) %>
           <% end %>
           <span class="text-dark"><%= current_admin.nickname %></span>
         </li>
