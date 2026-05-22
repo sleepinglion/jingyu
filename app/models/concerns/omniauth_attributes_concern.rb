@@ -5,7 +5,7 @@ module ClassMethods
     (params['info']['email'] = "dummy#{SecureRandom.hex(10)}@dummy.com") if params['info']['email'].blank?
     attributes = {
       email: params['info']['email'],
-      name: params['info']['name'],
+      nickname: params['info']['name'],
       password: Devise.friendly_token,
     }
     create(attributes)
@@ -15,7 +15,7 @@ module ClassMethods
     (params['info']['email'] = "dummy#{SecureRandom.hex(10)}@dummy.com") if params['info']['email'].blank?
     attributes = {
       email: params['info']['email'],
-      name: params['info']['name'],
+      nickname: params['info']['name'],
       password: Devise.friendly_token,
     }
     create(attributes)
@@ -25,7 +25,7 @@ module ClassMethods
     (params['info']['email'] = "dummy#{SecureRandom.hex(10)}@dummy.com") if params['info']['email'].blank?
     attributes = {
       email: params['info']['email'],
-      name: params['info']['name'],
+      nickname: params['info']['name'],
       password: Devise.friendly_token,
     }
     create(attributes)
@@ -35,7 +35,7 @@ module ClassMethods
     (params['info']['email'] = "dummy#{SecureRandom.hex(10)}@dummy.com") if params['info']['email'].blank?
     attributes = {
       email: params['info']['email'],
-      name: params['info']['name'],
+      nickname: params['info']['name'],
       password: Devise.friendly_token,
     }
     create(attributes)
@@ -45,7 +45,7 @@ module ClassMethods
     (params['info']['email'] = "dummy#{SecureRandom.hex(10)}@dummy.com") if params['info']['email'].blank?
     attributes = {
       email: params['info']['email'],
-      name: params['info']['name'],
+      nickname: params['info']['name'],
       password: Devise.friendly_token,
     }
     create(attributes)
@@ -55,7 +55,7 @@ module ClassMethods
     (params['info']['email'] = "dummy#{SecureRandom.hex(10)}@dummy.com") if params['info']['email'].blank?
     attributes = {
       email: params['info']['email'],
-      name: params['info']['name'],
+      nickname: params['info']['name'],
       password: Devise.friendly_token,
     }
     create(attributes)
@@ -65,7 +65,7 @@ module ClassMethods
     (params['info']['email'] = "dummy#{SecureRandom.hex(10)}@dummy.com") if params['info']['email'].blank?
     attributes = {
       email: params['info']['email'],
-      name: params['info']['name'],
+      nickname: params['info']['name'],
       password: Devise.friendly_token,
     }
     create(attributes)

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include OmniauthAttributesConcern
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable,:omniauthable, omniauth_providers: [:kakao, :naver, :twitter, :facebook, :apple, :google_oauth2, :github]
   validates_presence_of :nickname
   validates_uniqueness_of :email
