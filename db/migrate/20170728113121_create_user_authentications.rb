@@ -4,7 +4,7 @@ class CreateUserAuthentications < ActiveRecord::Migration[6.0]
             t.integer  "user_id"
             t.integer  "authentication_provider_id"
             t.string   "uid"
-            t.string   "token"
+            t.text   "token"
             t.datetime "token_expires_at"
             t.text     "params"
             t.timestamps null: false
