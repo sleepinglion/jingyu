@@ -136,7 +136,10 @@ module JsonLdHelper
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": record.try(:title) || record.try(:name),
-      "description": truncate(strip_tags(record.try(:content) || ""), length: 150),
+      "description": truncate(
+        strip_tags(record.content&.body&.to_s.to_s),
+        length: 150
+      ),
       "author": {
         "@type": "Person",
         "name": record.try(:user)&.try(:nickname)
