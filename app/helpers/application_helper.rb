@@ -11,24 +11,6 @@ module ApplicationHelper
     end
   end
 
-  def sl_get_thumb(url, type = 'origin')
-
-    if type == 'origin'
-      return url
-    end
-
-    case type
-    when 'large'
-      prefix = 'large_thumb'
-    when 'medium'
-      prefix = 'medium_thumb'
-    when 'small'
-      prefix = 'small_thumb'
-    end
-
-    url.gsub(File.basename(url), prefix + '_' + File.basename(url))
-  end
-
   def flagToString(flag, no_html = false)
     if no_html
       if flag

@@ -7,7 +7,7 @@
   <article class="media p-3 rounded" data-controller="click-redirect" data-action="click->click-redirect#mediaClick">
 		<%=link_to blog_path(blog,{:blog_category_id=>@blog_category,:page=>params[:page]}),:class=>"pull-left" do %>
     <% unless blog.blog_pictures_count.zero? %>
-      <%=image_tag sl_get_thumb(blog.blog_picture.picture.to_s,'small'), :class=>"media-object",:alt=>"..." %>
+      <%=image_tag blog.blog_picture.picture.small_thumb.url, :class=>"media-object",:alt=>"..." %>
     <% end %>
     <% end %>
     <div class="media-body">

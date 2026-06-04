@@ -64,7 +64,7 @@ module JsonLdHelper
       },
       "headline": post.title,
       "description": post.description || truncate(strip_tags(post.content), length: 160),
-      "image": post.blog_picture ? sl_get_thumb(post.blog_picture.picture.to_s,'medium') : '-',
+      "image": post.blog_picture ? post.blog_picture.picture.medium_thumb.url : '-',
       "author": {
         "@type": "Person",
         "name": post.user&.nickname || "익명"
@@ -92,7 +92,7 @@ module JsonLdHelper
           "@type": "ImageObject",
           "url": gallery.photo.url,
           "caption": gallery.title,
-          "thumbnail": sl_get_thumb(gallery.photo.to_s,'medium')
+          "thumbnail": gallery.photo.medium_thumb.url
         },
       "datePublished": gallery.created_at.iso8601,
       "dateModified": gallery.updated_at.iso8601
