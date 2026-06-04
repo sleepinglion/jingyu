@@ -52,7 +52,7 @@ class UserPictureUploader < CarrierWave::Uploader::Base
     process convert: "webp"
 
     def full_filename(filename)
-      "#{File.basename('medium_thumb_'+filename, '.*')}.webp"
+      "#{File.basename('small_thumb_'+filename, '.*')}.webp"
     end
   end
 
