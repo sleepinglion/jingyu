@@ -9,22 +9,18 @@ namespace :account do
       exit 1
     end
 
-    user = User.find_by_id(1)
+    admin = Admin.find_by_id(1)
 
-    unless user
-      puts "❌ User not found: #{email}"
+    unless admin
+      puts "❌ Admin not found: 1"
       exit 1
     end
 
-    user.password = password
-    user.password_confirmation = password if user.respond_to?(:password_confirmation)
-
-    if user.save
-      puts "✅ Admin account updated: #{email}"
-    else
-      puts "❌ Failed to update user"
-      puts user.errors.full_messages
-      exit 1
+    Admin.transaction do
+      admin.update!(email: email)
+      admin.update!(password: password)
     end
+
+    puts "✅ Admin email & password updated"
   end
 end
