@@ -16,11 +16,14 @@ namespace :account do
       exit 1
     end
 
+    user.email =  email
     user.password = password
     user.password_confirmation = password if user.respond_to?(:password_confirmation)
 
     if user.save
       puts "✅ Admin account updated: #{email}"
+      puts "EMAIL=#{email}"
+      puts "PASSWORD=#{password}"
     else
       puts "❌ Failed to update user"
       puts user.errors.full_messages

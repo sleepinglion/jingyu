@@ -66,6 +66,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-apple'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'dotenv-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -105,5 +106,4 @@ group :production do
   gem 'mysql2'
   gem "redis", "~> 5.0" # Redis client for Ruby
   gem "redis-actionpack", "~> 5.3" # Redis session store for ActionPack
-  gem 'dotenv-rails'
 end
