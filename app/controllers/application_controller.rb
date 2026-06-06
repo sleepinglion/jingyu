@@ -104,7 +104,12 @@ class ApplicationController < ActionController::Base
     return true if params[:sort].present?
     return true if params[:q].present?
 
-    return true if controller_name == "tags"
+    if controller_name == "tags"
+      tag = ActsAsTaggableOn::Tag.find_by(name: params[:tag])
+
+      return true if tag.blank?
+      return true if tag.taggings_count.to_i < 5
+    end
 
     filter_keys = %w[list_type locale tag tags search_type search keyword order gallery_category_id blog_category_id per view tab page utf8]
 
