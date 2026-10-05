@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "rails-ujs"
 import "trix"
+import "@rails/actiontext"
 import "bootstrap";
 import "tagcanvas";  // TagCanvas 로드
 import 'common'

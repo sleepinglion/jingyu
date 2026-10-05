@@ -98,6 +98,6 @@ class Admin::BlogsController < Admin::AdminController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def blog_params
-    params.require(:blog).permit(:blog_category_id, :user_id, :title, :content, :enable, blog_picture_attributes: [:picture])
+    params.require(:blog).permit(:blog_category_id, :user_id, :title, :description, :content, :enable, blog_picture_attributes: [:picture])
   end
 end
