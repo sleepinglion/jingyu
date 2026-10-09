@@ -7,7 +7,7 @@ set :deploy_to, '/home/deploy/jingyu'
 # set :log_level, :debug
 #set :pty, true
 set :linked_files, %w{config/database.yml config/master.key .env .ruby-version lib/tasks/update_admin_account.rake}
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/assets public/uploads}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/assets public/uploads storage}
 
 set :rbenv_type, :user
 set :rbenv_ruby, "3.3.4"

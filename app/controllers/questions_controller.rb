@@ -2,6 +2,11 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, :except => [:index,:show]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
+  def initialize(*params)
+    super(*params)
+    @title = t('activerecord.models.question')
+    @meta_description = t(:meta_description_question)
+  end
   # GET /questions
   # GET /questions.json
   def index

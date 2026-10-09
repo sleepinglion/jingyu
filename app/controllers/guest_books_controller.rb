@@ -4,7 +4,6 @@ class GuestBooksController < ApplicationController
 
   def initialize(*params)
     super(*params)
-    @controller_name = t('activerecord.models.guest_book')
     @title = t('activerecord.models.guest_book')
     @meta_description = t(:meta_description_guest_book)
   end
